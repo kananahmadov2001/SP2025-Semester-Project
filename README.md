@@ -1,8 +1,6 @@
 # SP2025: Group &lt;Group Number&gt; &lt;Project Name&gt;
 
-Name your repository using the following format:  
-**SP2025_Group_&lt;Group Number&gt;**  
-(Example: SP2025_Group_9)
+**SP2025_Group_&lt;2&gt;**  
 
 ## Team Members
 - **&lt;Weikai Rao&gt;**: &lt;r.weikai@wustl.edu&gt; ; &lt;KennyRao&gt;
