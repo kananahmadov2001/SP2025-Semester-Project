@@ -1,6 +1,6 @@
 # SP2025: Group &lt;Group Number&gt; &lt;Project Name&gt;
 
-**SP2025_Group_&lt;2&gt;**  
+**SP2025_Group_2**  
 
 ## Team Members
 - **&lt;Weikai Rao&gt;**: &lt;r.weikai@wustl.edu&gt; ; &lt;KennyRao&gt;
