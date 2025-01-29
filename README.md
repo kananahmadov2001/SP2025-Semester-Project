@@ -9,7 +9,7 @@
 - **Abdou Sow**: a.sow@wustl.edu ; asow211
 
 ## TA
-Victor
+Victor Durojaiye
 
 ## Objectives
 Summary: The Hater Fantasy League (HFL) is a playful, community-driven app where sports fans draft players or teams they predict will have the worst performances each week. Instead of cheering for wins, users
