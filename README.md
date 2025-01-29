@@ -12,7 +12,7 @@
 Victor Durojaiye
 
 ## Objectives
-Summary: The Hater Fantasy League (HFL) is a playful, community-driven app where sports fans draft players or teams they predict will have the worst performances each week. Instead of cheering for wins, users
+Overview: The Hater Fantasy League (HFL) is a playful, community-driven app where sports fans draft players or teams they predict will have the worst performances each week. Instead of cheering for wins, users
 earn points for turnovers, missed shots, fouls, or embarrassing moments, climbing leaderboards based on how well their ”Flop Squad” underperforms. With real-time updates, weekly challenges, trash-talk zones, 
 and curated highlights of the funniest sports fails, HFL is the ultimate app for fans who love to revel in the
 misfortunes of their rivals—all in good fun and friendly competition.
