@@ -1,0 +1,59 @@
+.homepage-container {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  color: #333;
+}
+
+.header-section {
+  background-image: url('/src/assets/header-bg.jpg');
+  background-size: cover;
+  height: 550px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.navigation-section {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0;
+}
+
+.nav-buttons button, .login-section button {
+  margin: 5px;
+  padding: 10px 15px;
+  background-color: #2196F3;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.nav-buttons button:hover, .login-section button:hover {
+  background-color: #0b7dda;
+}
+
+.visual-field, .stats-dashboard, .ads-faqs-section, .footer-section {
+  margin: 20px 0;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.field-placeholder, .stats-placeholder {
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #eaeaea;
+  border-radius: 5px;
+}
+
+.footer-section {
+  background-color: #333;
+  color: white;
+  padding: 10px;
+}
