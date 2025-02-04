@@ -5,7 +5,7 @@ import TeamLogosRoller from "./TeamLogosRoller";
 function home_page() {
   return (
     <div className="homepage-container">
-      {/* Header Section */}
+      {/* Header Sction */}
       <header
         className="header-section"
       >
