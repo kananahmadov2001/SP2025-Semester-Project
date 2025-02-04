@@ -1,0 +1,24 @@
+.team-logos-roller {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    background-color: #33333394;
+    margin: 20px auto;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.team-logos-scrolling-row {
+    display: flex;
+    align-items: center;
+    will-change: transform;
+}
+
+.team-logo-image {
+    height: 80px;
+    margin: 0 15px;
+    flex-shrink: 0;
+}
