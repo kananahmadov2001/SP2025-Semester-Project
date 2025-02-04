@@ -1,5 +1,6 @@
 import React from "react";
 import './home_page.css';
+import TeamLogosRoller from "./TeamLogosRoller";
 
 function home_page() {
   return (
@@ -22,6 +23,11 @@ function home_page() {
           <button>Create Account</button>
         </div>
       </nav>
+
+      {/* Team Logos Section */}
+      <section className="team-logos">
+        <TeamLogosRoller />
+      </section>
 
       {/* Visual Field Section */}
       <section className="visual-field">
