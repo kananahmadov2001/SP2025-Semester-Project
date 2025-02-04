@@ -3,10 +3,10 @@
 **SP2025_Group_2**  
 
 ## Team Members
-- **Weikai Rao**: r.weikai@wustl.edu ; KennyRao
-- **Andrew Feenstra**: a.feenstra@wustl.edu ; andrewjf04
-- **Kanan Ahmadov**: a.kanan@wustl.edu ; kananahmadov2001
-- **Abdou Sow**: a.sow@wustl.edu ; asow211
+- **Abdou Sow**: a.sow@wustl.edu ; [asow211](https://github.com/asow211)
+- **Andrew Feenstra**: a.feenstra@wustl.edu ; [andrewjf04](https://github.com/andrewjf04)
+- **Kanan Ahmadov**: a.kanan@wustl.edu ; [kananahmadov2001](https://github.com/kananahmadov2001)
+- **Weikai Rao**: r.weikai@wustl.edu ; [KennyRao](https://github.com/KennyRao)
 
 ## TA
 Victor Durojaiye
