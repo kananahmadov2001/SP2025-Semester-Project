@@ -1,38 +1,18 @@
 .homepage-container {
   font-family: Arial, sans-serif;
-  text-align: center;
   color: #333;
+  /*background-color: #333;*/
 }
 
 .header-section {
   background-image: url('/src/assets/header-bg.jpg');
   background-size: cover;
-  height: 550px;
+  height: 300px;
   color: white;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-}
-
-.navigation-section {
-  display: flex;
-  justify-content: space-between;
-  margin: 20px 0;
-}
-
-.nav-buttons button, .login-section button {
-  margin: 5px;
-  padding: 10px 15px;
-  background-color: #2196F3;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.nav-buttons button:hover, .login-section button:hover {
-  background-color: #0b7dda;
 }
 
 .visual-field, .stats-dashboard, .ads-faqs-section, .footer-section {
@@ -52,8 +32,291 @@
   border-radius: 5px;
 }
 
-.footer-section {
-  background-color: #333;
-  color: white;
-  padding: 10px;
+/* ///////////////////////// NAVIGATION SECTION /////////////////////////////////////////// */
+
+.nav-container {
+  display: flex;
+  justify-content: center;
+  padding: 25px;
+  color: #333;
 }
+
+.main-section {
+  display: flex;
+  width: 1700px;
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+}
+
+.left-section {
+  flex: 1;
+  padding: 40px;
+}
+
+.main-title {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.description {
+  font-size: 16px;
+  margin-bottom: 30px;
+}
+
+.create-account-btn {
+  padding: 13px 65px;
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+  background-color: #ffc72c;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 83px; 
+}
+
+.create-account-btn:hover {
+  background-color: #d4a819;
+}
+
+.right-section {
+  flex: 1;
+  padding: 40px;
+}
+
+.login-header {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-form label {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.login-input {
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f5f5f5;
+}
+
+.login-input:focus {
+  outline: none;
+  border-color: #ffc72c;
+}
+
+.login-button {
+  padding: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  background-color: #333;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.login-button:hover {
+  background-color: #555;
+}
+
+.forgot-password {
+  margin-top: 10px;
+  text-align: right;
+}
+
+.forgot-password a {
+  color: #0056b3;
+  text-decoration: none;
+}
+
+.forgot-password a:hover {
+  text-decoration: underline;
+}
+
+/* ///////////////////////// TEAM LOGOS SECTION /////////////////////////////////////// */
+
+.team-logos-roller {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background-color: #f4f4f4;
+  margin: 20px auto;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.team-logos-scrolling-row {
+  display: flex;
+  align-items: center;
+  will-change: transform;
+}
+
+.team-logo-image {
+  height: 80px;
+  margin: 0 15px;
+  flex-shrink: 0;
+}
+
+/* ///////////////////////// VISUAL FIELD SECTION /////////////////////////////////////// */
+
+.basketball-field {
+  position: relative;
+  width: 100%;
+  height: 700px;
+  background: url('assets/basketball-field.jpg') center/cover no-repeat;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
+}
+
+.court {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* Style for player cards */
+.player-card {
+  position: absolute;
+  width: 200px;
+  height: auto;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 12px;
+  border-radius: 12px;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.player-card:hover {
+  transform: scale(1.1);
+  background: rgba(255, 255, 255, 0.537);
+  color: #333;
+}
+
+.player-card img {
+  width: 180px;
+  height: auto;
+  margin-bottom: 8px;
+  border: 2px solid white;
+}
+
+/* Player information styling */
+.player-info h3 {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.player-info p {
+  font-size: 15px;
+  margin: 8px 0;
+}
+
+/* Positions for player cards */
+.player-card.center-left {
+  top: 50%;
+  left: 35%;
+  transform: translate(-50%, -50%);
+}
+
+.player-card.center {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.player-card.center-right {
+  top: 50%;
+  left: 65%;
+  transform: translate(-50%, -50%);
+}
+
+/* ///////////////////////// STATS DASHBOARD SECTION /////////////////////////////////////// */
+
+
+
+/* ///////////////////////// ADS/FAQS SECTION /////////////////////////////////////// */
+
+
+
+/* ///////////////////////// FOOTER SECTION /////////////////////////////////////////// */
+
+.footer-section {
+  background-color: #f4f4f4;
+  padding: 30px 40px;
+  font-family: Arial, sans-serif;
+  color: #666;
+}
+
+.footer-links-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.footer-column {
+  flex: 1;
+  min-width: 200px;
+  margin: 0 10px;
+}
+
+.footer-heading {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.footer-column a {
+  display: block;
+  margin-bottom: 8px;
+  color: #666;
+  text-decoration: none;
+}
+
+.footer-column a:hover {
+  color: #000;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 35px;
+}
+
+.social-icon {
+  font-size: 40px;
+  color: #160a85;
+  transition: color 0.2s ease;
+}
+
+.social-icon:hover {
+  color: #000000;
+}
+
+.footer-section a {
+  color: #0077cc;
+}
+
+.footer-section a:hover {
+  text-decoration: underline;
+}
+
+/* ////////////////////////////////////////////////////////////////////// */
+

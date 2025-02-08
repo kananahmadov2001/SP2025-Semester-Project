@@ -1,38 +1,55 @@
 import React from "react";
 import './home_page.css';
 import TeamLogosRoller from "./TeamLogosRoller";
+import BasketballField from './BasketballField';
 
 function home_page() {
   return (
     <div className="homepage-container">
-      {/* Header Sction */}
-      <header
-        className="header-section"
-      >
+      {/* Header Section */}
+      <header className="header-section">
       </header>
 
       {/* Navigation Section */}
-      <nav className="navigation-section">
-        <div className="nav-buttons">
-          <button>Dashboard</button>
-          <button>Stats</button>
-          <button>FAQs</button>
+      <div className="nav-container">
+        <div className="main-section">
+          {/* Left Portion */}
+          <div className="left-section">
+            <h1 className="main-title">PLAY HATER FANTASY</h1>
+            <p className="description">
+              Create your account or sign in with your HFL ID to play the new NBA Hater Fantasy game.
+              Create a league and invite your friends to see who will win.
+            </p>
+            <button className="create-account-btn">Create your account</button>
+          </div>
+
+          {/* Right Portion */}
+          <div className="right-section">
+            <h2 className="login-header">Login</h2>
+            <form className="login-form">
+              <label>Email</label>
+              <input type="email" className="login-input" placeholder="Enter your email" />
+
+              <label>Password</label>
+              <input type="password" className="login-input" placeholder="Enter your password" />
+
+              <button type="submit" className="login-button">Login</button>
+            </form>
+            <div className="forgot-password">
+              <a href="/forgot-password">Forgot your password?</a>
+            </div>
+          </div>
         </div>
-        <div className="login-section">
-          <button>Login</button>
-          <button>Create Account</button>
-        </div>
-      </nav>
+      </div>
 
       {/* Team Logos Section */}
       <section className="team-logos">
         <TeamLogosRoller />
       </section>
 
-      {/* Visual Field Section */}
-      <section className="visual-field">
-        <h2>Visual Basketball/Soccer Field</h2>
-        <div className="field-placeholder">Field Visualization Coming Soon!</div>
+      {/* Visual Field Section */}      
+      <section className="visual-field-section">
+        <BasketballField />
       </section>
 
       {/* Stats Dashboard Section */}
@@ -49,7 +66,53 @@ function home_page() {
 
       {/* Footer Section */}
       <footer className="footer-section">
-        <p>&copy; 2025 Hater Fantasy League. All rights reserved.</p>
+        <div className="footer-links-container">
+          <div className="footer-column">
+            <h3 className="footer-heading">Explore</h3>
+            <a href="#">NBA Players</a>
+            <a href="#">Teams</a>
+            <a href="#">Fantasy Leaderboards</a>
+            <a href="#">Draft Guide</a>
+          </div>
+          <div className="footer-column">
+            <h3 className="footer-heading">Game Info</h3>
+            <a href="#">How to Play</a>
+            <a href="#">Scoring Rules</a>
+            <a href="#">Weekly Challenges</a>
+            <a href="#">FAQs</a>
+          </div>
+          <div className="footer-column">
+            <h3 className="footer-heading">Community</h3>
+            <a href="#">Forums</a>
+            <a href="#">Events</a>
+            <a href="#">Trash Talk Zone</a>
+            <a href="#">Contact Support</a>
+          </div>
+          <div className="footer-column">
+            <h3 className="footer-heading">About</h3>
+            <a href="#">Our Story</a>
+            <a href="#">Press</a>
+            <a href="#">Careers</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+          </div>
+        </div>
+        <div className="footer-social-container">
+          <div className="social-icons">
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+              <i className="fab fa-facebook-square social-icon"></i>
+            </a>
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+              <i className="fab fa-twitter social-icon"></i>
+            </a>
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+              <i className="fab fa-instagram social-icon"></i>
+            </a>
+          </div>
+        </div>
+        <p className="footer-copyright">
+          &copy; 2025 Hater Fantasy League. All rights reserved. <a href="#">Privacy Policy</a> | <a href="#">Terms</a> | <a href="#">Site Map</a>
+        </p>
       </footer>
     </div>
   );
