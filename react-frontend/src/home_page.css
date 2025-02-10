@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 .homepage-container {
   font-family: Arial, sans-serif;
   color: #333;
@@ -49,6 +53,7 @@
   box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
   overflow: hidden;
 }
+
 
 .left-section {
   flex: 1;
@@ -145,6 +150,29 @@
   text-decoration: underline;
 }
 
+/* ///////////////////////// NAVIGATION RESPONSIVE SECTION ///////////////////////////////// */
+@media (max-width: 768px) {
+  .main-title {
+    text-align: center;
+  }
+
+  .main-section {
+    flex-direction: column;
+  }
+
+  .left-section {
+    padding-bottom: 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .create-account-btn {
+    margin-top: 0px;
+    padding: 12px 40px;
+  }
+}
+
 /* ///////////////////////// TEAM LOGOS SECTION /////////////////////////////////////// */
 
 .team-logos-roller {
@@ -188,11 +216,15 @@
   position: relative;
   width: 100%;
   height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 2em;
+  overflow: scroll;
 }
 
 /* Style for player cards */
 .player-card {
-  position: absolute;
+  margin: auto;
   width: 200px;
   height: auto;
   text-align: center;
@@ -228,7 +260,7 @@
 }
 
 /* Positions for player cards */
-.player-card.center-left {
+/* .player-card.center-left {
   top: 50%;
   left: 35%;
   transform: translate(-50%, -50%);
@@ -244,7 +276,8 @@
   top: 50%;
   left: 65%;
   transform: translate(-50%, -50%);
-}
+} */
+
 
 /* ///////////////////////// STATS DASHBOARD SECTION /////////////////////////////////////// */
 
@@ -265,14 +298,15 @@
 
 .footer-links-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   flex-wrap: wrap;
   margin-bottom: 20px;
 }
 
 .footer-column {
   flex: 1;
-  min-width: 200px;
+  min-width: 150px;
+  max-width: 150px;
   margin: 0 10px;
 }
 
