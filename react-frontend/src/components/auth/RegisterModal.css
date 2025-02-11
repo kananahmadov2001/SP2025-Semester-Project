@@ -1,0 +1,50 @@
+/* react-frontend/src/components/auth/RegisterModal.css */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    position: relative;
+    background: #fff;
+    padding: 2em;
+    width: 400px;
+    border-radius: 8px;
+}
+
+.modal-close-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    border: none;
+    background: transparent;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.register-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.register-input {
+    margin-bottom: 1em;
+    padding: 0.5em;
+}
+
+.register-button {
+    padding: 0.6em 1em;
+    background: #333;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+}

@@ -1,4 +1,4 @@
-import './home_page.css';
+import './HomePage.css';
 
 import lebronImg from './assets/lebron.avif';
 import stephImg from './assets/steph-curry.jpg';

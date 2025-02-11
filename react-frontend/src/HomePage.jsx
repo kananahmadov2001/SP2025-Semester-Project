@@ -1,9 +1,28 @@
-import React from "react";
-import './home_page.css';
+// react-frontend/src/HomePage.jsx
+
+import React, { useState } from "react";
+import './HomePage.css';
 import TeamLogosRoller from "./TeamLogosRoller";
 import BasketballField from './BasketballField';
 
-function home_page() {
+// Import our new components
+import LoginForm from "./components/auth/LoginForm";
+import RegisterModal from "./components/auth/RegisterModal";
+
+function HomePage() {
+  // State to show/hide the register modal
+  const [showRegisterModal, setShowRegisterModal] = useState(false);
+
+  // Handler to open modal
+  function handleOpenRegisterModal() {
+    setShowRegisterModal(true);
+  }
+
+  // Handler to close modal
+  function handleCloseRegisterModal() {
+    setShowRegisterModal(false);
+  }
+
   return (
     <div className="homepage-container">
       {/* Header Section */}
@@ -20,21 +39,20 @@ function home_page() {
               Create your account or sign in with your HFL ID to play the new NBA Hater Fantasy game.
               Create a league and invite your friends to see who will win.
             </p>
-            <button className="create-account-btn">Create your account</button>
+            {/* Button to open the Register Modal */}
+            <button
+              className="create-account-btn"
+              onClick={handleOpenRegisterModal}
+            >
+              Create your account
+            </button>
           </div>
 
-          {/* Right Portion */}
+          {/* Right Portion (Login Form) */}
           <div className="right-section">
             <h2 className="login-header">Login</h2>
-            <form className="login-form">
-              <label>Email</label>
-              <input type="email" className="login-input" placeholder="Enter your email" />
+            <LoginForm />
 
-              <label>Password</label>
-              <input type="password" className="login-input" placeholder="Enter your password" />
-
-              <button type="submit" className="login-button">Login</button>
-            </form>
             <div className="forgot-password">
               <a href="/forgot-password">Forgot your password?</a>
             </div>
@@ -47,7 +65,7 @@ function home_page() {
         <TeamLogosRoller />
       </section>
 
-      {/* Visual Field Section */}      
+      {/* Visual Field Section */}
       <section className="visual-field-section">
         <BasketballField />
       </section>
@@ -114,8 +132,13 @@ function home_page() {
           &copy; 2025 Hater Fantasy League. All rights reserved. <a href="#">Privacy Policy</a> | <a href="#">Terms</a> | <a href="#">Site Map</a>
         </p>
       </footer>
+
+      {/* Conditionally render the register modal */}
+      {showRegisterModal && (
+        <RegisterModal onClose={handleCloseRegisterModal} />
+      )}
     </div>
   );
 }
 
-export default home_page;
+export default HomePage;

@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
-import './home_page.css';
+import './HomePage.css';
 
 const teamLogoImports = import.meta.glob("./assets/team/*.svg", { eager: true });
 const slowSpeed = 10;  // The scroll speed = 10 px/s
