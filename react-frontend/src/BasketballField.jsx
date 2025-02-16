@@ -9,11 +9,6 @@ function BasketballField() {
     { name: "LeBron James", team: "Lakers", score: 99, image: lebronImg, position: "center-left" },
     { name: "Stephen Curry", team: "Warriors", score: 98, image: stephImg, position: "center" },
     { name: "Kevin Durant", team: "Suns", score: 95, image: durantImg, position: "center-right" },
-    { name: "Kevin Durant", team: "Suns", score: 95, image: durantImg, position: "center-right" },
-    { name: "Kevin Durant", team: "Suns", score: 95, image: durantImg, position: "center-right" },
-    { name: "Kevin Durant", team: "Suns", score: 95, image: durantImg, position: "center-right" },
-
-    { name: "Kevin Durant", team: "Suns", score: 95, image: durantImg, position: "center-right" },
   ];
 
   return (

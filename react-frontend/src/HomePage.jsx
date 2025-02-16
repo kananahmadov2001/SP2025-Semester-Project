@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import './HomePage.css';
 import TeamLogosRoller from "./TeamLogosRoller";
 import BasketballField from './BasketballField';
+import AddsFAQs from './AddsFAQs';
+import StatsDashboard from "./StatsDashboard";
 
 // Import our new components
 import LoginForm from "./components/auth/LoginForm";
@@ -72,16 +74,14 @@ function HomePage() {
 
       {/* Stats Dashboard Section */}
       <section className="stats-dashboard">
-        <h2>Stats Dashboard</h2>
-        <div className="stats-placeholder">Player and Team Stats Here</div>
+        <StatsDashboard />
       </section>
 
       {/* Ads/FAQs Section */}
       <section className="ads-faqs-section">
-        <h2>Additional Information</h2>
-        <p>Ads, FAQs, and other details will go here.</p>
+        <AddsFAQs />
       </section>
-
+      
       {/* Footer Section */}
       <footer className="footer-section">
         <div className="footer-links-container">
