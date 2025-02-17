@@ -5,7 +5,6 @@ import './HomePage.css';
 import TeamLogosRoller from "./TeamLogosRoller";
 import BasketballField from './BasketballField';
 import AddsFAQs from './AddsFAQs';
-import StatsDashboard from "./StatsDashboard";
 
 // Import our new components
 import LoginForm from "./components/auth/LoginForm";
@@ -29,7 +28,23 @@ function HomePage() {
     <div className="homepage-container">
       {/* Header Section */}
       <header className="header-section">
-      </header>
+      {/* Left Side: Empty Space to Balance Layout */}
+      <div></div>
+
+      {/* Right Side: HFL Logo + NBA Logo */}
+      <div className="hfl-logo-container">
+        {/* HFL Logo */}
+        <div className="hfl-logo">
+          HFL
+          <span>Hater Fantasy League</span>
+          <div className="hfl-border"></div>
+        </div>
+        {/* NBA Logo */}
+        <img src="/src/assets/nba-logo.png" alt="NBA Logo" className="nba-logo" />
+      </div>
+</header>
+
+
 
       {/* Navigation Section */}
       <div className="nav-container">
@@ -70,11 +85,6 @@ function HomePage() {
       {/* Visual Field Section */}
       <section className="visual-field-section">
         <BasketballField />
-      </section>
-
-      {/* Stats Dashboard Section */}
-      <section className="stats-dashboard">
-        <StatsDashboard />
       </section>
 
       {/* Ads/FAQs Section */}

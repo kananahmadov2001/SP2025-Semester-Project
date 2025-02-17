@@ -1,3 +1,5 @@
+/* ///////////////////////// GENERAL STYLINGS /////////////////////////////////////////// */
+
 * {
   box-sizing: border-box;
 }
@@ -8,21 +10,9 @@
   /*background-color: #333;*/
 }
 
-.header-section {
-  background-image: url('/src/assets/header-bg.jpg');
-  background-size: cover;
-  height: 300px;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
-
 .visual-field, .stats-dashboard, .ads-faqs-section, .footer-section {
   margin: 20px 0;
-  padding: 15px;
-  border: 1px solid #ddd;
+  padding: 10px;
   border-radius: 8px;
   background-color: #f9f9f9;
 }
@@ -34,6 +24,75 @@
   justify-content: center;
   background-color: #eaeaea;
   border-radius: 5px;
+}
+
+/* ///////////////////////// HEADER SECTION /////////////////////////////////////////// */
+
+.header-section {
+  background-image: url('/src/assets/header-pic.jpg');
+  background-size: cover;
+  background-position: center top -160px;
+  height: 350px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 50px;
+  text-align: center;
+}
+
+.hfl-logo-container {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+}
+
+.nba-logo {
+  width: 100px;
+  height: auto;
+}
+
+.hfl-logo {
+  font-size: 100px;
+  font-weight: bold;
+  font-family: 'Bebas Neue', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  text-align: center;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  position: relative;
+  background: linear-gradient(90deg, #a30505, #ffffff, #0000ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: glowing 1s infinite alternate;
+}
+
+.hfl-logo span {
+  font-size: 30px;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000;
+}
+
+/* adding a Glow Effect */
+@keyframes glowing {
+  0% {
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5), 0 0 20px rgba(255, 215, 0, 0.5);
+  }
+  100% {
+    text-shadow: 0 0 15px rgba(255, 215, 0, 0.8), 0 0 30px rgba(255, 0, 0, 0.8);
+  }
+}
+
+.hfl-border {
+  width: 220px;
+  height: 12px;
+  background: linear-gradient(90deg, #a30505, #ffffff, #0000ff);
+  border-radius: 5px;
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.7), 0 0 25px rgba(0, 0, 255, 0.7);
+  margin-top: 20px;
 }
 
 /* ///////////////////////// NAVIGATION SECTION /////////////////////////////////////////// */
@@ -231,9 +290,10 @@
 }
 
 .player-card:hover {
-  transform: scale(1.1);
-  background: rgba(255, 255, 255, 0.537);
-  color: #333;
+  transform: scale(1.2) rotate(5deg);
+  filter: brightness(1.2) saturate(1.5);
+  box-shadow: 0px 8px 20px rgba(255, 215, 0, 0.8), 
+              0px 4px 15px rgba(255, 0, 0, 0.6);
 }
 
 .player-card img {
@@ -271,60 +331,6 @@
   top: 50%;
   left: 70%;
   transform: translate(-50%, -50%);
-}
-
-/* ///////////////////////// STATS DASHBOARD SECTION /////////////////////////////////////// */
-
-.stats-dashboard {
-  border: none;
-}
-
-.leaderboard-container, .player-stats-container {
-  margin: 30px auto;
-  width: 90%;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.leaderboard-table, .player-stats-table {
-  width: 100%;
-  font-size: 16px;
-  color: #444;
-}
-
-.leaderboard-table th, .player-stats-table th {
-  background: #ffcc00;
-  font-size: 18px;
-  padding: 20px;
-  color: #222;
-  text-transform: uppercase;
-  border-radius: 5px;
-}
-
-.leaderboard-table td, .player-stats-table td {
-  padding: 14px;
-  border-bottom: 1px solid #ddd;
-  text-align: center;
-}
-
-.leaderboard-table tr:nth-child(even),
-.player-stats-table tr:nth-child(even) {
-  background: #f7f7f7;
-}
-
-.leaderboard-table tr:hover,
-.player-stats-table tr:hover {
-  background: #ffe066;
-  transition: 0.3s;
-}
-
-.leaderboard-table td:first-child {
-  font-weight: bold;
-  color: #d9534f;
-}
-
-.player-stats-table td:first-child {
-  font-weight: bold;
-  color: #d9534f;
 }
 
 /* ///////////////////////// ADS/FAQS SECTION /////////////////////////////////////// */
