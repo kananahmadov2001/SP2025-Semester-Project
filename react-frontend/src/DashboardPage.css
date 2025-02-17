@@ -1,0 +1,255 @@
+* {
+  box-sizing: border-box;
+}
+
+/* Dashboard Container */
+.dashboard-container {
+  font-family: Arial, sans-serif;
+  color: #333;
+  /*background-color: #333;*/
+}
+
+/* ///////////////////////// DASHBOARD HEADER /////////////////////////////////////////// */
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f4f4f4;
+  padding: 15px 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-header h1 {
+  font-size: 24px;
+  color: #222;
+}
+
+.signout-btn {
+  padding: 8px 15px;
+  background: #d9534f;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.3s;
+}
+
+.signout-btn:hover {
+  background: #c9302c;
+}
+
+/* ///////////////////////// CREATE / VIEW SQUAD SECTION /////////////////////////////////////////// */
+
+.dashboard-section {
+  background: #ffffff;
+  margin: 20px 0;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* ///////////////////////// LEADERBOARDS & FIXTURES SECTION /////////////////////////////////////////// */
+
+/* Leaderboard Section */
+.leaderboard-section {
+  width: 95%;
+  margin: 20px auto;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: center;
+  overflow-x: auto;
+}
+
+/* Table Styling */
+.stats-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Table Header */
+.stats-table th {
+  background-color: #fdd835;
+  color: black;
+  font-weight: bold;
+  padding: 12px;
+  text-align: center;
+  font-size: 14px;
+}
+
+/* Table Rows */
+.stats-table td {
+  padding: 10px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+  font-size: 14px;
+}
+
+/* Highlight every other row */
+.stats-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+/* Error Message */
+.error-message {
+  color: red;
+  font-weight: bold;
+}
+
+/* ///////////////////////// CHAT SECTION /////////////////////////////////////////// */
+
+.chat-section {
+  text-align: center;
+  background: #fff;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+}
+
+.chat-heading {
+  font-size: 26px;
+  font-weight: bold;
+  color: #d32f2f;
+  margin-bottom: 10px;
+}
+
+.chat-description {
+  font-size: 16px;
+  color: #444;
+  margin-bottom: 20px;
+  font-style: italic;
+}
+
+.chat-btn-container {
+  display: flex;
+  justify-content: center;
+}
+
+.chat-btn-container {
+  display: flex;
+  justify-content: center;
+}
+
+.chat-btn {
+  background: #d32f2f;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+.chat-btn i {
+  font-size: 20px;
+}
+
+.chat-btn:hover {
+  background: #ff3d00;
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+  transform: translateY(-3px);
+}
+
+.chat-btn::after {
+  content: "Step in and flame the worst picks!";
+  position: absolute;
+  bottom: -35px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 5px 10px;
+  font-size: 12px;
+  border-radius: 5px;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.chat-btn:hover::after {
+  opacity: 1;
+}
+
+/* ///////////////////////// FOOTER SECTION /////////////////////////////////////////// */
+
+.footer-section {
+  background-color: #f4f4f4;
+  padding: 30px 40px;
+  font-family: Arial, sans-serif;
+  color: #666;
+}
+
+.footer-links-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.footer-column {
+  flex: 1;
+  min-width: 150px;
+  max-width: 150px;
+  margin: 0 10px;
+}
+
+.footer-heading {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.footer-column a {
+  display: block;
+  margin-bottom: 8px;
+  color: #666;
+  text-decoration: none;
+}
+
+.footer-column a:hover {
+  color: #000;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 35px;
+}
+
+.social-icon {
+  font-size: 40px;
+  color: #160a85;
+  transition: color 0.2s ease;
+}
+
+.social-icon:hover {
+  color: #000000;
+}
+
+.footer-section a {
+  color: #0077cc;
+}
+
+.footer-section a:hover {
+  text-decoration: underline;
+}
+
+/* //////////////////////////////////////////////////////////////////////////////////// */
