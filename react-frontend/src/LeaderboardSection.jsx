@@ -1,6 +1,7 @@
 // react-frontend/src/LeaderboardSection.jsx
 import React, { useState, useEffect } from "react";
 import PlayerModal from "./components/PlayerModal";
+import { PLAYERS_URL } from "./config/constants";
 
 function LeaderboardSection({ onAddPlayer }) {
   const [players, setPlayers] = useState([]);
@@ -10,7 +11,9 @@ function LeaderboardSection({ onAddPlayer }) {
   useEffect(() => {
     async function fetchPlayers() {
       try {
-        const response = await fetch("/api/players");
+        const response = await fetch(PLAYERS_URL, {
+          credentials: "include", // if needed
+        });
         const data = await response.json();
         if (response.ok && data.players) {
           setPlayers(data.players);

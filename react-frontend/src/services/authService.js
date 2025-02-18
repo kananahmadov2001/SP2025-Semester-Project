@@ -1,6 +1,8 @@
 // react-frontend/src/services/authService.js
-const API_BASE_URL = "http://localhost:3000/api";
-// Adjust if your Next.js runs elsewhere (e.g. production domain).
+import {
+    AUTH_LOGIN_URL,
+    AUTH_REGISTER_URL,
+} from "../config/constants";
 
 /**
  * Logs in the user. The server sets an HTTP-only cookie upon success.
@@ -9,7 +11,7 @@ const API_BASE_URL = "http://localhost:3000/api";
  * @returns {Object} data from server: { message, userId, name }
  */
 export async function login(email, password) {
-    const response = await fetch(`${API_BASE_URL}/auth/login`, {
+    const response = await fetch(AUTH_LOGIN_URL, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -38,7 +40,7 @@ export async function login(email, password) {
  * @returns {Object} data from server: { message }
  */
 export async function register(name, email, password) {
-    const response = await fetch(`${API_BASE_URL}/auth/register`, {
+    const response = await fetch(AUTH_REGISTER_URL, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
