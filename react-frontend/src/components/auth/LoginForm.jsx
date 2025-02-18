@@ -80,10 +80,10 @@ function LoginForm() {
         e.preventDefault();
 
         // comment out this code block if you are developing with a local database
-        localStorage.setItem("userId", 1);
-        localStorage.setItem("userName", "User1");
-        navigate("/dashboard");
-        return;
+        // localStorage.setItem("userId", 1);
+        // localStorage.setItem("userName", "User1");
+        // navigate("/dashboard");
+        // return;
 
         try {
             // 1. Call our login API
