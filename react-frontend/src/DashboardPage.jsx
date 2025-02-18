@@ -6,6 +6,13 @@ import LeaderboardSection from "./LeaderboardSection";
 import SquadSelection from "./components/SquadSelection";
 import { useNavigate } from "react-router-dom";
 
+// Import our constants
+import {
+  FANTASY_TEAM_URL,
+  FANTASY_ADD_URL,
+  FANTASY_REMOVE_URL,
+} from "./config/constants";
+
 function DashboardPage() {
   const [userName, setUserName] = useState("");
   const [userId, setUserId] = useState(null);
@@ -23,7 +30,9 @@ function DashboardPage() {
   // Fetch the user's current fantasy team from backend
   async function fetchUserTeam(userIdParam) {
     try {
-      const response = await fetch(`/api/fantasy/team?userId=${userIdParam}`);
+      const response = await fetch(`${FANTASY_TEAM_URL}?userId=${uid}`, {
+        credentials: "include",
+      });
       const data = await response.json();
       if (response.ok && data.fantasyTeam) {
         setUserTeam(data.fantasyTeam);
@@ -70,9 +79,10 @@ function DashboardPage() {
 
     // Step C: Make the API call to add the player
     try {
-      const response = await fetch("/api/fantasy/add", {
+      const response = await fetch(FANTASY_ADD_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
+        credentials: "include",
         body: JSON.stringify({ userId: Number(userId), playerId: player.id }),
       });
       const data = await response.json();
@@ -98,9 +108,10 @@ function DashboardPage() {
     }
 
     try {
-      const response = await fetch("/api/fantasy/remove", {
+      const response = await fetch(FANTASY_REMOVE_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
+        credentials: "include",
         body: JSON.stringify({ userId: Number(userId), playerId }),
       });
       const data = await response.json();
