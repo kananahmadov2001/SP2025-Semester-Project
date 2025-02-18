@@ -30,7 +30,7 @@ function DashboardPage() {
   // Fetch the user's current fantasy team from backend
   async function fetchUserTeam(userIdParam) {
     try {
-      const response = await fetch(`${FANTASY_TEAM_URL}?userId=${uid}`, {
+      const response = await fetch(`${FANTASY_TEAM_URL}?userId=${userIdParam}`, {
         credentials: "include",
       });
       const data = await response.json();
