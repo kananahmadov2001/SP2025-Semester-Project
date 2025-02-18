@@ -29,7 +29,8 @@ export async function POST(req: Request) {
     );
 
     connection.release();
-    return NextResponse.json({ message: "Player added to fantasy team!" });
+
+    return NextResponse.json({ message: "Player added to fantasy team!", playerId: playerId });
 
   } catch (error) {
     console.error("❌ Error adding player to fantasy team:", error);
