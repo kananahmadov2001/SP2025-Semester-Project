@@ -71,6 +71,7 @@
     height: 282px;
     background-color: #e2e2e2;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     border-radius: 6px;

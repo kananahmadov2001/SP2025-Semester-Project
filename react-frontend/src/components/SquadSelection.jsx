@@ -58,7 +58,13 @@ function SquadSelection({ userTeam, onRemovePlayer }) {
                                     {player ? (
                                         <>
                                             <div className="player-name">
-                                                {player.name} {player.lastname}
+                                                {player.firstname} {player.lastname}
+                                            </div>
+                                            <div className="player-position">
+                                                Position: {player.position}
+                                            </div>
+                                            <div className="player-team">
+                                                Team: {player.team}
                                             </div>
                                             <button
                                                 className="remove-btn"
@@ -79,7 +85,13 @@ function SquadSelection({ userTeam, onRemovePlayer }) {
                                     {player ? (
                                         <>
                                             <div className="player-name">
-                                                {player.name} {player.lastname}
+                                                {player.firstname} {player.lastname}
+                                            </div>
+                                            <div className="player-position">
+                                                Position: {player.position}
+                                            </div>
+                                            <div className="player-team">
+                                                Team: {player.team}
                                             </div>
                                             <button
                                                 className="remove-btn"
@@ -105,7 +117,13 @@ function SquadSelection({ userTeam, onRemovePlayer }) {
                                     {player ? (
                                         <>
                                             <div className="player-name">
-                                                {player.name} {player.lastname}
+                                                {player.firstname} {player.lastname}
+                                            </div>
+                                            <div className="player-position">
+                                                Position: {player.position}
+                                            </div>
+                                            <div className="player-team">
+                                                Team: {player.team}
                                             </div>
                                             <button
                                                 className="remove-btn"
@@ -126,7 +144,13 @@ function SquadSelection({ userTeam, onRemovePlayer }) {
                                     {player ? (
                                         <>
                                             <div className="player-name">
-                                                {player.name} {player.lastname}
+                                                {player.firstname} {player.lastname}
+                                            </div>
+                                            <div className="player-position">
+                                                Position: {player.position}
+                                            </div>
+                                            <div className="player-team">
+                                                Team: {player.team}
                                             </div>
                                             <button
                                                 className="remove-btn"
@@ -153,7 +177,13 @@ function SquadSelection({ userTeam, onRemovePlayer }) {
                                 {player ? (
                                     <>
                                         <div className="player-name">
-                                            {player.name} {player.lastname}
+                                            {player.firstname} {player.lastname}
+                                        </div>
+                                        <div className="player-position">
+                                            Position: {player.position}
+                                        </div>
+                                        <div className="player-team">
+                                            Team: {player.team}
                                         </div>
                                         <button
                                             className="remove-btn"
@@ -176,7 +206,13 @@ function SquadSelection({ userTeam, onRemovePlayer }) {
                                 {player ? (
                                     <>
                                         <div className="player-name">
-                                            {player.name} {player.lastname}
+                                            {player.firstname} {player.lastname}
+                                        </div>
+                                        <div className="player-position">
+                                            Position: {player.position}
+                                        </div>
+                                        <div className="player-team">
+                                            Team: {player.team}
                                         </div>
                                         <button
                                             className="remove-btn"
