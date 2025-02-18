@@ -91,7 +91,7 @@ function DashboardPage() {
         throw new Error(data.error || "Failed to add player");
       }
 
-      alert(`Added ${player.name} to your team!`);
+      alert(`Added playerId(${data.playerId}) to your team!`);
       // Re-fetch updated team
       await fetchUserTeam(userId);
     } catch (err) {
