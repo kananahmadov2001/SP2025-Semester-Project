@@ -28,21 +28,21 @@ function HomePage() {
     <div className="homepage-container">
       {/* Header Section */}
       <header className="header-section">
-      {/* Left Side: Empty Space to Balance Layout */}
-      <div></div>
+        {/* Left Side: Empty Space to Balance Layout */}
+        <div></div>
 
-      {/* Right Side: HFL Logo + NBA Logo */}
-      <div className="hfl-logo-container">
-        {/* HFL Logo */}
-        <div className="hfl-logo">
-          HFL
-          <span>Hater Fantasy League</span>
-          <div className="hfl-border"></div>
+        {/* Right Side: HFL Logo + NBA Logo */}
+        <div className="hfl-logo-container">
+          {/* HFL Logo */}
+          <div className="hfl-logo">
+            HFL
+            <span>Hater Fantasy League</span>
+            <div className="hfl-border"></div>
+          </div>
+          {/* NBA Logo */}
+          <img src="/src/assets/nba-logo.png" alt="NBA Logo" className="nba-logo" />
         </div>
-        {/* NBA Logo */}
-        <img src="/src/assets/nba-logo.png" alt="NBA Logo" className="nba-logo" />
-      </div>
-</header>
+      </header>
 
 
 
@@ -91,7 +91,7 @@ function HomePage() {
       <section className="ads-faqs-section">
         <AddsFAQs />
       </section>
-      
+
       {/* Footer Section */}
       <footer className="footer-section">
         <div className="footer-links-container">
