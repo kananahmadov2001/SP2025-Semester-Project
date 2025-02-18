@@ -97,6 +97,7 @@ function LoginForm() {
             // 3. Navigate to dashboard
             navigate("/dashboard");
         } catch (err) {
+            console.warn("Comment out the codes in handleSubmit() if testing locally without a database");
             console.error("Login Error:", err);
             alert(err.message || "Login failed");
         }
