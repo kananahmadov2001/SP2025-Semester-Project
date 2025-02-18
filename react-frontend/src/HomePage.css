@@ -10,14 +10,18 @@
   /*background-color: #333;*/
 }
 
-.visual-field, .stats-dashboard, .ads-faqs-section, .footer-section {
+.visual-field,
+.stats-dashboard,
+.ads-faqs-section,
+.footer-section {
   margin: 20px 0;
   padding: 10px;
   border-radius: 8px;
   background-color: #f9f9f9;
 }
 
-.field-placeholder, .stats-placeholder {
+.field-placeholder,
+.stats-placeholder {
   height: 150px;
   display: flex;
   align-items: center;
@@ -64,6 +68,7 @@
   align-items: center;
   position: relative;
   background: linear-gradient(90deg, #a30505, #ffffff, #0000ff);
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: glowing 1s infinite alternate;
@@ -81,6 +86,7 @@
   0% {
     text-shadow: 0 0 10px rgba(255, 215, 0, 0.5), 0 0 20px rgba(255, 215, 0, 0.5);
   }
+
   100% {
     text-shadow: 0 0 15px rgba(255, 215, 0, 0.8), 0 0 30px rgba(255, 0, 0, 0.8);
   }
@@ -138,7 +144,7 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  margin-top: 83px; 
+  margin-top: 83px;
 }
 
 .create-account-btn:hover {
@@ -292,8 +298,8 @@
 .player-card:hover {
   transform: scale(1.2) rotate(5deg);
   filter: brightness(1.2) saturate(1.5);
-  box-shadow: 0px 8px 20px rgba(255, 215, 0, 0.8), 
-              0px 4px 15px rgba(255, 0, 0, 0.6);
+  box-shadow: 0px 8px 20px rgba(255, 215, 0, 0.8),
+    0px 4px 15px rgba(255, 0, 0, 0.6);
 }
 
 .player-card img {
