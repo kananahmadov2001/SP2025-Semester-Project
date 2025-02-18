@@ -1,15 +1,22 @@
 // react-frontend/src/components/SquadSelection.jsx
-
 import React, { useState } from "react";
-import "./SquadSelection.css"; // Import your CSS for styling
+import "./SquadSelection.css";
 
-function SquadSelection() {
-    // State to track how many players have been selected and the money remaining
-    const [selectedPlayersCount, setSelectedPlayersCount] = useState(0);
-    const [moneyRemaining, setMoneyRemaining] = useState(100.0);
-
-    // State to toggle between "court" and "list" view
+function SquadSelection({ userTeam, onRemovePlayer }) {
     const [viewType, setViewType] = useState("court");
+
+    // Partition the user team into front/back
+    const frontCourtPlayers = userTeam.filter(
+        (p) => p.position.includes("F") || p.position.includes("C")  // TODO: Modify it according to actual player data in the future!
+    );
+    const backCourtPlayers = userTeam.filter((p) => p.position.includes("G"));
+
+    // We expect a maximum of 5 in each.
+    const fcSlots = Array.from({ length: 5 }, (_, idx) => frontCourtPlayers[idx] || null);
+    const bcSlots = Array.from({ length: 5 }, (_, idx) => backCourtPlayers[idx] || null);
+
+    const selectedPlayersCount = userTeam.length;
+    const [moneyRemaining, setMoneyRemaining] = useState(100.0); // or compute dynamically
 
     return (
         <div className="squad-selection-container">
@@ -39,55 +46,148 @@ function SquadSelection() {
                 </button>
             </div>
 
-            {/* Render Court View or List View */}
             {viewType === "court" ? (
+                // COURT VIEW -> 3 + 2 layout for each group
                 <div className="court-view">
-                    {/* Front Court */}
+                    {/* FRONT COURT */}
                     <div className="front-court">
                         <h3>Front Court</h3>
                         <div className="fc-row">
-                            <div className="fc-slot">Add FC</div>
-                            <div className="fc-slot">Add FC</div>
-                            <div className="fc-slot">Add FC</div>
+                            {fcSlots.slice(0, 3).map((player, index) => (
+                                <div key={index} className="fc-slot">
+                                    {player ? (
+                                        <>
+                                            <div className="player-name">
+                                                {player.name} {player.lastname}
+                                            </div>
+                                            <button
+                                                className="remove-btn"
+                                                onClick={() => onRemovePlayer(player.id)}
+                                            >
+                                                Remove
+                                            </button>
+                                        </>
+                                    ) : (
+                                        <div className="empty-slot">Empty FC Slot</div>
+                                    )}
+                                </div>
+                            ))}
                         </div>
                         <div className="fc-row">
-                            <div className="fc-slot">Add FC</div>
-                            <div className="fc-slot">Add FC</div>
+                            {fcSlots.slice(3, 5).map((player, index) => (
+                                <div key={index + 3} className="fc-slot">
+                                    {player ? (
+                                        <>
+                                            <div className="player-name">
+                                                {player.name} {player.lastname}
+                                            </div>
+                                            <button
+                                                className="remove-btn"
+                                                onClick={() => onRemovePlayer(player.id)}
+                                            >
+                                                Remove
+                                            </button>
+                                        </>
+                                    ) : (
+                                        <div className="empty-slot">Empty FC Slot</div>
+                                    )}
+                                </div>
+                            ))}
                         </div>
                     </div>
 
-                    {/* Back Court */}
+                    {/* BACK COURT */}
                     <div className="back-court">
                         <h3>Back Court</h3>
                         <div className="bc-row">
-                            <div className="bc-slot">Add BC</div>
-                            <div className="bc-slot">Add BC</div>
-                            <div className="bc-slot">Add BC</div>
+                            {bcSlots.slice(0, 3).map((player, index) => (
+                                <div key={index} className="bc-slot">
+                                    {player ? (
+                                        <>
+                                            <div className="player-name">
+                                                {player.name} {player.lastname}
+                                            </div>
+                                            <button
+                                                className="remove-btn"
+                                                onClick={() => onRemovePlayer(player.id)}
+                                            >
+                                                Remove
+                                            </button>
+                                        </>
+                                    ) : (
+                                        <div className="empty-slot">Empty BC Slot</div>
+                                    )}
+                                </div>
+                            ))}
                         </div>
                         <div className="bc-row">
-                            <div className="bc-slot">Add BC</div>
-                            <div className="bc-slot">Add BC</div>
+                            {bcSlots.slice(3, 5).map((player, index) => (
+                                <div key={index + 3} className="bc-slot">
+                                    {player ? (
+                                        <>
+                                            <div className="player-name">
+                                                {player.name} {player.lastname}
+                                            </div>
+                                            <button
+                                                className="remove-btn"
+                                                onClick={() => onRemovePlayer(player.id)}
+                                            >
+                                                Remove
+                                            </button>
+                                        </>
+                                    ) : (
+                                        <div className="empty-slot">Empty BC Slot</div>
+                                    )}
+                                </div>
+                            ))}
                         </div>
                     </div>
                 </div>
             ) : (
+                // LIST VIEW -> 5 vertical slots
                 <div className="list-view">
-                    {/* Front Court in List View */}
                     <div className="front-court-list">
                         <h3>Front Court</h3>
-                        {[...Array(5)].map((_, i) => (
-                            <div key={`fc-list-${i}`} className="fc-slot-list">
-                                Select Front Court Player
+                        {fcSlots.map((player, index) => (
+                            <div key={index} className="fc-slot-list">
+                                {player ? (
+                                    <>
+                                        <div className="player-name">
+                                            {player.name} {player.lastname}
+                                        </div>
+                                        <button
+                                            className="remove-btn"
+                                            onClick={() => onRemovePlayer(player.id)}
+                                        >
+                                            Remove
+                                        </button>
+                                    </>
+                                ) : (
+                                    <div className="empty-slot">Empty FC Slot</div>
+                                )}
                             </div>
                         ))}
                     </div>
 
-                    {/* Back Court in List View */}
                     <div className="back-court-list">
                         <h3>Back Court</h3>
-                        {[...Array(5)].map((_, i) => (
-                            <div key={`bc-list-${i}`} className="bc-slot-list">
-                                Select Back Court Player
+                        {bcSlots.map((player, index) => (
+                            <div key={index} className="bc-slot-list">
+                                {player ? (
+                                    <>
+                                        <div className="player-name">
+                                            {player.name} {player.lastname}
+                                        </div>
+                                        <button
+                                            className="remove-btn"
+                                            onClick={() => onRemovePlayer(player.id)}
+                                        >
+                                            Remove
+                                        </button>
+                                    </>
+                                ) : (
+                                    <div className="empty-slot">Empty BC Slot</div>
+                                )}
                             </div>
                         ))}
                     </div>
