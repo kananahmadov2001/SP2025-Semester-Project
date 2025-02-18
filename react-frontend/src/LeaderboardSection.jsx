@@ -1,3 +1,4 @@
+// react-frontend/src/LeaderboardSection.jsx
 import React, { useState, useEffect } from "react";
 
 function LeaderboardSection() {

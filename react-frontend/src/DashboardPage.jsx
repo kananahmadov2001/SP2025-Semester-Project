@@ -1,18 +1,42 @@
 // react-frontend/src/DashboardPage.jsx
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./DashboardPage.css";
 import LeaderboardSection from "./LeaderboardSection";
 import SquadSelection from "./components/SquadSelection";
+import { useNavigate } from "react-router-dom";
 
 function DashboardPage() {
+  const [userName, setUserName] = useState("");
+
+  useEffect(() => {
+    const storedName = localStorage.getItem("userName");
+    if (storedName) setUserName(storedName);
+  }, []);
+
+  const navigate = useNavigate();
+
+  function handleSignOut() {
+    // Clear localStorage or remove tokens
+    localStorage.removeItem("userId");
+    localStorage.removeItem("userName");
+    // Navigate to HomePage
+    navigate("/");
+  }
+
   return (
     <div className="dashboard-container">
 
       {/* Dashboard Header */}
       <header className="dashboard-header">
         <h1>Your Dashboard</h1>
-        <button className="signout-btn">Sign Out</button>
+        {/* Show the user's name */}
+        <div className="user-info">
+          {userName && <span className="username">{userName}</span>}
+          <button className="signout-btn" onClick={handleSignOut}>
+            Sign Out
+          </button>
+        </div>
       </header>
 
       {/* Create/View Squad Section */}
