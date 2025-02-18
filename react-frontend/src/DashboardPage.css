@@ -26,6 +26,17 @@
   color: #222;
 }
 
+.user-info {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.username {
+  font-weight: bold;
+  color: #333;
+}
+
 .signout-btn {
   padding: 8px 15px;
   background: #d9534f;
