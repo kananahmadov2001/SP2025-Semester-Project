@@ -3,6 +3,7 @@
 import React from "react";
 import "./DashboardPage.css";
 import LeaderboardSection from "./LeaderboardSection";
+import SquadSelection from "./components/SquadSelection";
 
 function DashboardPage() {
   return (
@@ -17,6 +18,7 @@ function DashboardPage() {
       {/* Create/View Squad Section */}
       <section className="dashboard-section squad-section">
         <h2>Create/View Squad</h2>
+        <SquadSelection />
       </section>
 
       {/* Leaderboards & Fixtures Section */}
@@ -28,7 +30,7 @@ function DashboardPage() {
       <section className="dashboard-section chat-section">
         <h2 className="chat-heading">Talk Trash, Call Out the Flops</h2>
         <p className="chat-description">No mercy. No excuses. Drop your hot takes and roast the worst performances of the week.</p>
-        
+
         <div className="chat-btn-container">
           <button className="chat-btn">
             <i className="fas fa-comments"></i> Enter the Trash Talk Zone
@@ -85,7 +87,7 @@ function DashboardPage() {
         </div>
 
         <p className="footer-copyright">
-          &copy; 2025 Hater Fantasy League. All rights reserved. 
+          &copy; 2025 Hater Fantasy League. All rights reserved.
           <a href="#">Privacy Policy</a> | <a href="#">Terms</a> | <a href="#">Site Map</a>
         </p>
       </footer>
