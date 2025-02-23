@@ -153,7 +153,7 @@ function DashboardPage() {
       </header>
 
       {/* Create/View Squad Section */}
-      <section className="dashboard-section squad-section">
+      <section className="squad-section">
         <h2>Create/View Squad</h2>
         {/*
           Pass the entire userTeam array to SquadSelection,
@@ -171,15 +171,38 @@ function DashboardPage() {
         <LeaderboardSection onAddPlayer={handleAddPlayer} />
       </section>
 
-      {/* Chat Button Section */}
-      <section className="dashboard-section chat-section">
-        <h2 className="chat-heading">Talk Trash, Call Out the Flops</h2>
-        <p className="chat-description">No mercy. No excuses. Drop your hot takes and roast the worst performances of the week.</p>
+      {/* Draft & Trash Talk Section */}
+      <section className="draft-trash-section">
+        {/* Left Side: Draft Players */}
+        <div className="draft-container">
+          <h2 className="draft-heading">Draft Your Ultimate Flop Squad</h2>
+          <p className="draft-description">
+            Pick the players you think will tank the hardest this week.
+            Outscore your rivals by drafting the worst-performing stars.
+          </p>
 
-        <div className="chat-btn-container">
-          <button className="chat-btn">
-            <i className="fas fa-comments"></i> Enter the Trash Talk Zone
-          </button>
+          <div className="draft-btn-container">
+            <button className="draft-btn">
+              <i className="fas fa-user-plus"></i> Draft Your Players
+            </button>
+          </div>
+        </div>
+
+        {/* Vertical Line Divider */}
+        <div className="divider"></div>
+
+        {/* Right Side: Trash Talk Zone */}
+        <div className="chat-container">
+          <h2 className="chat-heading">Talk Trash, Call Out the Flops</h2>
+          <p className="chat-description">
+            No mercy. No excuses. Drop your hot takes and roast the worst performances of the week.
+          </p>
+
+          <div className="chat-btn-container">
+            <button className="chat-btn">
+              <i className="fas fa-comments"></i> Enter the Trash Talk Zone
+            </button>
+          </div>
         </div>
       </section>
 

@@ -1,0 +1,70 @@
+.draft-page {
+  max-width: 800px;
+  margin: 40px auto;
+  text-align: center;
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+  font-size: 28px;
+  color: #ff0000;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+p {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.players-container, .drafted-players {
+  margin-top: 30px;
+  padding: 20px;
+  background: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.player-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.player-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  padding: 10px;
+  margin: 8px 0;
+  border-radius: 8px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.drafted {
+  background: #ffd700;
+}
+
+.draft-btn, .remove-btn {
+  background: #ff0000;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.2s;
+}
+
+.draft-btn:hover, .remove-btn:hover {
+  background: #cc0000;
+}

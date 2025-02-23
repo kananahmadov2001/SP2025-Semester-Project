@@ -1,0 +1,72 @@
+.trash-talk-page {
+  max-width: 800px;
+  margin: 40px auto;
+  text-align: center;
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+  font-size: 28px;
+  color: #ff0000;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+p {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Input Section */
+.trash-talk-input {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+textarea {
+  width: 100%;
+  height: 80px;
+  padding: 10px;
+  border: 2px solid #ff0000;
+  border-radius: 8px;
+  font-size: 16px;
+  resize: none;
+}
+
+.post-btn {
+  background: #ff0000;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: 0.2s ease-in-out;
+}
+
+.post-btn:hover {
+  background: #cc0000;
+}
+
+/* Trash Talk Messages */
+.trash-talk-messages {
+  margin-top: 20px;
+  text-align: left;
+}
+
+.trash-message {
+  background: #f9f9f9;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  border-left: 4px solid #ff0000;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
