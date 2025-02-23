@@ -54,15 +54,7 @@
 
 /* ///////////////////////// CREATE / VIEW SQUAD SECTION /////////////////////////////////////////// */
 
-.dashboard-section {
-  background: #ffffff;
-  margin: 20px 0;
-  padding: 40px;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  font-size: 18px;
-  font-weight: bold;
-}
+
 
 /* ///////////////////////// LEADERBOARDS & FIXTURES SECTION /////////////////////////////////////////// */
 
@@ -116,86 +108,93 @@
   font-weight: bold;
 }
 
-/* ///////////////////////// CHAT SECTION /////////////////////////////////////////// */
+/* ///////////////////////// DRAFT & TRASH TALK SECTIONS /////////////////////////////// */
 
-.chat-section {
-  text-align: center;
-  background: #fff;
+.draft-trash-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   padding: 40px;
+  margin: 20px 0;
+  position: relative;
+  gap: 100px;
+}
+
+.draft-container, .chat-container {
+  width: 50%;
+  text-align: center;
+  padding: 30px;
   border-radius: 12px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  margin-top: 20px;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }
 
-.chat-heading {
-  font-size: 26px;
+.draft-container:hover, .chat-container:hover {
+  transform: scale(1.03);
+  box-shadow: 0px 6px 15px rgba(255, 255, 255, 0.2);
+}
+
+.divider {
+  width: 3px;
+  height: 85%;
+  background: linear-gradient(180deg, #0077cc, #ff0000);
+  border-radius: 2px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.draft-heading, .chat-heading {
+  color: #0077cc;
+  font-size: 28px;
   font-weight: bold;
-  color: #d32f2f;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
+  text-transform: uppercase;
 }
 
-.chat-description {
-  font-size: 16px;
-  color: #444;
+.draft-description, .chat-description {
+  font-size: 18px;
+  opacity: 0.9;
   margin-bottom: 20px;
-  font-style: italic;
 }
 
-.chat-btn-container {
+.draft-btn-container, .chat-btn-container {
   display: flex;
   justify-content: center;
+  margin-top: 15px;
 }
 
-.chat-btn-container {
-  display: flex;
-  justify-content: center;
-}
-
-.chat-btn {
-  background: #d32f2f;
+.draft-btn, .chat-btn {
   color: white;
   font-size: 18px;
   font-weight: bold;
-  padding: 12px 20px;
+  padding: 14px 24px;
   border: none;
-  border-radius: 50px;
+  border-radius: 8px;
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  transition: all 0.3s ease-in-out;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-  position: relative;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.chat-btn i {
-  font-size: 20px;
+.draft-btn {
+  background: linear-gradient(45deg, #35509a, #01a8fc);
+}
+
+.chat-btn {
+  background: linear-gradient(45deg, #35509a, #01a8fc);
+}
+
+.draft-btn i, .chat-btn i {
+  margin-right: 10px;
+}
+
+.draft-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0px 6px 20px rgba(0, 4, 255, 0.7);
 }
 
 .chat-btn:hover {
-  background: #ff3d00;
-  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
-  transform: translateY(-3px);
-}
-
-.chat-btn::after {
-  content: "Step in and flame the worst picks!";
-  position: absolute;
-  bottom: -35px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(0, 0, 0, 0.8);
-  color: white;
-  padding: 5px 10px;
-  font-size: 12px;
-  border-radius: 5px;
-  white-space: nowrap;
-  opacity: 0;
-  transition: opacity 0.3s ease-in-out;
-}
-
-.chat-btn:hover::after {
-  opacity: 1;
+  transform: scale(1.1);
+  box-shadow: 0px 6px 20px rgba(255, 115, 0, 0.7);
 }
 
 /* ///////////////////////// FOOTER SECTION /////////////////////////////////////////// */
