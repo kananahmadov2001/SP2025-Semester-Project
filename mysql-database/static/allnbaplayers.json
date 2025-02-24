@@ -1,0 +1,4202 @@
+{
+    "type": "table",
+    "database": null,
+    "name": "players",
+    "withoutRowId": false,
+    "strict": false,
+    "ddl": "CREATE TABLE players (id INTEGER PRIMARY KEY, name TEXT, lastname TEXT, position TEXT, teamid INTEGER, team TEXT);",
+    "columns": [
+        {
+            "name": "id",
+            "type": "INTEGER",
+            "constraints": [
+                {
+                    "type": "PRIMARY KEY",
+                    "definition": "PRIMARY KEY"
+                }
+            ]
+        },
+        {
+            "name": "name",
+            "type": "TEXT"
+        },
+        {
+            "name": "lastname",
+            "type": "TEXT"
+        },
+        {
+            "name": "position",
+            "type": "TEXT"
+        },
+        {
+            "name": "teamid",
+            "type": "INTEGER"
+        },
+        {
+            "name": "team",
+            "type": "TEXT"
+        }
+    ],
+    "rows": [
+        [
+            4,
+            "Steven",
+            "Adams",
+            "C",
+            14,
+            "Houston Rockets"
+        ],
+        [
+            18,
+            "Kyle",
+            "Anderson",
+            "F",
+            20,
+            "Miami Heat"
+        ],
+        [
+            20,
+            "Giannis",
+            "Antetokounmpo",
+            "F",
+            21,
+            "Milwaukee Bucks"
+        ],
+        [
+            36,
+            "Harrison",
+            "Barnes",
+            "F",
+            31,
+            "San Antonio Spurs"
+        ],
+        [
+            40,
+            "Nicolas",
+            "Batum",
+            "G-F",
+            16,
+            "LA Clippers"
+        ],
+        [
+            45,
+            "Bradley",
+            "Beal",
+            "G",
+            28,
+            "Phoenix Suns"
+        ],
+        [
+            46,
+            "Malik",
+            "Beasley",
+            "G",
+            10,
+            "Detroit Pistons"
+        ],
+        [
+            54,
+            "Bismack",
+            "Biyombo",
+            "C",
+            31,
+            "San Antonio Spurs"
+        ],
+        [
+            60,
+            "Bojan",
+            "Bogdanovic",
+            "F",
+            4,
+            "Brooklyn Nets"
+        ],
+        [
+            64,
+            "Devin",
+            "Booker",
+            "G",
+            28,
+            "Phoenix Suns"
+        ],
+        [
+            71,
+            "Malcolm",
+            "Brogdon",
+            "G",
+            41,
+            "Washington Wizards"
+        ],
+        [
+            75,
+            "Jaylen",
+            "Brown",
+            "G-F",
+            2,
+            "Boston Celtics"
+        ],
+        [
+            84,
+            "Alec",
+            "Burks",
+            "G",
+            20,
+            "Miami Heat"
+        ],
+        [
+            86,
+            "Jimmy",
+            "Butler",
+            "F",
+            11,
+            "Golden State Warriors"
+        ],
+        [
+            89,
+            "Kentavious",
+            "Caldwell-Pope",
+            "G",
+            26,
+            "Orlando Magic"
+        ],
+        [
+            92,
+            "Clint",
+            "Capela",
+            "C",
+            1,
+            "Atlanta Hawks"
+        ],
+        [
+            109,
+            "Jordan",
+            "Clarkson",
+            "G",
+            40,
+            "Utah Jazz"
+        ],
+        [
+            114,
+            "Mike",
+            "Conley",
+            "G",
+            22,
+            "Minnesota Timberwolves"
+        ],
+        [
+            115,
+            "Pat",
+            "Connaughton",
+            "G",
+            21,
+            "Milwaukee Bucks"
+        ],
+        [
+            121,
+            "Jae",
+            "Crowder",
+            "F",
+            30,
+            "Sacramento Kings"
+        ],
+        [
+            123,
+            "Seth",
+            "Curry",
+            "G",
+            5,
+            "Charlotte Hornets"
+        ],
+        [
+            124,
+            "Stephen",
+            "Curry",
+            "G",
+            11,
+            "Golden State Warriors"
+        ],
+        [
+            126,
+            "Anthony",
+            "Davis",
+            "F",
+            8,
+            "Dallas Mavericks"
+        ],
+        [
+            136,
+            "DeMar",
+            "DeRozan",
+            "G-F",
+            30,
+            "Sacramento Kings"
+        ],
+        [
+            142,
+            "Spencer",
+            "Dinwiddie",
+            "G",
+            8,
+            "Dallas Mavericks"
+        ],
+        [
+            147,
+            "Andre",
+            "Drummond",
+            "C",
+            27,
+            "Philadelphia 76ers"
+        ],
+        [
+            152,
+            "Kris",
+            "Dunn",
+            "G",
+            16,
+            "LA Clippers"
+        ],
+        [
+            153,
+            "Kevin",
+            "Durant",
+            "F",
+            28,
+            "Phoenix Suns"
+        ],
+        [
+            159,
+            "Joel",
+            "Embiid",
+            "C-F",
+            27,
+            "Philadelphia 76ers"
+        ],
+        [
+            164,
+            "Dante",
+            "Exum",
+            "G",
+            8,
+            "Dallas Mavericks"
+        ],
+        [
+            175,
+            "Dorian",
+            "Finney-Smith",
+            "F",
+            17,
+            "Los Angeles Lakers"
+        ],
+        [
+            189,
+            "Paul",
+            "George",
+            "F",
+            27,
+            "Philadelphia 76ers"
+        ],
+        [
+            190,
+            "Taj",
+            "Gibson",
+            "F",
+            5,
+            "Charlotte Hornets"
+        ],
+        [
+            192,
+            "Rudy",
+            "Gobert",
+            "C",
+            22,
+            "Minnesota Timberwolves"
+        ],
+        [
+            195,
+            "Aaron",
+            "Gordon",
+            "F",
+            9,
+            "Denver Nuggets"
+        ],
+        [
+            196,
+            "Eric",
+            "Gordon",
+            "G",
+            27,
+            "Philadelphia 76ers"
+        ],
+        [
+            200,
+            "Jerami",
+            "Grant",
+            "F",
+            29,
+            "Portland Trail Blazers"
+        ],
+        [
+            204,
+            "Draymond",
+            "Green",
+            "F",
+            11,
+            "Golden State Warriors"
+        ],
+        [
+            207,
+            "Jeff",
+            "Green",
+            "F",
+            14,
+            "Houston Rockets"
+        ],
+        [
+            215,
+            "Tim",
+            "Hardaway Jr.",
+            "G-F",
+            10,
+            "Detroit Pistons"
+        ],
+        [
+            216,
+            "James",
+            "Harden",
+            "G",
+            16,
+            "LA Clippers"
+        ],
+        [
+            220,
+            "Gary",
+            "Harris",
+            "G",
+            26,
+            "Orlando Magic"
+        ],
+        [
+            222,
+            "Tobias",
+            "Harris",
+            "F",
+            10,
+            "Detroit Pistons"
+        ],
+        [
+            236,
+            "Buddy",
+            "Hield",
+            "G",
+            11,
+            "Golden State Warriors"
+        ],
+        [
+            242,
+            "Jrue",
+            "Holiday",
+            "G",
+            2,
+            "Boston Celtics"
+        ],
+        [
+            246,
+            "Richaun",
+            "Holmes",
+            "F",
+            41,
+            "Washington Wizards"
+        ],
+        [
+            248,
+            "Al",
+            "Horford",
+            "C-F",
+            2,
+            "Boston Celtics"
+        ],
+        [
+            258,
+            "Joe",
+            "Ingles",
+            "F-G",
+            22,
+            "Minnesota Timberwolves"
+        ],
+        [
+            260,
+            "Brandon",
+            "Ingram",
+            "F",
+            38,
+            "Toronto Raptors"
+        ],
+        [
+            261,
+            "Kyrie",
+            "Irving",
+            "G",
+            8,
+            "Dallas Mavericks"
+        ],
+        [
+            265,
+            "LeBron",
+            "James",
+            "F",
+            17,
+            "Los Angeles Lakers"
+        ],
+        [
+            274,
+            "James",
+            "Johnson",
+            "F",
+            15,
+            "Indiana Pacers"
+        ],
+        [
+            279,
+            "Nikola",
+            "Jokic",
+            "C",
+            9,
+            "Denver Nuggets"
+        ],
+        [
+            283,
+            "Derrick",
+            "Jones Jr.",
+            "F",
+            16,
+            "LA Clippers"
+        ],
+        [
+            285,
+            "Tyus",
+            "Jones",
+            "G",
+            28,
+            "Phoenix Suns"
+        ],
+        [
+            286,
+            "DeAndre",
+            "Jordan",
+            "C",
+            9,
+            "Denver Nuggets"
+        ],
+        [
+            287,
+            "Cory",
+            "Joseph",
+            "G",
+            26,
+            "Orlando Magic"
+        ],
+        [
+            308,
+            "Zach",
+            "LaVine",
+            "G",
+            30,
+            "Sacramento Kings"
+        ],
+        [
+            313,
+            "Alex",
+            "Len",
+            "C",
+            17,
+            "Los Angeles Lakers"
+        ],
+        [
+            314,
+            "Kawhi",
+            "Leonard",
+            "F",
+            16,
+            "LA Clippers"
+        ],
+        [
+            317,
+            "Caris",
+            "LeVert",
+            "G",
+            1,
+            "Atlanta Hawks"
+        ],
+        [
+            319,
+            "Damian",
+            "Lillard",
+            "G",
+            21,
+            "Milwaukee Bucks"
+        ],
+        [
+            322,
+            "Kevon",
+            "Looney",
+            "F",
+            11,
+            "Golden State Warriors"
+        ],
+        [
+            323,
+            "Brook",
+            "Lopez",
+            "C",
+            21,
+            "Milwaukee Bucks"
+        ],
+        [
+            326,
+            "Kevin",
+            "Love",
+            "F-C",
+            20,
+            "Miami Heat"
+        ],
+        [
+            327,
+            "Kyle",
+            "Lowry",
+            "G",
+            27,
+            "Philadelphia 76ers"
+        ],
+        [
+            331,
+            "Trey",
+            "Lyles",
+            "F",
+            30,
+            "Sacramento Kings"
+        ],
+        [
+            347,
+            "CJ",
+            "McCollum",
+            "G",
+            23,
+            "New Orleans Pelicans"
+        ],
+        [
+            348,
+            "T.J.",
+            "McConnell",
+            "G",
+            15,
+            "Indiana Pacers"
+        ],
+        [
+            351,
+            "Doug",
+            "McDermott",
+            "F",
+            30,
+            "Sacramento Kings"
+        ],
+        [
+            361,
+            "Khris",
+            "Middleton",
+            "F",
+            41,
+            "Washington Wizards"
+        ],
+        [
+            365,
+            "Patty",
+            "Mills",
+            "G",
+            16,
+            "LA Clippers"
+        ],
+        [
+            374,
+            "Markieff",
+            "Morris",
+            "F",
+            17,
+            "Los Angeles Lakers"
+        ],
+        [
+            382,
+            "Dejounte",
+            "Murray",
+            "G",
+            23,
+            "New Orleans Pelicans"
+        ],
+        [
+            383,
+            "Jamal",
+            "Murray",
+            "G",
+            9,
+            "Denver Nuggets"
+        ],
+        [
+            385,
+            "Larry",
+            "Nance Jr.",
+            "F-C",
+            1,
+            "Atlanta Hawks"
+        ],
+        [
+            391,
+            "Georges",
+            "Niang",
+            "F",
+            1,
+            "Atlanta Hawks"
+        ],
+        [
+            398,
+            "Jusuf",
+            "Nurkic",
+            "C",
+            5,
+            "Charlotte Hornets"
+        ],
+        [
+            402,
+            "Jahlil",
+            "Okafor",
+            "C",
+            15,
+            "Indiana Pacers"
+        ],
+        [
+            404,
+            "Kelly",
+            "Olynyk",
+            "F",
+            23,
+            "New Orleans Pelicans"
+        ],
+        [
+            407,
+            "Kelly",
+            "Oubre Jr.",
+            "F-G",
+            27,
+            "Philadelphia 76ers"
+        ],
+        [
+            415,
+            "Chris",
+            "Paul",
+            "G",
+            31,
+            "San Antonio Spurs"
+        ],
+        [
+            417,
+            "Cameron",
+            "Payne",
+            "G",
+            24,
+            "New York Knicks"
+        ],
+        [
+            418,
+            "Elfrid",
+            "Payton",
+            "G",
+            5,
+            "Charlotte Hornets"
+        ],
+        [
+            426,
+            "Mason",
+            "Plumlee",
+            "F-C",
+            28,
+            "Phoenix Suns"
+        ],
+        [
+            428,
+            "Jakob",
+            "Poeltl",
+            "C",
+            38,
+            "Toronto Raptors"
+        ],
+        [
+            431,
+            "Bobby",
+            "Portis",
+            "F",
+            21,
+            "Milwaukee Bucks"
+        ],
+        [
+            432,
+            "Kristaps",
+            "Porzingis",
+            "F-C",
+            2,
+            "Boston Celtics"
+        ],
+        [
+            433,
+            "Dwight",
+            "Powell",
+            "F-C",
+            8,
+            "Dallas Mavericks"
+        ],
+        [
+            434,
+            "Norman",
+            "Powell",
+            "G",
+            16,
+            "LA Clippers"
+        ],
+        [
+            437,
+            "Taurean",
+            "Prince",
+            "F",
+            21,
+            "Milwaukee Bucks"
+        ],
+        [
+            441,
+            "Julius",
+            "Randle",
+            "F-C",
+            22,
+            "Minnesota Timberwolves"
+        ],
+        [
+            458,
+            "Terry",
+            "Rozier",
+            "G",
+            20,
+            "Miami Heat"
+        ],
+        [
+            462,
+            "D'Angelo",
+            "Russell",
+            "G",
+            4,
+            "Brooklyn Nets"
+        ],
+        [
+            463,
+            "Domantas",
+            "Sabonis",
+            "F-C",
+            30,
+            "Sacramento Kings"
+        ],
+        [
+            468,
+            "Dario",
+            "Saric",
+            "F-C",
+            9,
+            "Denver Nuggets"
+        ],
+        [
+            472,
+            "Dennis",
+            "Shroder",
+            "G",
+            10,
+            "Detroit Pistons"
+        ],
+        [
+            479,
+            "Pascal",
+            "Siakam",
+            "F",
+            15,
+            "Indiana Pacers"
+        ],
+        [
+            481,
+            "Ben",
+            "Simmons",
+            "G",
+            16,
+            "LA Clippers"
+        ],
+        [
+            486,
+            "Marcus",
+            "Smart",
+            "G",
+            41,
+            "Washington Wizards"
+        ],
+        [
+            507,
+            "Garrett",
+            "Temple",
+            "G-F",
+            38,
+            "Toronto Raptors"
+        ],
+        [
+            514,
+            "Klay",
+            "Thompson",
+            "G",
+            8,
+            "Dallas Mavericks"
+        ],
+        [
+            515,
+            "Tristan",
+            "Thompson",
+            "C-F",
+            7,
+            "Cleveland Cavaliers"
+        ],
+        [
+            519,
+            "Karl-Anthony",
+            "Towns",
+            "C-F",
+            24,
+            "New York Knicks"
+        ],
+        [
+            520,
+            "P.J.",
+            "Tucker",
+            "F",
+            38,
+            "Toronto Raptors"
+        ],
+        [
+            522,
+            "Myles",
+            "Turner",
+            "C-F",
+            15,
+            "Indiana Pacers"
+        ],
+        [
+            525,
+            "Jonas",
+            "Valanciunas",
+            "C",
+            30,
+            "Sacramento Kings"
+        ],
+        [
+            527,
+            "Fred",
+            "VanVleet",
+            "G",
+            14,
+            "Houston Rockets"
+        ],
+        [
+            534,
+            "Nikola",
+            "Vucevic",
+            "C",
+            6,
+            "Chicago Bulls"
+        ],
+        [
+            544,
+            "Russell",
+            "Westbrook",
+            "G",
+            9,
+            "Denver Nuggets"
+        ],
+        [
+            548,
+            "Andrew",
+            "Wiggins",
+            "F",
+            20,
+            "Miami Heat"
+        ],
+        [
+            564,
+            "Delon",
+            "Wright",
+            "G",
+            24,
+            "New York Knicks"
+        ],
+        [
+            571,
+            "Cody",
+            "Zeller",
+            "C",
+            14,
+            "Houston Rockets"
+        ],
+        [
+            575,
+            "Ivica",
+            "Zubac",
+            "C",
+            16,
+            "LA Clippers"
+        ],
+        [
+            593,
+            "Gary",
+            "Payton II",
+            "G",
+            11,
+            "Golden State Warriors"
+        ],
+        [
+            599,
+            "Damion",
+            "Lee",
+            "G-F",
+            28,
+            "Phoenix Suns"
+        ],
+        [
+            631,
+            "Alex",
+            "Caruso",
+            "G",
+            25,
+            "Oklahoma City Thunder"
+        ],
+        [
+            724,
+            "Bam",
+            "Adebayo",
+            "C-F",
+            20,
+            "Miami Heat"
+        ],
+        [
+            727,
+            "Jarrett",
+            "Allen",
+            "C",
+            7,
+            "Cleveland Cavaliers"
+        ],
+        [
+            732,
+            "O.G.",
+            "Anunoby",
+            "F",
+            24,
+            "New York Knicks"
+        ],
+        [
+            735,
+            "Lonzo",
+            "Ball",
+            "G",
+            6,
+            "Chicago Bulls"
+        ],
+        [
+            743,
+            "Bogdan",
+            "Bogdanovic",
+            "G",
+            16,
+            "LA Clippers"
+        ],
+        [
+            745,
+            "Chris",
+            "Boucher",
+            "F-C",
+            38,
+            "Toronto Raptors"
+        ],
+        [
+            749,
+            "Dillon",
+            "Brooks",
+            "G-F",
+            14,
+            "Houston Rockets"
+        ],
+        [
+            753,
+            "Thomas",
+            "Bryant",
+            "C-F",
+            15,
+            "Indiana Pacers"
+        ],
+        [
+            761,
+            "John",
+            "Collins",
+            "F-C",
+            40,
+            "Utah Jazz"
+        ],
+        [
+            762,
+            "Zach",
+            "Collins",
+            "F-C",
+            6,
+            "Chicago Bulls"
+        ],
+        [
+            765,
+            "Torrey",
+            "Craig",
+            "F",
+            2,
+            "Boston Celtics"
+        ],
+        [
+            776,
+            "De'Aaron",
+            "Fox",
+            "G",
+            31,
+            "San Antonio Spurs"
+        ],
+        [
+            779,
+            "Markelle",
+            "Fultz",
+            "G",
+            30,
+            "Sacramento Kings"
+        ],
+        [
+            791,
+            "Josh",
+            "Hart",
+            "G",
+            24,
+            "New York Knicks"
+        ],
+        [
+            801,
+            "Jonathan",
+            "Isaac",
+            "F",
+            26,
+            "Orlando Magic"
+        ],
+        [
+            814,
+            "Luke",
+            "Kennard",
+            "G",
+            19,
+            "Memphis Grizzlies"
+        ],
+        [
+            817,
+            "Maxi",
+            "Kleber",
+            "F",
+            17,
+            "Los Angeles Lakers"
+        ],
+        [
+            819,
+            "Luke",
+            "Kornet",
+            "C-F",
+            2,
+            "Boston Celtics"
+        ],
+        [
+            820,
+            "Kyle",
+            "Kuzma",
+            "F",
+            21,
+            "Milwaukee Bucks"
+        ],
+        [
+            830,
+            "Lauri",
+            "Markkanen",
+            "F-C",
+            40,
+            "Utah Jazz"
+        ],
+        [
+            840,
+            "Donovan",
+            "Mitchell",
+            "G",
+            7,
+            "Cleveland Cavaliers"
+        ],
+        [
+            842,
+            "Malik",
+            "Monk",
+            "G",
+            30,
+            "Sacramento Kings"
+        ],
+        [
+            845,
+            "Monte",
+            "Morris",
+            "G",
+            28,
+            "Phoenix Suns"
+        ],
+        [
+            851,
+            "Royce",
+            "O'Neale",
+            "F",
+            28,
+            "Phoenix Suns"
+        ],
+        [
+            882,
+            "Jayson",
+            "Tatum",
+            "F-G",
+            2,
+            "Boston Celtics"
+        ],
+        [
+            897,
+            "Derrick",
+            "White",
+            "G",
+            2,
+            "Boston Celtics"
+        ],
+        [
+            904,
+            "Guerschon",
+            "Yabusele",
+            "F",
+            27,
+            "Philadelphia 76ers"
+        ],
+        [
+            926,
+            "Grayson",
+            "Allen",
+            "G",
+            28,
+            "Phoenix Suns"
+        ],
+        [
+            930,
+            "Deandre",
+            "Ayton",
+            "C",
+            29,
+            "Portland Trail Blazers"
+        ],
+        [
+            931,
+            "Marvin",
+            "Bagley III",
+            "F",
+            19,
+            "Memphis Grizzlies"
+        ],
+        [
+            940,
+            "Mikal",
+            "Bridges",
+            "F",
+            24,
+            "New York Knicks"
+        ],
+        [
+            941,
+            "Miles",
+            "Bridges",
+            "F",
+            5,
+            "Charlotte Hornets"
+        ],
+        [
+            944,
+            "Bruce",
+            "Brown",
+            "G-F",
+            23,
+            "New Orleans Pelicans"
+        ],
+        [
+            946,
+            "Jalen",
+            "Brunson",
+            "G",
+            24,
+            "New York Knicks"
+        ],
+        [
+            949,
+            "Jevon",
+            "Carter",
+            "G",
+            6,
+            "Chicago Bulls"
+        ],
+        [
+            950,
+            "Wendell",
+            "Carter Jr.",
+            "C-F",
+            26,
+            "Orlando Magic"
+        ],
+        [
+            962,
+            "Donte",
+            "DiVincenzo",
+            "G",
+            22,
+            "Minnesota Timberwolves"
+        ],
+        [
+            963,
+            "Luka",
+            "Doncic",
+            "F-G",
+            17,
+            "Los Angeles Lakers"
+        ],
+        [
+            966,
+            "Drew",
+            "Eubanks",
+            "F-C",
+            16,
+            "LA Clippers"
+        ],
+        [
+            972,
+            "Shai",
+            "Gilgeous-Alexander",
+            "G",
+            25,
+            "Oklahoma City Thunder"
+        ],
+        [
+            978,
+            "Isaiah",
+            "Hartenstein",
+            "C-F",
+            25,
+            "Oklahoma City Thunder"
+        ],
+        [
+            979,
+            "Aaron",
+            "Holiday",
+            "G",
+            14,
+            "Houston Rockets"
+        ],
+        [
+            980,
+            "Kevin",
+            "Huerter",
+            "G-F",
+            6,
+            "Chicago Bulls"
+        ],
+        [
+            982,
+            "Jaren",
+            "Jackson Jr.",
+            "F-C",
+            19,
+            "Memphis Grizzlies"
+        ],
+        [
+            997,
+            "Jordan",
+            "McLaughlin",
+            "G",
+            31,
+            "San Antonio Spurs"
+        ],
+        [
+            1001,
+            "Shake",
+            "Milton",
+            "G-F",
+            17,
+            "Los Angeles Lakers"
+        ],
+        [
+            1006,
+            "Svi",
+            "Mykhailiuk",
+            "G-F",
+            40,
+            "Utah Jazz"
+        ],
+        [
+            1010,
+            "Josh",
+            "Okogie",
+            "G",
+            5,
+            "Charlotte Hornets"
+        ],
+        [
+            1014,
+            "Michael",
+            "Porter Jr.",
+            "F",
+            9,
+            "Denver Nuggets"
+        ],
+        [
+            1018,
+            "Duncan",
+            "Robinson",
+            "F",
+            20,
+            "Miami Heat"
+        ],
+        [
+            1020,
+            "Mitchell",
+            "Robinson",
+            "C",
+            24,
+            "New York Knicks"
+        ],
+        [
+            1021,
+            "Collin",
+            "Sexton",
+            "G",
+            40,
+            "Utah Jazz"
+        ],
+        [
+            1022,
+            "Landry",
+            "Shamet",
+            "G",
+            24,
+            "New York Knicks"
+        ],
+        [
+            1023,
+            "Anfernee",
+            "Simons",
+            "G",
+            29,
+            "Portland Trail Blazers"
+        ],
+        [
+            1036,
+            "Jarred",
+            "Vanderbilt",
+            "F",
+            17,
+            "Los Angeles Lakers"
+        ],
+        [
+            1037,
+            "Moritz",
+            "Wagner",
+            "F-C",
+            26,
+            "Orlando Magic"
+        ],
+        [
+            1044,
+            "Kenrich",
+            "Williams",
+            "G-F",
+            25,
+            "Oklahoma City Thunder"
+        ],
+        [
+            1045,
+            "Robert",
+            "Williams III",
+            "C-F",
+            29,
+            "Portland Trail Blazers"
+        ],
+        [
+            1046,
+            "Trae",
+            "Young",
+            "G",
+            1,
+            "Atlanta Hawks"
+        ],
+        [
+            1058,
+            "Gary",
+            "Trent Jr.",
+            "G-F",
+            21,
+            "Milwaukee Bucks"
+        ],
+        [
+            1060,
+            "Jack",
+            "McVeigh",
+            "G",
+            14,
+            "Houston Rockets"
+        ],
+        [
+            1312,
+            "Vlatko",
+            "Cancar",
+            "F",
+            9,
+            "Denver Nuggets"
+        ],
+        [
+            1485,
+            "Jock",
+            "Landale",
+            "C",
+            14,
+            "Houston Rockets"
+        ],
+        [
+            1775,
+            "Gabe",
+            "Vincent",
+            "G",
+            17,
+            "Los Angeles Lakers"
+        ],
+        [
+            1815,
+            "Haywood",
+            "Highsmith",
+            "F",
+            20,
+            "Miami Heat"
+        ],
+        [
+            1845,
+            "Nickeil",
+            "Alexander-Walker",
+            "G",
+            22,
+            "Minnesota Timberwolves"
+        ],
+        [
+            1846,
+            "RJ",
+            "Barrett",
+            "F-G",
+            38,
+            "Toronto Raptors"
+        ],
+        [
+            1848,
+            "Goga",
+            "Bitadze",
+            "C-F",
+            26,
+            "Orlando Magic"
+        ],
+        [
+            1849,
+            "Bol",
+            "Bol",
+            "C-F",
+            28,
+            "Phoenix Suns"
+        ],
+        [
+            1853,
+            "Brandon",
+            "Clarke",
+            "F",
+            19,
+            "Memphis Grizzlies"
+        ],
+        [
+            1854,
+            "Nic",
+            "Claxton",
+            "C",
+            4,
+            "Brooklyn Nets"
+        ],
+        [
+            1859,
+            "Daniel",
+            "Gafford",
+            "F-C",
+            8,
+            "Dallas Mavericks"
+        ],
+        [
+            1860,
+            "Darius",
+            "Garland",
+            "G",
+            7,
+            "Cleveland Cavaliers"
+        ],
+        [
+            1862,
+            "Rui",
+            "Hachimura",
+            "F",
+            17,
+            "Los Angeles Lakers"
+        ],
+        [
+            1864,
+            "Jaxson",
+            "Hayes",
+            "C-F",
+            17,
+            "Los Angeles Lakers"
+        ],
+        [
+            1866,
+            "Tyler",
+            "Herro",
+            "G",
+            20,
+            "Miami Heat"
+        ],
+        [
+            1867,
+            "Talen",
+            "Horton-Tucker",
+            "G",
+            6,
+            "Chicago Bulls"
+        ],
+        [
+            1868,
+            "De'Andre",
+            "Hunter",
+            "F",
+            7,
+            "Cleveland Cavaliers"
+        ],
+        [
+            1870,
+            "Ty",
+            "Jerome",
+            "G-F",
+            7,
+            "Cleveland Cavaliers"
+        ],
+        [
+            1871,
+            "Cameron",
+            "Johnson",
+            "F",
+            4,
+            "Brooklyn Nets"
+        ],
+        [
+            1872,
+            "Keldon",
+            "Johnson",
+            "F-G",
+            31,
+            "San Antonio Spurs"
+        ],
+        [
+            1877,
+            "Terance",
+            "Mann",
+            "G-F",
+            1,
+            "Atlanta Hawks"
+        ],
+        [
+            1879,
+            "Cody",
+            "Martin",
+            "F",
+            28,
+            "Phoenix Suns"
+        ],
+        [
+            1881,
+            "Ja",
+            "Morant",
+            "G",
+            19,
+            "Memphis Grizzlies"
+        ],
+        [
+            1882,
+            "Jaylen",
+            "Nowell",
+            "G",
+            41,
+            "Washington Wizards"
+        ],
+        [
+            1883,
+            "Chuma",
+            "Okeke",
+            "F",
+            27,
+            "Philadelphia 76ers"
+        ],
+        [
+            1887,
+            "Jordan",
+            "Poole",
+            "G",
+            41,
+            "Washington Wizards"
+        ],
+        [
+            1888,
+            "Kevin",
+            "Porter Jr.",
+            "G-F",
+            21,
+            "Milwaukee Bucks"
+        ],
+        [
+            1889,
+            "Cam",
+            "Reddish",
+            "F-G",
+            17,
+            "Los Angeles Lakers"
+        ],
+        [
+            1896,
+            "Matisse",
+            "Thybulle",
+            "G",
+            29,
+            "Portland Trail Blazers"
+        ],
+        [
+            1897,
+            "P.J.",
+            "Washington",
+            "F",
+            8,
+            "Dallas Mavericks"
+        ],
+        [
+            1900,
+            "Coby",
+            "White",
+            "G",
+            6,
+            "Chicago Bulls"
+        ],
+        [
+            1901,
+            "Grant",
+            "Williams",
+            "F",
+            5,
+            "Charlotte Hornets"
+        ],
+        [
+            1902,
+            "Zion",
+            "Williamson",
+            "F",
+            23,
+            "New Orleans Pelicans"
+        ],
+        [
+            1948,
+            "DaQuan",
+            "Jeffries",
+            "G-F",
+            5,
+            "Charlotte Hornets"
+        ],
+        [
+            2040,
+            "Luguentz",
+            "Dort",
+            "G",
+            25,
+            "Oklahoma City Thunder"
+        ],
+        [
+            2051,
+            "Max",
+            "Strus",
+            "G-F",
+            7,
+            "Cleveland Cavaliers"
+        ],
+        [
+            2115,
+            "Amir",
+            "Coffey",
+            "G-F",
+            16,
+            "LA Clippers"
+        ],
+        [
+            2146,
+            "Naz",
+            "Reid",
+            "C-F",
+            22,
+            "Minnesota Timberwolves"
+        ],
+        [
+            2177,
+            "John",
+            "Konchar",
+            "G",
+            19,
+            "Memphis Grizzlies"
+        ],
+        [
+            2242,
+            "Caleb",
+            "Martin",
+            "F",
+            8,
+            "Dallas Mavericks"
+        ],
+        [
+            2327,
+            "Garrison",
+            "Mathews",
+            "G",
+            1,
+            "Atlanta Hawks"
+        ],
+        [
+            2392,
+            "Dean",
+            "Wade",
+            "F-C",
+            7,
+            "Cleveland Cavaliers"
+        ],
+        [
+            2404,
+            "Javonte",
+            "Green",
+            "G-F",
+            23,
+            "New Orleans Pelicans"
+        ],
+        [
+            2561,
+            "Precious",
+            "Achiuwa",
+            "F",
+            24,
+            "New York Knicks"
+        ],
+        [
+            2563,
+            "Cole",
+            "Anthony",
+            "G",
+            26,
+            "Orlando Magic"
+        ],
+        [
+            2564,
+            "Deni",
+            "Avdija",
+            "F",
+            29,
+            "Portland Trail Blazers"
+        ],
+        [
+            2566,
+            "LaMelo",
+            "Ball",
+            "G",
+            5,
+            "Charlotte Hornets"
+        ],
+        [
+            2568,
+            "Desmond",
+            "Bane",
+            "G",
+            19,
+            "Memphis Grizzlies"
+        ],
+        [
+            2569,
+            "Saddiq",
+            "Bey",
+            "F",
+            41,
+            "Washington Wizards"
+        ],
+        [
+            2584,
+            "Anthony",
+            "Edwards",
+            "G",
+            22,
+            "Minnesota Timberwolves"
+        ],
+        [
+            2590,
+            "Anthony",
+            "Gill",
+            "F",
+            41,
+            "Washington Wizards"
+        ],
+        [
+            2593,
+            "Josh",
+            "Green",
+            "G",
+            5,
+            "Charlotte Hornets"
+        ],
+        [
+            2595,
+            "Tyrese",
+            "Haliburton",
+            "G",
+            15,
+            "Indiana Pacers"
+        ],
+        [
+            2604,
+            "Isaiah",
+            "Joe",
+            "G",
+            25,
+            "Oklahoma City Thunder"
+        ],
+        [
+            2605,
+            "Mason",
+            "Jones",
+            "G",
+            30,
+            "Sacramento Kings"
+        ],
+        [
+            2606,
+            "Tre",
+            "Jones",
+            "G",
+            6,
+            "Chicago Bulls"
+        ],
+        [
+            2608,
+            "Vit",
+            "Krejci",
+            "G",
+            1,
+            "Atlanta Hawks"
+        ],
+        [
+            2617,
+            "KJ",
+            "Martin",
+            "F",
+            40,
+            "Utah Jazz"
+        ],
+        [
+            2619,
+            "Tyrese",
+            "Maxey",
+            "G",
+            27,
+            "Philadelphia 76ers"
+        ],
+        [
+            2621,
+            "Jaden",
+            "McDaniels",
+            "F",
+            22,
+            "Minnesota Timberwolves"
+        ],
+        [
+            2623,
+            "Sam",
+            "Merrill",
+            "G",
+            7,
+            "Cleveland Cavaliers"
+        ],
+        [
+            2626,
+            "Aaron",
+            "Nesmith",
+            "G-F",
+            15,
+            "Indiana Pacers"
+        ],
+        [
+            2627,
+            "Zeke",
+            "Nnaji",
+            "F-C",
+            9,
+            "Denver Nuggets"
+        ],
+        [
+            2629,
+            "Onyeka",
+            "Okongwu",
+            "F-C",
+            1,
+            "Atlanta Hawks"
+        ],
+        [
+            2630,
+            "Isaac",
+            "Okoro",
+            "F-G",
+            7,
+            "Cleveland Cavaliers"
+        ],
+        [
+            2635,
+            "Payton",
+            "Pritchard",
+            "G",
+            2,
+            "Boston Celtics"
+        ],
+        [
+            2636,
+            "Immanuel",
+            "Quickley",
+            "G",
+            38,
+            "Toronto Raptors"
+        ],
+        [
+            2638,
+            "Paul",
+            "Reed",
+            "F",
+            10,
+            "Detroit Pistons"
+        ],
+        [
+            2639,
+            "Nick",
+            "Richards",
+            "C",
+            28,
+            "Phoenix Suns"
+        ],
+        [
+            2644,
+            "Jalen",
+            "Smith",
+            "F-C",
+            6,
+            "Chicago Bulls"
+        ],
+        [
+            2648,
+            "Isaiah",
+            "Stewart",
+            "F-C",
+            10,
+            "Detroit Pistons"
+        ],
+        [
+            2650,
+            "Jae'Sean",
+            "Tate",
+            "F",
+            14,
+            "Houston Rockets"
+        ],
+        [
+            2656,
+            "Xavier",
+            "Tillman",
+            "F",
+            2,
+            "Boston Celtics"
+        ],
+        [
+            2658,
+            "Obi",
+            "Toppin",
+            "F",
+            15,
+            "Indiana Pacers"
+        ],
+        [
+            2661,
+            "Devin",
+            "Vassell",
+            "G-F",
+            31,
+            "San Antonio Spurs"
+        ],
+        [
+            2664,
+            "Patrick",
+            "Williams",
+            "F",
+            6,
+            "Chicago Bulls"
+        ],
+        [
+            2668,
+            "Naji",
+            "Marshall",
+            "F",
+            8,
+            "Dallas Mavericks"
+        ],
+        [
+            2670,
+            "Kylor",
+            "Kelley",
+            "C",
+            8,
+            "Dallas Mavericks"
+        ],
+        [
+            2671,
+            "Trevelin",
+            "Queen",
+            "G",
+            26,
+            "Orlando Magic"
+        ],
+        [
+            2739,
+            "Vasilije",
+            "Micic",
+            "G",
+            28,
+            "Phoenix Suns"
+        ],
+        [
+            2786,
+            "Santi",
+            "Aldama",
+            "F-C",
+            19,
+            "Memphis Grizzlies"
+        ],
+        [
+            2788,
+            "Dalano",
+            "Banton",
+            "F",
+            29,
+            "Portland Trail Blazers"
+        ],
+        [
+            2789,
+            "Scottie",
+            "Barnes",
+            "F",
+            38,
+            "Toronto Raptors"
+        ],
+        [
+            2790,
+            "Charles",
+            "Bassey",
+            "C-F",
+            31,
+            "San Antonio Spurs"
+        ],
+        [
+            2792,
+            "Brandon",
+            "Boston",
+            "G",
+            23,
+            "New Orleans Pelicans"
+        ],
+        [
+            2796,
+            "Jared",
+            "Butler",
+            "G",
+            27,
+            "Philadelphia 76ers"
+        ],
+        [
+            2798,
+            "Justin",
+            "Champagnie",
+            "G-F",
+            41,
+            "Washington Wizards"
+        ],
+        [
+            2799,
+            "Josh",
+            "Christopher",
+            "G",
+            20,
+            "Miami Heat"
+        ],
+        [
+            2801,
+            "Cade",
+            "Cunningham",
+            "G",
+            10,
+            "Detroit Pistons"
+        ],
+        [
+            2802,
+            "Ayo",
+            "Dosunmu",
+            "G",
+            6,
+            "Chicago Bulls"
+        ],
+        [
+            2804,
+            "David",
+            "Duke Jr.",
+            "G",
+            31,
+            "San Antonio Spurs"
+        ],
+        [
+            2805,
+            "Kessler",
+            "Edwards",
+            "F",
+            8,
+            "Dallas Mavericks"
+        ],
+        [
+            2807,
+            "Luka",
+            "Garza",
+            "C",
+            22,
+            "Minnesota Timberwolves"
+        ],
+        [
+            2808,
+            "Josh",
+            "Giddey",
+            "G",
+            6,
+            "Chicago Bulls"
+        ],
+        [
+            2810,
+            "Jalen",
+            "Green",
+            "G",
+            14,
+            "Houston Rockets"
+        ],
+        [
+            2811,
+            "Quentin",
+            "Grimes",
+            "G",
+            27,
+            "Philadelphia 76ers"
+        ],
+        [
+            2812,
+            "Sam",
+            "Hauser",
+            "F",
+            2,
+            "Boston Celtics"
+        ],
+        [
+            2814,
+            "Jay",
+            "Huff",
+            "F",
+            19,
+            "Memphis Grizzlies"
+        ],
+        [
+            2817,
+            "Isaiah",
+            "Jackson",
+            "F",
+            15,
+            "Indiana Pacers"
+        ],
+        [
+            2819,
+            "Jalen",
+            "Johnson",
+            "F",
+            1,
+            "Atlanta Hawks"
+        ],
+        [
+            2820,
+            "Keon",
+            "Johnson",
+            "G",
+            4,
+            "Brooklyn Nets"
+        ],
+        [
+            2822,
+            "Herbert",
+            "Jones",
+            "F",
+            23,
+            "New Orleans Pelicans"
+        ],
+        [
+            2823,
+            "Kai",
+            "Jones",
+            "C-F",
+            16,
+            "LA Clippers"
+        ],
+        [
+            2825,
+            "Corey",
+            "Kispert",
+            "F",
+            41,
+            "Washington Wizards"
+        ],
+        [
+            2827,
+            "Jonathan",
+            "Kuminga",
+            "F",
+            11,
+            "Golden State Warriors"
+        ],
+        [
+            2830,
+            "Sandro",
+            "Mamukelashvili",
+            "F-C",
+            31,
+            "San Antonio Spurs"
+        ],
+        [
+            2831,
+            "Tre",
+            "Mann",
+            "G",
+            5,
+            "Charlotte Hornets"
+        ],
+        [
+            2832,
+            "Miles",
+            "McBride",
+            "G",
+            24,
+            "New York Knicks"
+        ],
+        [
+            2833,
+            "Mac",
+            "McClung",
+            "G",
+            26,
+            "Orlando Magic"
+        ],
+        [
+            2834,
+            "Davion",
+            "Mitchell",
+            "G",
+            20,
+            "Miami Heat"
+        ],
+        [
+            2835,
+            "Evan",
+            "Mobley",
+            "C",
+            7,
+            "Cleveland Cavaliers"
+        ],
+        [
+            2836,
+            "Moses",
+            "Moody",
+            "G",
+            11,
+            "Golden State Warriors"
+        ],
+        [
+            2837,
+            "Trey",
+            "Murphy III",
+            "F",
+            23,
+            "New Orleans Pelicans"
+        ],
+        [
+            2838,
+            "Eugene",
+            "Omoruyi",
+            "F",
+            38,
+            "Toronto Raptors"
+        ],
+        [
+            2844,
+            "Neemias",
+            "Queta",
+            "C",
+            2,
+            "Boston Celtics"
+        ],
+        [
+            2845,
+            "Austin",
+            "Reaves",
+            "G",
+            17,
+            "Los Angeles Lakers"
+        ],
+        [
+            2846,
+            "Jeremiah",
+            "Robinson-Earl",
+            "F",
+            23,
+            "New Orleans Pelicans"
+        ],
+        [
+            2847,
+            "Alperen",
+            "Sengun",
+            "C",
+            14,
+            "Houston Rockets"
+        ],
+        [
+            2848,
+            "Day'Ron",
+            "Sharpe",
+            "C",
+            4,
+            "Brooklyn Nets"
+        ],
+        [
+            2849,
+            "Jericho",
+            "Sims",
+            "C",
+            21,
+            "Milwaukee Bucks"
+        ],
+        [
+            2852,
+            "Jalen",
+            "Suggs",
+            "G",
+            26,
+            "Orlando Magic"
+        ],
+        [
+            2855,
+            "Cam",
+            "Thomas",
+            "G",
+            4,
+            "Brooklyn Nets"
+        ],
+        [
+            2856,
+            "JT",
+            "Thor",
+            "F",
+            7,
+            "Cleveland Cavaliers"
+        ],
+        [
+            2858,
+            "Franz",
+            "Wagner",
+            "F",
+            26,
+            "Orlando Magic"
+        ],
+        [
+            2861,
+            "Trendon",
+            "Watford",
+            "F",
+            4,
+            "Brooklyn Nets"
+        ],
+        [
+            2863,
+            "Aaron",
+            "Wiggins",
+            "G",
+            25,
+            "Oklahoma City Thunder"
+        ],
+        [
+            2864,
+            "Ziaire",
+            "Williams",
+            "F",
+            4,
+            "Brooklyn Nets"
+        ],
+        [
+            2878,
+            "Jeff",
+            "Dowtin Jr.",
+            "G",
+            27,
+            "Philadelphia 76ers"
+        ],
+        [
+            2890,
+            "A.J.",
+            "Lawson",
+            "G",
+            38,
+            "Toronto Raptors"
+        ],
+        [
+            2941,
+            "Jose",
+            "Alvarado",
+            "G",
+            23,
+            "New Orleans Pelicans"
+        ],
+        [
+            3154,
+            "Daishen",
+            "Nix",
+            "G",
+            30,
+            "Sacramento Kings"
+        ],
+        [
+            3195,
+            "Matt",
+            "Ryan",
+            "F",
+            24,
+            "New York Knicks"
+        ],
+        [
+            3237,
+            "Ethan",
+            "Thompson",
+            "G",
+            26,
+            "Orlando Magic"
+        ],
+        [
+            3259,
+            "Keaton",
+            "Wallace",
+            "G",
+            1,
+            "Atlanta Hawks"
+        ],
+        [
+            3341,
+            "Jordan",
+            "Goodwin",
+            "G",
+            17,
+            "Los Angeles Lakers"
+        ],
+        [
+            3358,
+            "Micah",
+            "Potter",
+            "C",
+            40,
+            "Utah Jazz"
+        ],
+        [
+            3360,
+            "Dru",
+            "Smith",
+            "G",
+            20,
+            "Miami Heat"
+        ],
+        [
+            3398,
+            "Brandon",
+            "Williams",
+            "G",
+            8,
+            "Dallas Mavericks"
+        ],
+        [
+            3404,
+            "Lindy",
+            "Waters III",
+            "F",
+            10,
+            "Detroit Pistons"
+        ],
+        [
+            3405,
+            "MarJon",
+            "Beauchamp",
+            "F",
+            16,
+            "LA Clippers"
+        ],
+        [
+            3406,
+            "Dyson",
+            "Daniels",
+            "G",
+            1,
+            "Atlanta Hawks"
+        ],
+        [
+            3407,
+            "Jaden",
+            "Hardy",
+            "G",
+            8,
+            "Dallas Mavericks"
+        ],
+        [
+            3408,
+            "Scoot",
+            "Henderson",
+            "G",
+            29,
+            "Portland Trail Blazers"
+        ],
+        [
+            3411,
+            "Ochai",
+            "Agbaji",
+            "G",
+            38,
+            "Toronto Raptors"
+        ],
+        [
+            3414,
+            "Paolo",
+            "Banchero",
+            "F",
+            26,
+            "Orlando Magic"
+        ],
+        [
+            3415,
+            "Dominick",
+            "Barlow",
+            "F",
+            1,
+            "Atlanta Hawks"
+        ],
+        [
+            3419,
+            "Malaki",
+            "Branham",
+            "F",
+            31,
+            "San Antonio Spurs"
+        ],
+        [
+            3420,
+            "Christian",
+            "Braun",
+            "G",
+            9,
+            "Denver Nuggets"
+        ],
+        [
+            3424,
+            "Jamal",
+            "Cain",
+            "F",
+            23,
+            "New Orleans Pelicans"
+        ],
+        [
+            3425,
+            "Julian",
+            "Champagnie",
+            "F",
+            31,
+            "San Antonio Spurs"
+        ],
+        [
+            3427,
+            "Max",
+            "Christie",
+            "G",
+            8,
+            "Dallas Mavericks"
+        ],
+        [
+            3428,
+            "Johnny",
+            "Davis",
+            "G",
+            19,
+            "Memphis Grizzlies"
+        ],
+        [
+            3429,
+            "JD",
+            "Davison",
+            "G",
+            2,
+            "Boston Celtics"
+        ],
+        [
+            3431,
+            "Moussa",
+            "Diabate",
+            "F",
+            5,
+            "Charlotte Hornets"
+        ],
+        [
+            3432,
+            "Ousmane",
+            "Dieng",
+            "F",
+            25,
+            "Oklahoma City Thunder"
+        ],
+        [
+            3433,
+            "Jalen",
+            "Duren",
+            "C",
+            10,
+            "Detroit Pistons"
+        ],
+        [
+            3435,
+            "Tari",
+            "Eason",
+            "F",
+            14,
+            "Houston Rockets"
+        ],
+        [
+            3436,
+            "Keon",
+            "Ellis",
+            "G",
+            30,
+            "Sacramento Kings"
+        ],
+        [
+            3438,
+            "Simone",
+            "Fontecchio",
+            "F",
+            10,
+            "Detroit Pistons"
+        ],
+        [
+            3441,
+            "Collin",
+            "Gillespie",
+            "G",
+            28,
+            "Phoenix Suns"
+        ],
+        [
+            3443,
+            "A.J.",
+            "Green",
+            "G",
+            21,
+            "Milwaukee Bucks"
+        ],
+        [
+            3448,
+            "Chet",
+            "Holmgren",
+            "C-F",
+            25,
+            "Oklahoma City Thunder"
+        ],
+        [
+            3449,
+            "Caleb",
+            "Houstan",
+            "G",
+            26,
+            "Orlando Magic"
+        ],
+        [
+            3451,
+            "Jaden",
+            "Ivey",
+            "G",
+            10,
+            "Detroit Pistons"
+        ],
+        [
+            3452,
+            "Quenton",
+            "Jackson",
+            "G",
+            15,
+            "Indiana Pacers"
+        ],
+        [
+            3453,
+            "Nikola",
+            "Jovic",
+            "F",
+            20,
+            "Miami Heat"
+        ],
+        [
+            3454,
+            "Johnny",
+            "Juzang",
+            "G",
+            40,
+            "Utah Jazz"
+        ],
+        [
+            3457,
+            "Walker",
+            "Kessler",
+            "C",
+            40,
+            "Utah Jazz"
+        ],
+        [
+            3458,
+            "Christian",
+            "Koloko",
+            "C",
+            17,
+            "Los Angeles Lakers"
+        ],
+        [
+            3460,
+            "Jake",
+            "LaRavia",
+            "F",
+            30,
+            "Sacramento Kings"
+        ],
+        [
+            3462,
+            "E.J.",
+            "Liddell",
+            "F",
+            6,
+            "Chicago Bulls"
+        ],
+        [
+            3465,
+            "Tyrese",
+            "Martin",
+            "G",
+            4,
+            "Brooklyn Nets"
+        ],
+        [
+            3466,
+            "Bennedict",
+            "Mathurin",
+            "G-F",
+            15,
+            "Indiana Pacers"
+        ],
+        [
+            3467,
+            "Karlo",
+            "Matkovic",
+            "F-C",
+            23,
+            "New Orleans Pelicans"
+        ],
+        [
+            3469,
+            "Bryce",
+            "McGowens",
+            "G",
+            29,
+            "Portland Trail Blazers"
+        ],
+        [
+            3470,
+            "Josh",
+            "Minott",
+            "F",
+            22,
+            "Minnesota Timberwolves"
+        ],
+        [
+            3474,
+            "Wendell",
+            "Moore Jr.",
+            "G",
+            5,
+            "Charlotte Hornets"
+        ],
+        [
+            3475,
+            "Keegan",
+            "Murray",
+            "F",
+            30,
+            "Sacramento Kings"
+        ],
+        [
+            3476,
+            "Andrew",
+            "Nembhard",
+            "G-F",
+            15,
+            "Indiana Pacers"
+        ],
+        [
+            3477,
+            "Scotty",
+            "Pippen Jr.",
+            "G",
+            19,
+            "Memphis Grizzlies"
+        ],
+        [
+            3478,
+            "Daeqwon",
+            "Plowden",
+            "G-F",
+            1,
+            "Atlanta Hawks"
+        ],
+        [
+            3482,
+            "Orlando",
+            "Robinson",
+            "C",
+            38,
+            "Toronto Raptors"
+        ],
+        [
+            3483,
+            "David",
+            "Roddy",
+            "F",
+            27,
+            "Philadelphia 76ers"
+        ],
+        [
+            3484,
+            "Ryan",
+            "Rollins",
+            "G",
+            21,
+            "Milwaukee Bucks"
+        ],
+        [
+            3485,
+            "Gui",
+            "Santos",
+            "G",
+            11,
+            "Golden State Warriors"
+        ],
+        [
+            3487,
+            "Shaedon",
+            "Sharpe",
+            "G",
+            29,
+            "Portland Trail Blazers"
+        ],
+        [
+            3489,
+            "Jabari",
+            "Smith Jr.",
+            "F",
+            14,
+            "Houston Rockets"
+        ],
+        [
+            3490,
+            "Jeremy",
+            "Sochan",
+            "F",
+            31,
+            "San Antonio Spurs"
+        ],
+        [
+            3492,
+            "Pat",
+            "Spencer",
+            "G",
+            11,
+            "Golden State Warriors"
+        ],
+        [
+            3494,
+            "Dalen",
+            "Terry",
+            "F",
+            6,
+            "Chicago Bulls"
+        ],
+        [
+            3496,
+            "Jabari",
+            "Walker",
+            "F",
+            29,
+            "Portland Trail Blazers"
+        ],
+        [
+            3497,
+            "TyTy",
+            "Washington Jr.",
+            "G",
+            28,
+            "Phoenix Suns"
+        ],
+        [
+            3498,
+            "Peyton",
+            "Watson",
+            "G",
+            9,
+            "Denver Nuggets"
+        ],
+        [
+            3499,
+            "Blake",
+            "Wesley",
+            "G",
+            31,
+            "San Antonio Spurs"
+        ],
+        [
+            3504,
+            "Jalen",
+            "Williams",
+            "G-F",
+            25,
+            "Oklahoma City Thunder"
+        ],
+        [
+            3505,
+            "Jaylin",
+            "Williams",
+            "F",
+            25,
+            "Oklahoma City Thunder"
+        ],
+        [
+            3506,
+            "Mark",
+            "Williams",
+            "C",
+            5,
+            "Charlotte Hornets"
+        ],
+        [
+            3508,
+            "Vince",
+            "Williams Jr.",
+            "G",
+            19,
+            "Memphis Grizzlies"
+        ],
+        [
+            3714,
+            "Justin",
+            "Minaya",
+            "F",
+            29,
+            "Portland Trail Blazers"
+        ],
+        [
+            3724,
+            "Taze",
+            "Moore",
+            "G",
+            29,
+            "Portland Trail Blazers"
+        ],
+        [
+            3790,
+            "Stanley",
+            "Umude",
+            "G",
+            21,
+            "Milwaukee Bucks"
+        ],
+        [
+            3931,
+            "Jeenathan",
+            "Williams",
+            "G",
+            14,
+            "Houston Rockets"
+        ],
+        [
+            3938,
+            "Kobe",
+            "Bufkin",
+            "G",
+            1,
+            "Atlanta Hawks"
+        ],
+        [
+            3939,
+            "Mouhamed",
+            "Gueye",
+            "F",
+            1,
+            "Atlanta Hawks"
+        ],
+        [
+            3943,
+            "Jordan",
+            "Walsh",
+            "G",
+            2,
+            "Boston Celtics"
+        ],
+        [
+            3944,
+            "Noah",
+            "Clowney",
+            "F",
+            4,
+            "Brooklyn Nets"
+        ],
+        [
+            3945,
+            "Dariq",
+            "Whitehead",
+            "F",
+            4,
+            "Brooklyn Nets"
+        ],
+        [
+            3946,
+            "Jalen",
+            "Wilson",
+            "F",
+            4,
+            "Brooklyn Nets"
+        ],
+        [
+            3950,
+            "Brandon",
+            "Miller",
+            "F",
+            5,
+            "Charlotte Hornets"
+        ],
+        [
+            3954,
+            "Julian",
+            "Phillips",
+            "F",
+            6,
+            "Chicago Bulls"
+        ],
+        [
+            3955,
+            "Adama",
+            "Sanogo",
+            "C",
+            6,
+            "Chicago Bulls"
+        ],
+        [
+            3956,
+            "Emoni",
+            "Bates",
+            "F",
+            7,
+            "Cleveland Cavaliers"
+        ],
+        [
+            3960,
+            "Olivier-Maxence",
+            "Prosper",
+            "F",
+            8,
+            "Dallas Mavericks"
+        ],
+        [
+            3965,
+            "Jalen",
+            "Pickett",
+            "G",
+            9,
+            "Denver Nuggets"
+        ],
+        [
+            3966,
+            "Julian",
+            "Strawther",
+            "G",
+            9,
+            "Denver Nuggets"
+        ],
+        [
+            3967,
+            "Hunter",
+            "Tyson",
+            "F",
+            9,
+            "Denver Nuggets"
+        ],
+        [
+            3969,
+            "Tosan",
+            "Evbuomwan",
+            "F",
+            4,
+            "Brooklyn Nets"
+        ],
+        [
+            3970,
+            "Marcus",
+            "Sasser",
+            "G",
+            10,
+            "Detroit Pistons"
+        ],
+        [
+            3971,
+            "Ausar",
+            "Thompson",
+            "F",
+            10,
+            "Detroit Pistons"
+        ],
+        [
+            3973,
+            "Trayce",
+            "Jackson-Davis",
+            "F",
+            11,
+            "Golden State Warriors"
+        ],
+        [
+            3975,
+            "Brandin",
+            "Podziemski",
+            "G",
+            11,
+            "Golden State Warriors"
+        ],
+        [
+            3977,
+            "Amen",
+            "Thompson",
+            "F",
+            14,
+            "Houston Rockets"
+        ],
+        [
+            3978,
+            "Cam",
+            "Whitmore",
+            "F",
+            14,
+            "Houston Rockets"
+        ],
+        [
+            3979,
+            "Ben",
+            "Sheppard",
+            "G",
+            15,
+            "Indiana Pacers"
+        ],
+        [
+            3980,
+            "Oscar",
+            "Tshiebwe",
+            "C",
+            40,
+            "Utah Jazz"
+        ],
+        [
+            3981,
+            "Jarace",
+            "Walker",
+            "F",
+            15,
+            "Indiana Pacers"
+        ],
+        [
+            3983,
+            "Kobe",
+            "Brown",
+            "G",
+            16,
+            "LA Clippers"
+        ],
+        [
+            3984,
+            "Jordan",
+            "Miller",
+            "G",
+            16,
+            "LA Clippers"
+        ],
+        [
+            3991,
+            "Maxwell",
+            "Lewis",
+            "F",
+            4,
+            "Brooklyn Nets"
+        ],
+        [
+            3994,
+            "GG",
+            "Jackson",
+            "F",
+            19,
+            "Memphis Grizzlies"
+        ],
+        [
+            3995,
+            "Drew",
+            "Peterson",
+            "F",
+            2,
+            "Boston Celtics"
+        ],
+        [
+            3997,
+            "Chris",
+            "Livingston",
+            "F",
+            21,
+            "Milwaukee Bucks"
+        ],
+        [
+            4000,
+            "Jaylen",
+            "Clark",
+            "G",
+            22,
+            "Minnesota Timberwolves"
+        ],
+        [
+            4001,
+            "Leonard",
+            "Miller",
+            "F",
+            22,
+            "Minnesota Timberwolves"
+        ],
+        [
+            4002,
+            "Jordan",
+            "Hawkins",
+            "G",
+            23,
+            "New Orleans Pelicans"
+        ],
+        [
+            4003,
+            "Trey",
+            "Jemison III",
+            "C",
+            17,
+            "Los Angeles Lakers"
+        ],
+        [
+            4005,
+            "Liam",
+            "Robbins",
+            "C",
+            21,
+            "Milwaukee Bucks"
+        ],
+        [
+            4006,
+            "Jaylen",
+            "Martin",
+            "G",
+            41,
+            "Washington Wizards"
+        ],
+        [
+            4007,
+            "Jacob",
+            "Toppin",
+            "F",
+            24,
+            "New York Knicks"
+        ],
+        [
+            4009,
+            "Cason",
+            "Wallace",
+            "G",
+            25,
+            "Oklahoma City Thunder"
+        ],
+        [
+            4010,
+            "Anthony",
+            "Black",
+            "G",
+            26,
+            "Orlando Magic"
+        ],
+        [
+            4011,
+            "Jett",
+            "Howard",
+            "G",
+            26,
+            "Orlando Magic"
+        ],
+        [
+            4015,
+            "Toumani",
+            "Camara",
+            "F",
+            29,
+            "Portland Trail Blazers"
+        ],
+        [
+            4017,
+            "Kris",
+            "Murray",
+            "F",
+            29,
+            "Portland Trail Blazers"
+        ],
+        [
+            4018,
+            "Duop",
+            "Reath",
+            "C",
+            29,
+            "Portland Trail Blazers"
+        ],
+        [
+            4020,
+            "Colby",
+            "Jones",
+            "G",
+            41,
+            "Washington Wizards"
+        ],
+        [
+            4024,
+            "Sidy",
+            "Cissoko",
+            "G",
+            29,
+            "Portland Trail Blazers"
+        ],
+        [
+            4026,
+            "Victor",
+            "Wembanyama",
+            "C",
+            31,
+            "San Antonio Spurs"
+        ],
+        [
+            4027,
+            "Gradey",
+            "Dick",
+            "G",
+            38,
+            "Toronto Raptors"
+        ],
+        [
+            4029,
+            "Keyonte",
+            "George",
+            "G",
+            40,
+            "Utah Jazz"
+        ],
+        [
+            4031,
+            "Taylor",
+            "Hendricks",
+            "F",
+            40,
+            "Utah Jazz"
+        ],
+        [
+            4034,
+            "Brice",
+            "Sensabaugh",
+            "F",
+            40,
+            "Utah Jazz"
+        ],
+        [
+            4036,
+            "Bilal",
+            "Coulibaly",
+            "SG",
+            41,
+            "Washington Wizards"
+        ],
+        [
+            4042,
+            "Nick",
+            "Smith Jr.",
+            "G",
+            5,
+            "Charlotte Hornets"
+        ],
+        [
+            4043,
+            "Craig",
+            "Porter Jr.",
+            "G",
+            7,
+            "Cleveland Cavaliers"
+        ],
+        [
+            4044,
+            "Dereck",
+            "Lively II",
+            "C",
+            8,
+            "Dallas Mavericks"
+        ],
+        [
+            4047,
+            "Andre",
+            "Jackson Jr.",
+            "G",
+            21,
+            "Milwaukee Bucks"
+        ],
+        [
+            4049,
+            "Ricky",
+            "Council IV",
+            "G",
+            27,
+            "Philadelphia 76ers"
+        ],
+        [
+            4069,
+            "Rayan",
+            "Rupert",
+            "G",
+            29,
+            "Portland Trail Blazers"
+        ],
+        [
+            4084,
+            "A.",
+            "Flagler",
+            "F",
+            25,
+            "Oklahoma City Thunder"
+        ],
+        [
+            4085,
+            "Jamie",
+            "Jaquez Jr.",
+            "G",
+            20,
+            "Miami Heat"
+        ],
+        [
+            4088,
+            "Tristan",
+            "Vukcevic",
+            "PF",
+            41,
+            "Washington Wizards"
+        ],
+        [
+            4090,
+            "Zaccharie",
+            "Risacher",
+            "PF",
+            1,
+            "Atlanta Hawks"
+        ],
+        [
+            4092,
+            "Baylor",
+            "Scheierman",
+            "F",
+            2,
+            "Boston Celtics"
+        ],
+        [
+            4093,
+            "Anton",
+            "Watson",
+            "F",
+            2,
+            "Boston Celtics"
+        ],
+        [
+            4095,
+            "Tidjane",
+            "Salaun",
+            "F",
+            5,
+            "Charlotte Hornets"
+        ],
+        [
+            4096,
+            "K.J.",
+            "Simpson",
+            "G",
+            5,
+            "Charlotte Hornets"
+        ],
+        [
+            4098,
+            "Matas",
+            "Buzelis",
+            "F",
+            6,
+            "Chicago Bulls"
+        ],
+        [
+            4101,
+            "Luke",
+            "Travers",
+            "G",
+            7,
+            "Cleveland Cavaliers"
+        ],
+        [
+            4102,
+            "Jaylon",
+            "Tyson",
+            "F",
+            7,
+            "Cleveland Cavaliers"
+        ],
+        [
+            4103,
+            "Emanuel",
+            "Miller",
+            "F",
+            6,
+            "Chicago Bulls"
+        ],
+        [
+            4105,
+            "Trey",
+            "Alexander",
+            "G",
+            9,
+            "Denver Nuggets"
+        ],
+        [
+            4106,
+            "PJ",
+            "Hall",
+            "C",
+            9,
+            "Denver Nuggets"
+        ],
+        [
+            4107,
+            "Daron",
+            "Holmes II",
+            "C",
+            9,
+            "Denver Nuggets"
+        ],
+        [
+            4108,
+            "Spencer",
+            "Jones",
+            "F",
+            9,
+            "Denver Nuggets"
+        ],
+        [
+            4111,
+            "Ronald",
+            "Holland II",
+            "F",
+            10,
+            "Detroit Pistons"
+        ],
+        [
+            4112,
+            "Daniss",
+            "Jenkins",
+            "G",
+            10,
+            "Detroit Pistons"
+        ],
+        [
+            4113,
+            "Bobi",
+            "Klintman",
+            "F",
+            10,
+            "Detroit Pistons"
+        ],
+        [
+            4114,
+            "Reece",
+            "Beekman",
+            "G",
+            4,
+            "Brooklyn Nets"
+        ],
+        [
+            4116,
+            "N'Faly",
+            "Dante",
+            "C",
+            14,
+            "Houston Rockets"
+        ],
+        [
+            4117,
+            "Reed",
+            "Sheppard",
+            "G",
+            14,
+            "Houston Rockets"
+        ],
+        [
+            4118,
+            "Enrique",
+            "Freeman",
+            "F",
+            15,
+            "Indiana Pacers"
+        ],
+        [
+            4119,
+            "Johnny",
+            "Furphy",
+            "F",
+            15,
+            "Indiana Pacers"
+        ],
+        [
+            4120,
+            "Tristen",
+            "Newton",
+            "G",
+            22,
+            "Minnesota Timberwolves"
+        ],
+        [
+            4121,
+            "Cam",
+            "Christie",
+            "G",
+            16,
+            "LA Clippers"
+        ],
+        [
+            4122,
+            "RayJ",
+            "Dennis",
+            "F",
+            15,
+            "Indiana Pacers"
+        ],
+        [
+            4123,
+            "Trentyn",
+            "Flowers",
+            "G",
+            16,
+            "LA Clippers"
+        ],
+        [
+            4124,
+            "Elijah",
+            "Harkless",
+            "G",
+            40,
+            "Utah Jazz"
+        ],
+        [
+            4125,
+            "Bronny",
+            "James",
+            "G",
+            17,
+            "Los Angeles Lakers"
+        ],
+        [
+            4126,
+            "Dalton",
+            "Knecht",
+            "G",
+            17,
+            "Los Angeles Lakers"
+        ],
+        [
+            4130,
+            "Zach",
+            "Edey",
+            "C",
+            19,
+            "Memphis Grizzlies"
+        ],
+        [
+            4131,
+            "Yuki",
+            "Kawamura",
+            "G",
+            19,
+            "Memphis Grizzlies"
+        ],
+        [
+            4132,
+            "Cam",
+            "Spencer",
+            "G",
+            19,
+            "Memphis Grizzlies"
+        ],
+        [
+            4133,
+            "Jaylen",
+            "Wells",
+            "F",
+            19,
+            "Memphis Grizzlies"
+        ],
+        [
+            4134,
+            "Keshad",
+            "Johnson",
+            "F",
+            20,
+            "Miami Heat"
+        ],
+        [
+            4135,
+            "Pelle",
+            "Larsson",
+            "G",
+            20,
+            "Miami Heat"
+        ],
+        [
+            4136,
+            "Zyon",
+            "Pullin",
+            "G",
+            19,
+            "Memphis Grizzlies"
+        ],
+        [
+            4137,
+            "Isaiah",
+            "Stevens",
+            "G",
+            20,
+            "Miami Heat"
+        ],
+        [
+            4138,
+            "Kel'el",
+            "Ware",
+            "C",
+            20,
+            "Miami Heat"
+        ],
+        [
+            4140,
+            "AJ",
+            "Johnson",
+            "G",
+            41,
+            "Washington Wizards"
+        ],
+        [
+            4141,
+            "Tyler",
+            "Smith",
+            "F",
+            21,
+            "Milwaukee Bucks"
+        ],
+        [
+            4142,
+            "Rob",
+            "Dillingham",
+            "G",
+            22,
+            "Minnesota Timberwolves"
+        ],
+        [
+            4143,
+            "Jesse",
+            "Edwards",
+            "C",
+            22,
+            "Minnesota Timberwolves"
+        ],
+        [
+            4144,
+            "Terrence Jr.",
+            "Shannon",
+            "G",
+            22,
+            "Minnesota Timberwolves"
+        ],
+        [
+            4145,
+            "Yves",
+            "Missi",
+            "C",
+            23,
+            "New Orleans Pelicans"
+        ],
+        [
+            4146,
+            "Antonio",
+            "Reeves",
+            "G",
+            23,
+            "New Orleans Pelicans"
+        ],
+        [
+            4147,
+            "Pacome",
+            "Dadiet",
+            "G",
+            24,
+            "New York Knicks"
+        ],
+        [
+            4148,
+            "Ariel",
+            "Hukporti",
+            "C",
+            24,
+            "New York Knicks"
+        ],
+        [
+            4149,
+            "Tyler",
+            "Kolek",
+            "G",
+            24,
+            "New York Knicks"
+        ],
+        [
+            4150,
+            "Kevin",
+            "McCullar Jr.",
+            "F",
+            24,
+            "New York Knicks"
+        ],
+        [
+            4151,
+            "Alex",
+            "Ducas",
+            "G",
+            25,
+            "Oklahoma City Thunder"
+        ],
+        [
+            4152,
+            "Dillon",
+            "Jones",
+            "F",
+            25,
+            "Oklahoma City Thunder"
+        ],
+        [
+            4153,
+            "Ajay",
+            "Mitchell",
+            "G",
+            25,
+            "Oklahoma City Thunder"
+        ],
+        [
+            4154,
+            "Nikola",
+            "Topic",
+            "G",
+            25,
+            "Oklahoma City Thunder"
+        ],
+        [
+            4155,
+            "Tristan",
+            "da Silva",
+            "F",
+            26,
+            "Orlando Magic"
+        ],
+        [
+            4156,
+            "Adem",
+            "Bona",
+            "C",
+            27,
+            "Philadelphia 76ers"
+        ],
+        [
+            4159,
+            "Jared",
+            "McCain",
+            "G",
+            27,
+            "Philadelphia 76ers"
+        ],
+        [
+            4161,
+            "Jalen",
+            "Bridges",
+            "F",
+            28,
+            "Phoenix Suns"
+        ],
+        [
+            4162,
+            "Ryan",
+            "Dunn",
+            "F",
+            28,
+            "Phoenix Suns"
+        ],
+        [
+            4163,
+            "Oso",
+            "Ighodaro",
+            "C",
+            28,
+            "Phoenix Suns"
+        ],
+        [
+            4164,
+            "Donovan",
+            "Clingan",
+            "C",
+            29,
+            "Portland Trail Blazers"
+        ],
+        [
+            4165,
+            "Devin",
+            "Carter",
+            "G",
+            30,
+            "Sacramento Kings"
+        ],
+        [
+            4166,
+            "Isaiah",
+            "Crawford",
+            "F",
+            30,
+            "Sacramento Kings"
+        ],
+        [
+            4168,
+            "Isaac",
+            "Jones",
+            "C",
+            30,
+            "Sacramento Kings"
+        ],
+        [
+            4169,
+            "Stephon",
+            "Castle",
+            "G",
+            31,
+            "San Antonio Spurs"
+        ],
+        [
+            4170,
+            "Harrison",
+            "Ingram",
+            "F",
+            31,
+            "San Antonio Spurs"
+        ],
+        [
+            4171,
+            "Riley",
+            "Minix",
+            "F",
+            31,
+            "San Antonio Spurs"
+        ],
+        [
+            4172,
+            "Jamison",
+            "Battle",
+            "F",
+            38,
+            "Toronto Raptors"
+        ],
+        [
+            4174,
+            "Ulrich",
+            "Chomche",
+            "C",
+            38,
+            "Toronto Raptors"
+        ],
+        [
+            4175,
+            "Jonathan",
+            "Mogbo",
+            "F",
+            38,
+            "Toronto Raptors"
+        ],
+        [
+            4176,
+            "Jamal",
+            "Shead",
+            "G",
+            38,
+            "Toronto Raptors"
+        ],
+        [
+            4177,
+            "Ja'Kobe",
+            "Walter",
+            "G",
+            38,
+            "Toronto Raptors"
+        ],
+        [
+            4178,
+            "Isaiah",
+            "Collier",
+            "G",
+            40,
+            "Utah Jazz"
+        ],
+        [
+            4179,
+            "Kyle",
+            "Filipowski",
+            "F",
+            40,
+            "Utah Jazz"
+        ],
+        [
+            4181,
+            "Cody",
+            "Williams",
+            "F",
+            40,
+            "Utah Jazz"
+        ],
+        [
+            4182,
+            "Bub",
+            "Carrington",
+            "G",
+            41,
+            "Washington Wizards"
+        ],
+        [
+            4183,
+            "Kyshawn",
+            "George",
+            "F",
+            41,
+            "Washington Wizards"
+        ],
+        [
+            4184,
+            "Alex",
+            "Sarr",
+            "PF",
+            41,
+            "Washington Wizards"
+        ],
+        [
+            4204,
+            "Keion",
+            "Brooks Jr.",
+            "SF",
+            23,
+            "New Orleans Pelicans"
+        ],
+        [
+            4207,
+            "Quinten",
+            "Post",
+            "C",
+            11,
+            "Golden State Warriors"
+        ],
+        [
+            4211,
+            "Tolu",
+            "Smith",
+            "F",
+            10,
+            "Detroit Pistons"
+        ],
+        [
+            4217,
+            "Justin",
+            "Edwards",
+            "F",
+            27,
+            "Philadelphia 76ers"
+        ]
+    ]
+}
