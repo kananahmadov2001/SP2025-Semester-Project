@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import HomePage from "./HomePage";
 import DashboardPage from "./DashboardPage";
-import DraftPlayerPage from "./DraftPlayerPage";
+import TeamViewPage from "./TeamViewPage";
 import TrashTalkPage from "./TrashTalkPage";
 import ChallengePage from "./ChallengePage";
 
@@ -11,11 +11,11 @@ function App() {
     <Router>
       <Routes>
         {/* Home Page Route */}
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<TeamViewPage />} />
         {/* Dashboard Page Route */}
         <Route path="/dashboard" element={<DashboardPage />} />
         {/* Draft Player Page Route */}
-        <Route path="/dashboard/draftPlayer" element={<DraftPlayerPage />} />
+        <Route path="/dashboard/teamView" element={<TeamViewPage />} />
         {/* Trash Talk Page Route */}
         <Route path="/dashboard/trashTalk" element={<TrashTalkPage />} />
         {/* Challenge Page Route */}
