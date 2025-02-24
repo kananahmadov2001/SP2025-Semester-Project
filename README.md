@@ -1,7 +1,5 @@
 # SP2025: Group 2 - Hater Fantasy League (HFL)
 
----
-
 ## 📌 Project Overview 
 
 Hater Fantasy League (HFL) is a playful, community-driven app where sports fans draft players or teams they predict will perform the worst each week. Instead of cheering for wins, users earn points for:
@@ -25,8 +23,6 @@ Engage in weekly challenges and trash-talk zones for friendly competition.
 
 ## Teaching Assistant
 Victor Durojaiye 
-
----
 
 ## Tech Stack
 
