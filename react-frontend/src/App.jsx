@@ -11,7 +11,7 @@ function App() {
     <Router>
       <Routes>
         {/* Home Page Route */}
-        <Route path="/" element={<TeamViewPage />} />
+        <Route path="/" element={<HomePage />} />
         {/* Dashboard Page Route */}
         <Route path="/dashboard" element={<DashboardPage />} />
         {/* Draft Player Page Route */}

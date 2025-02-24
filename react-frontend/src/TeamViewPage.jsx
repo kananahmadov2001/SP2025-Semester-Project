@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./DraftPlayerPage.css";
+import "./TeamViewPage.css";
 import { PLAYERS_URL } from "./config/constants";
 
 function DraftPlayerPage() {
