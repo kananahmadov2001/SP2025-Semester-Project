@@ -11,8 +11,6 @@ Hater Fantasy League (HFL) is a playful, community-driven app where sports fans 
 Climb the leaderboards by assembling the worst-performing "Flop Squad"!  
 Engage in weekly challenges and trash-talk zones for friendly competition.  
 
----
-
 ## Team Members
 | Name            | Email                  | GitHub Profile |
 |----------------|------------------------|---------------|
