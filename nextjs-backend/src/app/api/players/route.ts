@@ -9,7 +9,12 @@ export async function GET(req: Request) {
     const team = url.searchParams.get("team");
     const name = url.searchParams.get("name");
 
-    let query = "SELECT id, firstname, lastname, position, teamid, team FROM players";
+    // ✅ Ensure `limit` and `page` are numbers
+    const limit = Math.max(Number(url.searchParams.get("limit")) || 10, 1); // Default: 10 per page
+    const page = Math.max(Number(url.searchParams.get("page")) || 1, 1); // Default: Page 1
+    const offset = (page - 1) * limit;
+
+    let query = `SELECT id, firstname, lastname, position, teamid, team FROM players`;
     const queryParams: any[] = [];
     const conditions: string[] = [];
 
@@ -32,13 +37,30 @@ export async function GET(req: Request) {
       query += " WHERE " + conditions.join(" AND ");
     }
 
-    query += " ORDER BY firstname ASC"; // Sort by first name
+    // ✅ Append pagination without using placeholders for `LIMIT` and `OFFSET`
+    query += ` ORDER BY firstname ASC LIMIT ${limit} OFFSET ${offset}`;
 
     const connection = await pool.getConnection();
+
+    // ✅ Execute query without placeholders for LIMIT & OFFSET
     const [players] = await connection.execute<RowDataPacket[]>(query, queryParams);
+
+    // ✅ Get total count for pagination metadata
+    const [totalRows] = await connection.execute<RowDataPacket[]>(`SELECT COUNT(*) as count FROM players`);
+    const totalPlayers = totalRows[0].count;
+    const totalPages = Math.ceil(totalPlayers / limit);
+
     connection.release();
 
-    return NextResponse.json({ players });
+    return NextResponse.json({
+      players,
+      pagination: {
+        totalPlayers,
+        totalPages,
+        currentPage: page,
+        limit,
+      },
+    });
   } catch (error) {
     console.error("❌ Error fetching players:", error);
     return NextResponse.json({ error: "Failed to retrieve player data" }, { status: 500 });
