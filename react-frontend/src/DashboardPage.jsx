@@ -30,6 +30,10 @@ function DashboardPage() {
     navigate("/dashboard/teamView");
   }
 
+  function navToTrashTalk() {
+    navigate("/dashboard/trashTalk");
+  }
+
   return (
     <div className="dashboard-container">
 
@@ -64,7 +68,7 @@ function DashboardPage() {
           </p>
 
           <div className="draft-btn-container">
-            <button className="draft-btn">
+            <button className="draft-btn" onClick={navToTeamView}>
               <i className="fas fa-user-plus"></i> Draft Your Players
             </button>
           </div>
@@ -81,7 +85,7 @@ function DashboardPage() {
           </p>
 
           <div className="chat-btn-container">
-            <button className="chat-btn">
+            <button className="chat-btn" onClick={navToTrashTalk}>
               <i className="fas fa-comments"></i> Enter the Trash Talk Zone
             </button>
           </div>
