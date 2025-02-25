@@ -26,6 +26,10 @@ function DashboardPage() {
     navigate("/");
   }
 
+  function navToTeamView() {
+    navigate("/dashboard/teamView");
+  }
+
   return (
     <div className="dashboard-container">
 
@@ -43,6 +47,9 @@ function DashboardPage() {
 
       {/* Leaderboards & Fixtures Section */}
       <section className="leaderboard-section">
+        <button onClick={navToTeamView}>
+          Create Your Team
+        </button>
         <LeaderboardSection />
       </section>
 
