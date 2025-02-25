@@ -3,20 +3,11 @@
 import React, { useState, useEffect } from "react";
 import "./DashboardPage.css";
 import LeaderboardSection from "./LeaderboardSection";
-import SquadSelection from "./components/SquadSelection";
 import { useNavigate } from "react-router-dom";
-
-// Import our constants
-import {
-  FANTASY_TEAM_URL,
-  FANTASY_ADD_URL,
-  FANTASY_REMOVE_URL,
-} from "./config/constants";
 
 function DashboardPage() {
   const [userName, setUserName] = useState("");
   const [userId, setUserId] = useState(null);
-  const [userTeam, setUserTeam] = useState([]);
   const navigate = useNavigate();
 
   // Fetch the user's name & ID from localStorage
@@ -26,108 +17,6 @@ function DashboardPage() {
     if (storedUserId) setUserId(storedUserId);
     if (storedName) setUserName(storedName);
   }, []);
-
-  // Fetch the user's current fantasy team from backend
-  async function fetchUserTeam(userIdParam) {
-    try {
-      const response = await fetch(`${FANTASY_TEAM_URL}?userId=${userIdParam}`, {
-        credentials: "include",
-      });
-      const data = await response.json();
-      if (response.ok && data.fantasyTeam) {
-        setUserTeam(data.fantasyTeam);
-      } else {
-        console.error("Error fetching user team:", data.error);
-      }
-    } catch (error) {
-      console.error("Error fetching user team:", error);
-    }
-  }
-
-  // On mount (and whenever userId changes), load the user's team
-  useEffect(() => {
-    if (userId) {
-      fetchUserTeam(userId);
-    }
-  }, [userId]);
-
-  // Add player with EXACT 5-SLOT ENFORCEMENT
-  async function handleAddPlayer(player) {
-    if (!userId) {
-      alert("You must be logged in to add players.");
-      return;
-    }
-
-    // Step A: Determine if this is front-court or back-court (TODO: this needs modification once the actual player data is determined)
-    const isFrontCourt = player.position.includes("F") || player.position.includes("C");
-    const isBackCourt = player.position.includes("G");
-
-    // Step B: Count how many FC or BC players are already on the team
-    const fcCount = userTeam.filter(
-      (p) => p.position.includes("F") || p.position.includes("C")
-    ).length;
-    const bcCount = userTeam.filter((p) => p.position.includes("G")).length;
-
-    if (isFrontCourt && fcCount >= 5) {
-      alert("You already have 5 front-court players! Remove one before adding another.");
-      return;
-    }
-    if (isBackCourt && bcCount >= 5) {
-      alert("You already have 5 back-court players! Remove one before adding another.");
-      return;
-    }
-
-    // Step C: Make the API call to add the player
-    try {
-      const response = await fetch(FANTASY_ADD_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include",
-        body: JSON.stringify({ userId: Number(userId), playerId: player.id }),
-      });
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.error || "Failed to add player");
-      }
-
-      alert(`Added playerId(${data.playerId}) to your team!`);
-      // Re-fetch updated team
-      await fetchUserTeam(userId);
-    } catch (err) {
-      console.error(err);
-      alert(err.message);
-    }
-  }
-
-  // Remove player from the user’s team
-  async function handleRemovePlayer(playerId) {
-    if (!userId) {
-      alert("You must be logged in to remove players.");
-      return;
-    }
-
-    try {
-      const response = await fetch(FANTASY_REMOVE_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include",
-        body: JSON.stringify({ userId: Number(userId), playerId }),
-      });
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.error || "Failed to remove player");
-      }
-
-      alert("Player removed from your team!");
-      // Re-fetch updated team
-      await fetchUserTeam(userId);
-    } catch (err) {
-      console.error(err);
-      alert(err.message);
-    }
-  }
 
   function handleSignOut() {
     // Clear localStorage or remove tokens
@@ -152,23 +41,9 @@ function DashboardPage() {
         </div>
       </header>
 
-      {/* Create/View Squad Section */}
-      <section className="squad-section">
-        <h2>Create/View Squad</h2>
-        {/*
-          Pass the entire userTeam array to SquadSelection,
-          along with the remove handler.
-        */}
-        <SquadSelection userTeam={userTeam} onRemovePlayer={handleRemovePlayer} />
-      </section>
-
       {/* Leaderboards & Fixtures Section */}
       <section className="leaderboard-section">
-        {/*
-          Pass onAddPlayer callback to LeaderboardSection,
-          so it can call handleAddPlayer when the user clicks "Add"
-        */}
-        <LeaderboardSection onAddPlayer={handleAddPlayer} />
+        <LeaderboardSection />
       </section>
 
       {/* Draft & Trash Talk Section */}
