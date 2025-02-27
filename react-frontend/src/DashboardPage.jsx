@@ -36,24 +36,8 @@ function DashboardPage() {
 
   return (
     <div className="dashboard-container">
-
-      {/* Dashboard Header */}
-      <header className="dashboard-header">
-        <h1>Your Dashboard</h1>
-        {/* Show the user's name */}
-        <div className="user-info">
-          {userName && <span className="username">{userName}</span>}
-          <button className="signout-btn" onClick={handleSignOut}>
-            Sign Out
-          </button>
-        </div>
-      </header>
-
       {/* Leaderboards & Fixtures Section */}
       <section className="leaderboard-section">
-        <button onClick={navToTeamView}>
-          Create Your Team
-        </button>
         <LeaderboardSection />
       </section>
 

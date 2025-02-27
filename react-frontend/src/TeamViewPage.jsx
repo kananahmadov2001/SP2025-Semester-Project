@@ -1,3 +1,4 @@
+// react-frontend/src/TeamViewPage.jsx
 import React, { useState, useEffect } from "react";
 import "./TeamViewPage.css";
 import PlayerModal from "./components/PlayerModal";
