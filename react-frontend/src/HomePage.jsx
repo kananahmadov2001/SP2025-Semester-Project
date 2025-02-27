@@ -62,6 +62,37 @@ function HomePage() {
         <TeamLogosRoller />
       </section>
 
+      {/* Game Rules Section */}
+      <section className="game-rules-section">
+        {/* Top Image Banner */}
+        <div className="game-rules-banner">
+          <img src="/src/assets/nba-clutch.jpg" alt="Game Rules" />
+        </div>
+
+        {/* Bottom Text Sections */}
+        <div className="game-rules-content">
+          <div className="game-rule-item">
+            <h3>BUILD YOUR ROSTER</h3>
+            <p>Pick your 10 player NBA roster using your $100m budget.</p>
+          </div>
+
+          <div className="game-rule-item">
+            <h3>CREATE LEAGUES</h3>
+            <p>Create leagues and invite your friends to compete throughout the season.</p>
+          </div>
+
+          <div className="game-rule-item">
+            <h3>SET YOUR LINE-UP</h3>
+            <p>Choose your line-up for the next gameday and watch your starting 5 score points as they take to the court.</p>
+          </div>
+
+          <div className="game-rule-item">
+            <h3>DRAFT AND DROP PLAYERS</h3>
+            <p>Sign and waive players through the season to improve your team.</p>
+          </div>
+        </div>
+      </section>
+
       {/* Visual Field Section */}
       <section className="visual-field-section">
         <BasketballField />
