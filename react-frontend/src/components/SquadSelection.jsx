@@ -1,15 +1,14 @@
 // react-frontend/src/components/SquadSelection.jsx
 import React, { useState } from "react";
 import "./SquadSelection.css";
+import { getCourtType } from "../utils/utilityFunctions";
 
 function SquadSelection({ userTeam, onRemovePlayer }) {
     const [viewType, setViewType] = useState("court");
 
     // Partition the user team into front/back
-    const frontCourtPlayers = userTeam.filter(
-        (p) => p.position.includes("F") || p.position.includes("C")  // TODO: Modify it according to actual player data in the future!
-    );
-    const backCourtPlayers = userTeam.filter((p) => p.position.includes("G"));
+    const frontCourtPlayers = userTeam.filter((p) => getCourtType(p.position) === "front");
+    const backCourtPlayers = userTeam.filter((p) => getCourtType(p.position) === "back");
 
     // We expect a maximum of 5 in each.
     const fcSlots = Array.from({ length: 5 }, (_, idx) => frontCourtPlayers[idx] || null);

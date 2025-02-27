@@ -13,7 +13,7 @@ function PlayerModal({ player, onClose, onAdd }) {
                 </button>
 
                 <h2>
-                    {player.name} {player.lastname}
+                    {player.firstname} {player.lastname}
                 </h2>
                 <div className="player-modal-stats">
                     {/* The top area is the "Add" button */}

@@ -9,6 +9,7 @@ import {
   PLAYERS_URL,
   FANTASY_REMOVE_URL,
 } from "./config/constants";
+import { getCourtType } from "./utils/utilityFunctions";
 
 function DraftPlayerPage() {
   const [userName, setUserName] = useState("");
@@ -76,14 +77,20 @@ function DraftPlayerPage() {
 
   // Handle Search Functionality
   const handleSearch = () => {
-    if (searchQuery.trim() === "") {
-      setFilteredPlayers(players.slice(0, 10)); // reset to 10 random players
+    const query = searchQuery.trim().toLowerCase();
+
+    // If user clears the input, revert to showing 10 random players
+    if (!query) {
+      setFilteredPlayers(players.slice(0, 10));
       return;
     }
 
-    const results = players.filter((player) =>
-      `${player.name} ${player.lastname}`.toLowerCase().includes(searchQuery.toLowerCase())
-    );
+    // Combine firstname & lastname, and check if either one (or both) match
+    const results = players.filter((player) => {
+      const fullName = `${player.firstname} ${player.lastname}`.toLowerCase();
+      return fullName.includes(query);
+    });
+
     setFilteredPlayers(results);
   };
 
@@ -101,14 +108,13 @@ function DraftPlayerPage() {
     }
 
     // Step A: Determine if this is front-court or back-court (TODO: this needs modification once the actual player data is determined)
-    const isFrontCourt = player.position.includes("F") || player.position.includes("C");
-    const isBackCourt = player.position.includes("G");
+    const courtType = getCourtType(player.position);
+    const isFrontCourt = (courtType === "front");
+    const isBackCourt = (courtType === "back");
 
     // Step B: Count how many FC or BC players are already on the team
-    const fcCount = userTeam.filter(
-      (p) => p.position.includes("F") || p.position.includes("C")
-    ).length;
-    const bcCount = userTeam.filter((p) => p.position.includes("G")).length;
+    const fcCount = userTeam.filter((p) => getCourtType(p.position) === "front").length;
+    const bcCount = userTeam.filter((p) => getCourtType(p.position) === "back").length;
 
     if (isFrontCourt && fcCount >= 5) {
       alert("You already have 5 front-court players! Remove one before adding another.");
@@ -173,13 +179,6 @@ function DraftPlayerPage() {
 
   return (
     <div className="draftPlayer-container">
-
-      {/* DraftPlayer Header */}
-
-      {/* EDIT HERE FOR THE HEADER SIMILAR TO DashboardPage.jsx */}
-
-
-
       {/* Create/View Squad Section */}
       <section className="squad-section">
         <h2>Create/View Squad</h2>
@@ -203,7 +202,9 @@ function DraftPlayerPage() {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
-          <button className="search-btn" onClick={handleSearch}>Search</button>
+          <button className="search-btn" onClick={handleSearch}>
+            Search
+          </button>
         </div>
 
         {/* Player Cards */}
@@ -213,7 +214,7 @@ function DraftPlayerPage() {
           ) : (
             filteredPlayers.map((player) => (
               <div key={player.id} className="draft-player-card">
-                <h3>{player.name} {player.lastname}</h3>
+                <h3>{player.firstname} {player.lastname}</h3>
                 <p><strong>Team:</strong> {player.team}</p>
                 <p><strong>Position:</strong> {player.position}</p>
                 <button className="draft-btn" onClick={() => setSelectedPlayer(player)}>Draft Player</button>
