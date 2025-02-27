@@ -1,12 +1,13 @@
 // react-frontend/src/components/layout/Layout.jsx
-import React, { useEffect, useState } from "react";
+
+import React from "react";
 import { Outlet, Link, NavLink, useNavigate } from "react-router-dom";
 import "./Layout.css";
+import { useAuth } from "../../context/AuthContext";
 
 function Layout() {
+    const { user, logout } = useAuth();
     const navigate = useNavigate();
-    const [userName, setUserName] = useState("");
-    const [userId, setUserId] = useState(null);
 
     // A simple array of nav links
     const navLinks = [
@@ -17,18 +18,10 @@ function Layout() {
         { path: "/dashboard/challenge", label: "Challenge", protected: true },
     ];
 
-    useEffect(() => {
-        const storedUserId = localStorage.getItem("userId");
-        const storedName = localStorage.getItem("userName");
-        if (storedUserId) setUserId(storedUserId);
-        if (storedName) setUserName(storedName);
-    }, []);
-
     function handleSignOut() {
-        // Clear localStorage or remove tokens
-        localStorage.removeItem("userId");
-        localStorage.removeItem("userName");
-        // Navigate back to HomePage (or wherever you want)
+        // Clear user from context (i.e., "logout")
+        logout();
+        // Navigate to home after sign out
         navigate("/");
     }
 
@@ -36,15 +29,10 @@ function Layout() {
         <div className="layout-container">
             {/* ----------  HEADER SECTION  ---------- */}
             <header className="layout-header">
-
-                {/* ---------- Background + Logo ---------- */}
+                {/* Background + Logo */}
                 <div className="header-section">
-                    {/* Left Side: Empty space for layout symmetry (if desired) */}
-                    <div></div>
-
-                    {/* Right Side: HFL Logo + NBA Logo */}
+                    <div></div> {/* just empty space if you want symmetrical layout */}
                     <div className="hfl-logo-container">
-                        {/* HFL Logo */}
                         <div className="hfl-logo">
                             <Link to="/" className="site-logo">
                                 HFL
@@ -52,7 +40,6 @@ function Layout() {
                             <span>Hater Fantasy League</span>
                             <div className="hfl-border"></div>
                         </div>
-                        {/* NBA Logo */}
                         <img src="/src/assets/nba-logo.png" alt="NBA Logo" className="nba-logo" />
                     </div>
                 </div>
@@ -61,14 +48,15 @@ function Layout() {
                 <nav className="layout-nav">
                     <div className="nav-links">
                         {navLinks
-                            // Filter out protected links if user is not logged in
-                            .filter((link) => !link.protected || userId)
+                            // Show non-protected links to everyone; protected links only if user != null
+                            .filter((link) => !link.protected || user)
                             .map((link) => (
                                 <NavLink
                                     key={link.path}
                                     to={link.path}
-                                    // React Router v6: className can be a function
-                                    className={({ isActive }) => (isActive ? "nav-link active" : "nav-link")}
+                                    className={({ isActive }) =>
+                                        isActive ? "nav-link active" : "nav-link"
+                                    }
                                     end
                                 // 'end' ensures exact matching for root paths
                                 >
@@ -77,12 +65,14 @@ function Layout() {
                             ))}
                     </div>
 
-                    {/* ---------- User Controls (Welcome / Sign Out) ---------- */}
+                    {/* Right side: user info and sign-out */}
                     <div className="user-controls">
-                        {userId ? (
+                        {user ? (
                             <>
-                                <span className="welcome-text">Welcome, {userName}!</span>
-                                <button className="signout-btn" onClick={handleSignOut}>Sign Out</button>
+                                <span className="welcome-text">Welcome, {user.name}!</span>
+                                <button className="signout-btn" onClick={handleSignOut}>
+                                    Sign Out
+                                </button>
                             </>
                         ) : (
                             <span className="welcome-text">You are not signed in</span>
@@ -91,12 +81,12 @@ function Layout() {
                 </nav>
             </header>
 
-            {/* ---------- MAIN CONTENT ---------- */}
+            {/* Main content via <Outlet /> */}
             <main className="layout-content">
                 <Outlet />
             </main>
 
-            {/* ---------- FOOTER ---------- */}
+            {/* Footer */}
             <footer className="footer-section">
                 <div className="footer-links-container">
                     <div className="footer-column">
@@ -154,4 +144,3 @@ function Layout() {
 }
 
 export default Layout;
-
