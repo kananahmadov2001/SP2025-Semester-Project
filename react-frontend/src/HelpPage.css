@@ -1,0 +1,66 @@
+/* Help Page Container */
+.help-page {
+  max-width: 900px;
+  margin: 40px auto;
+  font-family: Arial, sans-serif;
+}
+
+/* Navigation Tabs */
+.help-tabs {
+  display: flex;
+  border-bottom: 2px solid #ddd;
+  margin-bottom: 20px;
+}
+
+.tab-button {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  background: #f0f0f0;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.tab-button.active {
+  background: #ffd700;
+  font-weight: bold;
+}
+
+.tab-button:hover {
+  background: #ffcc00;
+}
+
+/* FAQ Section */
+.faq-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* FAQ Item */
+.faq-item {
+  border: 2px solid #ffd700;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.faq-question {
+  width: 100%;
+  padding: 14px;
+  text-align: left;
+  background: white;
+  border: none;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.faq-answer {
+  padding: 12px;
+  font-size: 14px;
+  color: #333;
+  background: #fffbe6;
+}
+
+

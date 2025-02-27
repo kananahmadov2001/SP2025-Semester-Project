@@ -3,7 +3,6 @@
 import React, { useState } from "react";
 import './HomePage.css';
 import TeamLogosRoller from "./TeamLogosRoller";
-import BasketballField from './BasketballField';
 import AddsFAQs from './AddsFAQs';
 
 // Import our new components
@@ -109,12 +108,10 @@ function HomePage() {
 
       {/* Game Rules Section */}
       <section className="game-rules-section">
-        {/* Top Image Banner */}
         <div className="game-rules-banner">
           <img src="/src/assets/nba-clutch.jpg" alt="Game Rules" />
         </div>
 
-        {/* Bottom Text Sections */}
         <div className="game-rules-content">
           <div className="game-rule-item">
             <h3>BUILD YOUR ROSTER</h3>
@@ -138,16 +135,19 @@ function HomePage() {
         </div>
       </section>
 
-      {/* Visual Field Section */}
-      <section className="visual-field-section">
-        <BasketballField />
-      </section>
-
       {/* Ads/FAQs Section */}
       <section className="ads-faqs-section">
         <AddsFAQs />
       </section>
 
+      <section className="back-to-login-section">
+        <div className="back-to-login-container">
+          <p className="back-to-login-text">Back to Login or Register</p>
+          <button className="back-to-top-btn" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+            <i className="fas fa-chevron-up"></i>
+          </button>
+        </div>
+      </section>
 
 
       {/* Conditionally render the register modal */}

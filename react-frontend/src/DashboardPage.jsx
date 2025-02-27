@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import "./DashboardPage.css";
 import LeaderboardSection from "./LeaderboardSection";
+import BasketballField from './BasketballField';
 import { useNavigate } from "react-router-dom";
 
 function DashboardPage() {
@@ -36,6 +37,12 @@ function DashboardPage() {
 
   return (
     <div className="dashboard-container">
+
+      {/* Visual Field Section */}
+      <section className="visual-field-section">
+        <BasketballField />
+      </section>
+      
       {/* Leaderboards & Fixtures Section */}
       <section className="leaderboard-section">
         <LeaderboardSection />
