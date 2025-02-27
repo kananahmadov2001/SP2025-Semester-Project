@@ -75,7 +75,7 @@ function Layout() {
                                 </button>
                             </>
                         ) : (
-                            <span className="welcome-text">You are not signed in</span>
+                            <span className="welcome-text">Please login to build your squad</span>
                         )}
                     </div>
                 </nav>
