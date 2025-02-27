@@ -12,11 +12,11 @@ import {
 } from "./config/constants";
 import { getCourtType } from "./utils/utilityFunctions";
 // 1) Import the Auth context
-import { useAuth } from "./context/AuthContext";
+import { UseAuth } from "./context/AuthContext";
 
 function DraftPlayerPage() {
   // 2) Get user from Auth context
-  const { user } = useAuth();
+  const { user } = UseAuth();
 
   const [players, setPlayers] = useState([]);
   const [filteredPlayers, setFilteredPlayers] = useState([]);

@@ -2,12 +2,12 @@
 
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../context/AuthContext";
+import { UseAuth } from "../../context/AuthContext";
 
 function LoginForm() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const { user, login } = useAuth();
+    const { user, login } = UseAuth();
     const navigate = useNavigate();
 
     // If user is already logged in, we can hide the form or show a message

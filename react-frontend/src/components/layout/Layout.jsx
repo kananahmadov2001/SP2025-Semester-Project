@@ -3,10 +3,10 @@
 import React from "react";
 import { Outlet, Link, NavLink, useNavigate } from "react-router-dom";
 import "./Layout.css";
-import { useAuth } from "../../context/AuthContext";
+import { UseAuth } from "../../context/AuthContext";
 
 function Layout() {
-    const { user, logout } = useAuth();
+    const { user, logout } = UseAuth();
     const navigate = useNavigate();
 
     // A simple array of nav links

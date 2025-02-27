@@ -2,7 +2,7 @@
 
 import React from "react";
 import { Navigate } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
+import { UseAuth } from "../context/AuthContext";
 
 /**
  * usage:
@@ -11,7 +11,7 @@ import { useAuth } from "../context/AuthContext";
  *   </ProtectedRoute>
  */
 export default function ProtectedRoute({ children }) {
-    const { user, authLoading } = useAuth();
+    const { user, authLoading } = UseAuth();
 
     // 1) If still loading localStorage check, we can show a spinner or just return null
     if (authLoading) {

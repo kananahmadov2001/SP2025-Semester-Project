@@ -10,7 +10,7 @@ import {
  * @param {string} password 
  * @returns {Object} data from server: { message, userId, name }
  */
-export async function login(email, password) {
+export async function apiLogin(email, password) {
     const response = await fetch(AUTH_LOGIN_URL, {
         method: "POST",
         headers: {

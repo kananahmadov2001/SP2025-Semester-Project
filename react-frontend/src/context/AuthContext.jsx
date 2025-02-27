@@ -1,7 +1,7 @@
 // react-frontend/src/context/AuthContext.jsx
 
 import React, { createContext, useContext, useState, useEffect } from "react";
-import { login as apiLogin } from "../services/authService";
+import { apiLogin } from "../services/authService";
 
 const AuthContext = createContext(null);
 
@@ -66,7 +66,7 @@ export function AuthProvider({ children }) {
     );
 }
 
-// Simple hook so we can do `const { user, login, logout } = useAuth()`
-export function useAuth() {
+// Simple hook so we can do `const { user, login, logout } = UseAuth()`
+export function UseAuth() {
     return useContext(AuthContext);
 }
