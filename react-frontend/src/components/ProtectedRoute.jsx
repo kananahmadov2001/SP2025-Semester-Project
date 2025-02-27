@@ -11,13 +11,19 @@ import { useAuth } from "../context/AuthContext";
  *   </ProtectedRoute>
  */
 export default function ProtectedRoute({ children }) {
-    const { user } = useAuth();
+    const { user, authLoading } = useAuth();
 
-    // If user is null => not logged in => redirect
+    // 1) If still loading localStorage check, we can show a spinner or just return null
+    if (authLoading) {
+        return null; // or <LoadingSpinner />
+    }
+
+    // 2) If user is definitely null, redirect
     if (!user) {
         // Redirect to homepage
         return <Navigate to="/" replace />;
     }
 
+    // 3) Otherwise render the page
     return children;
 }

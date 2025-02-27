@@ -14,13 +14,17 @@ const AuthContext = createContext(null);
  */
 export function AuthProvider({ children }) {
     const [user, setUser] = useState(null);
+    const [authLoading, setAuthLoading] = useState(true);
+    // Track whether we've finished checking localStorage
 
-    // 1) On first mount, check if we have 'user' in localStorage from a previous session
     useEffect(() => {
+        // On mount, check localStorage
         const storedUser = localStorage.getItem("user");
         if (storedUser) {
-            setUser(JSON.parse(storedUser)); // parse the user object
+            setUser(JSON.parse(storedUser));
         }
+        // Now we've done our quick localStorage check
+        setAuthLoading(false);
     }, []);
 
     // 2) Whenever `user` changes, persist in localStorage (or remove if null)
@@ -38,15 +42,12 @@ export function AuthProvider({ children }) {
     async function login(email, password) {
         // Attempt the API call (from authService.js)
         const data = await apiLogin(email, password);
-        // data = { message, userId, name }
-
         // We'll store only minimal info in `user`
-        const newUser = {
+        setUser({
             userId: data.userId,
             name: data.name,
-        };
-        setUser(newUser);
-        // The httpOnly cookie is set by the server; we can't see it from JS, which is good (secure).
+            // The httpOnly cookie is set by the server; we can't see it from JS, which is good (secure).
+        });
     }
 
     /**
@@ -59,7 +60,7 @@ export function AuthProvider({ children }) {
     }
 
     return (
-        <AuthContext.Provider value={{ user, login, logout }}>
+        <AuthContext.Provider value={{ user, login, logout, authLoading }}>
             {children}
         </AuthContext.Provider>
     );
