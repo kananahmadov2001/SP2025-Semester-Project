@@ -2,13 +2,18 @@
 
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { login } from "../../services/authService";
+import { useAuth } from "../../context/AuthContext";
 
 function LoginForm() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-
+    const { user, login } = useAuth();
     const navigate = useNavigate();
+
+    // If user is already logged in, we can hide the form or show a message
+    if (user) {
+        return <p>You are already logged in.</p>;
+    }
 
     async function handleSubmit(e) {
         e.preventDefault();
@@ -20,15 +25,9 @@ function LoginForm() {
         // return;
 
         try {
-            // 1. Call our login API
-            const data = await login(email, password);
-            // data = { message, userId, name }
-
-            // 2. Store user info (might need to change to another method to store user info in the future)
-            localStorage.setItem("userId", data.userId);
-            localStorage.setItem("userName", data.name);
-
-            // 3. Navigate to dashboard
+            await login(email, password);
+            // Now the context has user. 
+            // Navigate to the dashboard
             navigate("/dashboard");
         } catch (err) {
             console.warn("Comment out the codes in handleSubmit() if testing locally without a database");
