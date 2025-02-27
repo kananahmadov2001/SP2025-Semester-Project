@@ -1,3 +1,4 @@
+// react-frontend/src/TeamLogosRoller.jsx
 import React, { useRef, useState, useEffect } from "react";
 import './HomePage.css';
 
