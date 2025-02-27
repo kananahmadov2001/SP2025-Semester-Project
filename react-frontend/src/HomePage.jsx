@@ -135,6 +135,40 @@ function HomePage() {
         </div>
       </section>
 
+
+     {/* Unique Features Section */}
+      <section className="unique-features-section">
+        {/* Section Title */}
+        <h1 className="features-title">What makes HFL Unique?</h1>
+        {/* Image & Feature Container */}
+        <div className="features-container">
+          {/* Left: Image */}
+          <div className="features-image">
+            <img src="/src/assets/kyrie.webp" alt="Unique Features" />
+          </div>
+          {/* Right: Feature List */}
+          <div className="features-list">
+            <div className="feature-item">
+              <h3>Draft The Worst</h3>
+              <p>Pick the players most likely to underperform and win by being the best at being the worst.</p>
+            </div>
+            <div className="feature-item">
+              <h3>Trash Talk Zone</h3>
+              <p>Engage with your friends, drop hot takes, and roast the worst performances.</p>
+            </div>
+            <div className="feature-item">
+              <h3>Weekly Challenges</h3>
+              <p>Compete in special themed challenges for exclusive bragging rights.</p>
+            </div>
+            <div className="feature-item">
+              <h3>Real-Time Team View</h3>
+              <p>Track your squad's failure stats live and see how you compare.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
       {/* Ads/FAQs Section */}
       <section className="ads-faqs-section">
         <AddsFAQs />

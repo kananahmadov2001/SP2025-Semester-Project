@@ -215,6 +215,153 @@
   padding-right: 30px;
 }
 
+/* ///////////////////////UNIQUE FEATURES SECTION ////////////////////////////// */
+
+.unique-features-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background-color: #f9f9f9;
+}
+
+.features-title {
+  font-size: 30px;
+  font-weight: bold;
+  font-weight: 800;
+  color: #333;
+  margin-top: -10px;
+  margin-bottom: 40px;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* Container for Image & Features */
+.features-container {
+  display: flex;
+  max-width: 1400px;
+  width: 100%;
+  gap: 50px;
+  align-items: center;
+  justify-content: center;
+}
+
+.features-image {
+  flex: 1;
+  max-width: 550px;
+}
+
+.features-image img {
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+.features-list {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Feature Item - better Styling */
+.feature-item {
+  background: rgba(255, 255, 255, 0.85);
+  padding: 18px 22px;
+  border-radius: 12px;
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  text-align: left;
+  gap: 12px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  border-left: 5px solid transparent;
+  background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(240, 240, 240, 0.8));
+}
+
+.feature-item:nth-child(1) {
+  border-left-color: #ff6b6b; 
+}
+.feature-item:nth-child(2) {
+  border-left-color: #f7b731; 
+}
+.feature-item:nth-child(3) {
+  border-left-color: #4b7bec; 
+}
+.feature-item:nth-child(4) {
+  border-left-color: #20bf6b; 
+}
+
+.feature-item:hover {
+  transform: scale(1.02);
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.15);
+  background: rgba(255, 255, 255, 0.95);
+  border-left-width: 8px;
+}
+
+.feature-item::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 10%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.feature-item:hover::before {
+  opacity: 1;
+}
+
+.feature-item h3 {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #444;
+}
+
+.feature-item p {
+  font-size: 14px;
+  color: #555;
+  margin-top: 35px;
+  margin-left: 8px;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+  .features-container {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .features-list {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .features-title {
+    font-size: 28px;
+  }
+
+  .feature-item {
+    padding: 12px;
+  }
+
+  .feature-item h3 {
+    font-size: 18px;
+  }
+
+  .feature-item p {
+    font-size: 13px;
+  }
+}
+
 /* ///////////////////////// ADS/FAQS SECTION /////////////////////////////////////// */
 
 .ads-faqs-container {
@@ -223,67 +370,6 @@
   transition: all 0.3s ease-in-out;
 }
 
-.faqs-container {
-  width: 100%;
-  max-width: 1400px;
-  margin: auto;
-  border-radius: 10px;
-  padding: 15px;
-}
-
-.faq-item {
-  border: 1px solid #d4af37;
-  border-radius: 8px;
-  margin-bottom: 10px;
-  overflow: hidden;
-  transition: all 0.5s ease;
-}
-
-.faq-item.open {
-  background-color: #ffd700;
-  border-left: 5px solid #c59b08;
-}
-
-.faq-question {
-  width: 100%;
-  padding: 14px;
-  background: none;
-  border: none;
-  font-size: 18px;
-  font-weight: bold;
-  color: #333;
-  text-align: left;
-  cursor: pointer;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  transition: all 0.3s ease-in-out;
-}
-
-.faq-question:hover {
-  background: rgba(212, 175, 55, 0.1);
-}
-
-.faq-icon {
-  font-size: 22px;
-  font-weight: bold;
-  margin-right: 10px;
-}
-
-.faq-answer {
-  max-height: 0;
-  overflow: hidden;
-  opacity: 0;
-  transition: max-height 0.4s ease-out, opacity 0.3s ease-in-out;
-}
-
-.faq-answer.open {
-  max-height: 150px;
-  opacity: 1;
-  padding: 10px;
-}
-
-/* Ads/Sponsor Section */
 .ads-scroll-wrapper {
   width: 100%;
   overflow-x: auto;
