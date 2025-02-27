@@ -1,4 +1,5 @@
 // react-frontend/src/TeamViewPage.jsx
+
 import React, { useState, useEffect } from "react";
 import "./TeamViewPage.css";
 import PlayerModal from "./components/PlayerModal";
@@ -10,32 +11,27 @@ import {
   FANTASY_REMOVE_URL,
 } from "./config/constants";
 import { getCourtType } from "./utils/utilityFunctions";
+// 1) Import the Auth context
+import { useAuth } from "./context/AuthContext";
 
 function DraftPlayerPage() {
-  const [userName, setUserName] = useState("");
-  const [userId, setUserId] = useState(null);
+  // 2) Get user from Auth context
+  const { user } = useAuth();
+
   const [players, setPlayers] = useState([]);
   const [filteredPlayers, setFilteredPlayers] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedPlayer, setSelectedPlayer] = useState(null);
   const [userTeam, setUserTeam] = useState([]);
 
-  // Fetch the user's name & ID from localStorage
+  // 3) On mount, fetch the player's team if user is available
   useEffect(() => {
-    const storedUserId = localStorage.getItem("userId");
-    const storedName = localStorage.getItem("userName");
-    if (storedUserId) setUserId(storedUserId);
-    if (storedName) setUserName(storedName);
-  }, []);
-
-  // On mount (and whenever userId changes), load the user's team
-  useEffect(() => {
-    if (userId) {
-      fetchUserTeam(userId);
+    if (user) {
+      fetchUserTeam(user.userId);
     }
-  }, [userId]);
+  }, [user]);
 
-  // Fetch players from API
+  // 4) Fetch players from the API once, on mount
   useEffect(() => {
     async function fetchPlayers() {
       try {
@@ -58,7 +54,7 @@ function DraftPlayerPage() {
     fetchPlayers();
   }, []);
 
-  // Fetch the user's current fantasy team from backend
+  // 5) Helper to fetch user’s fantasy team from backend
   async function fetchUserTeam(userIdParam) {
     try {
       const response = await fetch(`${FANTASY_TEAM_URL}?userId=${userIdParam}`, {
@@ -75,7 +71,7 @@ function DraftPlayerPage() {
     }
   }
 
-  // Handle Search Functionality
+  // 6) Handle search functionality
   const handleSearch = () => {
     const query = searchQuery.trim().toLowerCase();
 
@@ -94,27 +90,26 @@ function DraftPlayerPage() {
     setFilteredPlayers(results);
   };
 
-  // 2) Called by the modal when "Add" is clicked
-  function handleAdd(player) {
-    handleAddPlayer(player);    // calls parent function
-    setSelectedPlayer(null); // close the modal
-  }
-
-  // Add player with EXACT 5-SLOT ENFORCEMENT
+  // 7) Handle adding a player to the user’s team
   async function handleAddPlayer(player) {
-    if (!userId) {
+    // Defensive check: if somehow user is null (should never happen in protected route)
+    if (!user) {
       alert("You must be logged in to add players.");
       return;
     }
 
-    // Step A: Determine if this is front-court or back-court (TODO: this needs modification once the actual player data is determined)
+    // Classify the position
     const courtType = getCourtType(player.position);
-    const isFrontCourt = (courtType === "front");
-    const isBackCourt = (courtType === "back");
+    const isFrontCourt = courtType === "front";
+    const isBackCourt = courtType === "back";
 
-    // Step B: Count how many FC or BC players are already on the team
-    const fcCount = userTeam.filter((p) => getCourtType(p.position) === "front").length;
-    const bcCount = userTeam.filter((p) => getCourtType(p.position) === "back").length;
+    // Count how many FC or BC players are already on the team
+    const fcCount = userTeam.filter(
+      (p) => getCourtType(p.position) === "front"
+    ).length;
+    const bcCount = userTeam.filter(
+      (p) => getCourtType(p.position) === "back"
+    ).length;
 
     if (isFrontCourt && fcCount >= 5) {
       alert("You already have 5 front-court players! Remove one before adding another.");
@@ -125,13 +120,16 @@ function DraftPlayerPage() {
       return;
     }
 
-    // Step C: Make the API call to add the player
+    // Make the API call to add the player
     try {
       const response = await fetch(FANTASY_ADD_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
-        body: JSON.stringify({ userId: Number(userId), playerId: player.id }),
+        body: JSON.stringify({
+          userId: Number(user.userId),
+          playerId: player.id,
+        }),
       });
       const data = await response.json();
 
@@ -141,16 +139,22 @@ function DraftPlayerPage() {
 
       alert(`Added playerId(${data.playerId}) to your team!`);
       // Re-fetch updated team
-      await fetchUserTeam(userId);
+      await fetchUserTeam(user.userId);
     } catch (err) {
       console.error(err);
       alert(err.message);
     }
   }
 
-  // Remove player from the user’s team
+  // 8) Called by the modal when "Add" is clicked
+  function handleAdd(player) {
+    handleAddPlayer(player);
+    setSelectedPlayer(null); // close the modal
+  }
+
+  // 9) Remove player from the user’s team
   async function handleRemovePlayer(playerId) {
-    if (!userId) {
+    if (!user) {
       alert("You must be logged in to remove players.");
       return;
     }
@@ -160,7 +164,10 @@ function DraftPlayerPage() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
-        body: JSON.stringify({ userId: Number(userId), playerId }),
+        body: JSON.stringify({
+          userId: Number(user.userId),
+          playerId,
+        }),
       });
       const data = await response.json();
 
@@ -170,11 +177,17 @@ function DraftPlayerPage() {
 
       alert("Player removed from your team!");
       // Re-fetch updated team
-      await fetchUserTeam(userId);
+      await fetchUserTeam(user.userId);
     } catch (err) {
       console.error(err);
       alert(err.message);
     }
+  }
+
+  // 10) If for some reason user is null (shouldn’t happen since route is protected),
+  // we could return null or a loading spinner.
+  if (!user) {
+    return null;
   }
 
   return (
@@ -182,10 +195,6 @@ function DraftPlayerPage() {
       {/* Create/View Squad Section */}
       <section className="squad-section">
         <h2>Create/View Squad</h2>
-        {/*
-          Pass the entire userTeam array to SquadSelection,
-          along with the remove handler.
-        */}
         <SquadSelection userTeam={userTeam} onRemovePlayer={handleRemovePlayer} />
       </section>
 
@@ -214,16 +223,25 @@ function DraftPlayerPage() {
           ) : (
             filteredPlayers.map((player) => (
               <div key={player.id} className="draft-player-card">
-                <h3>{player.firstname} {player.lastname}</h3>
-                <p><strong>Team:</strong> {player.team}</p>
-                <p><strong>Position:</strong> {player.position}</p>
-                <button className="draft-btn" onClick={() => setSelectedPlayer(player)}>Draft Player</button>
+                <h3>
+                  {player.firstname} {player.lastname}
+                </h3>
+                <p>
+                  <strong>Team:</strong> {player.team}
+                </p>
+                <p>
+                  <strong>Position:</strong> {player.position}
+                </p>
+                <button
+                  className="draft-btn"
+                  onClick={() => setSelectedPlayer(player)}
+                >
+                  Draft Player
+                </button>
               </div>
             ))
           )}
         </div>
-
-
 
         {/* Modal for viewing a single player's details */}
         {selectedPlayer && (
