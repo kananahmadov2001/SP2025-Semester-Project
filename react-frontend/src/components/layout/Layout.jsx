@@ -1,12 +1,21 @@
 // react-frontend/src/components/layout/Layout.jsx
 import React, { useEffect, useState } from "react";
-import { Outlet, Link, useNavigate } from "react-router-dom";
+import { Outlet, Link, NavLink, useNavigate } from "react-router-dom";
 import "./Layout.css";
 
 function Layout() {
     const navigate = useNavigate();
     const [userName, setUserName] = useState("");
     const [userId, setUserId] = useState(null);
+
+    // A simple array of nav links
+    const navLinks = [
+        { path: "/", label: "Home", protected: false },
+        { path: "/dashboard", label: "Dashboard", protected: false },
+        { path: "/dashboard/teamView", label: "TeamView", protected: true },
+        { path: "/dashboard/trashTalk", label: "TrashTalk", protected: true },
+        { path: "/dashboard/challenge", label: "Challenge", protected: true },
+    ];
 
     useEffect(() => {
         const storedUserId = localStorage.getItem("userId");
@@ -25,11 +34,12 @@ function Layout() {
 
     return (
         <div className="layout-container">
-            {/* Header Section */}
+            {/* ----------  HEADER SECTION  ---------- */}
             <header className="layout-header">
 
+                {/* ---------- Background + Logo ---------- */}
                 <div className="header-section">
-                    {/* Left Side: Empty Space to Balance Layout */}
+                    {/* Left Side: Empty space for layout symmetry (if desired) */}
                     <div></div>
 
                     {/* Right Side: HFL Logo + NBA Logo */}
@@ -47,43 +57,46 @@ function Layout() {
                     </div>
                 </div>
 
-                {/* ----------  NAV BAR  ---------- */}
+                {/* ----------  NAVIGATION  ---------- */}
                 <nav className="layout-nav">
-                    {/* Public or global links */}
-                    <Link to="/">Home</Link>
-                    <Link to="/dashboard">Dashboard</Link>
-                    {/* Only show these if user is logged in */}
-                    {userId && (
-                        <>
-                            <Link to="/dashboard/teamView">TeamView</Link>
-                            <Link to="/dashboard/trashTalk">TrashTalk</Link>
-                            <Link to="/dashboard/challenge">Challenge</Link>
-                        </>
-                    )}
-                </nav>
+                    <div className="nav-links">
+                        {navLinks
+                            // Filter out protected links if user is not logged in
+                            .filter((link) => !link.protected || userId)
+                            .map((link) => (
+                                <NavLink
+                                    key={link.path}
+                                    to={link.path}
+                                    // React Router v6: className can be a function
+                                    className={({ isActive }) => (isActive ? "nav-link active" : "nav-link")}
+                                    end
+                                // 'end' ensures exact matching for root paths
+                                >
+                                    {link.label}
+                                </NavLink>
+                            ))}
+                    </div>
 
-                {/* Right side: user info and sign-out */}
-                <div className="user-controls">
-                    {userId ? (
-                        <>
-                            <span className="welcome-text">Welcome, {userName}!</span>
-                            <button onClick={handleSignOut}>Sign Out</button>
-                        </>
-                    ) : (
-                        <>
-                            {/* If not logged in, you could show a login/register button, or do nothing */}
+                    {/* ---------- User Controls (Welcome / Sign Out) ---------- */}
+                    <div className="user-controls">
+                        {userId ? (
+                            <>
+                                <span className="welcome-text">Welcome, {userName}!</span>
+                                <button className="signout-btn" onClick={handleSignOut}>Sign Out</button>
+                            </>
+                        ) : (
                             <span className="welcome-text">You are not signed in</span>
-                        </>
-                    )}
-                </div>
+                        )}
+                    </div>
+                </nav>
             </header>
 
-            {/* ----------  MAIN CONTENT VIA OUTLET  ---------- */}
+            {/* ---------- MAIN CONTENT ---------- */}
             <main className="layout-content">
                 <Outlet />
             </main>
 
-            {/* ----------  FOOTER  ---------- */}
+            {/* ---------- FOOTER ---------- */}
             <footer className="footer-section">
                 <div className="footer-links-container">
                     <div className="footer-column">
@@ -116,6 +129,7 @@ function Layout() {
                         <a href="#">Terms of Service</a>
                     </div>
                 </div>
+
                 <div className="footer-social-container">
                     <div className="social-icons">
                         <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
@@ -129,8 +143,10 @@ function Layout() {
                         </a>
                     </div>
                 </div>
+
                 <p className="footer-copyright">
-                    &copy; 2025 Hater Fantasy League. All rights reserved. <a href="#">Privacy Policy</a> | <a href="#">Terms</a> | <a href="#">Site Map</a>
+                    &copy; 2025 Hater Fantasy League. All rights reserved.{" "}
+                    <a href="#">Privacy Policy</a> | <a href="#">Terms</a> | <a href="#">Site Map</a>
                 </p>
             </footer>
         </div>
@@ -138,3 +154,4 @@ function Layout() {
 }
 
 export default Layout;
+

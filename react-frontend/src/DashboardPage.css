@@ -37,21 +37,6 @@
   color: #333;
 }
 
-.signout-btn {
-  padding: 8px 15px;
-  background: #d9534f;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 14px;
-  transition: background 0.3s;
-}
-
-.signout-btn:hover {
-  background: #c9302c;
-}
-
 /* ///////////////////////// CREATE / VIEW SQUAD SECTION /////////////////////////////////////////// */
 
 
@@ -120,7 +105,8 @@
   gap: 100px;
 }
 
-.draft-container, .chat-container {
+.draft-container,
+.chat-container {
   width: 50%;
   text-align: center;
   padding: 30px;
@@ -129,7 +115,8 @@
   transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }
 
-.draft-container:hover, .chat-container:hover {
+.draft-container:hover,
+.chat-container:hover {
   transform: scale(1.03);
   box-shadow: 0px 6px 15px rgba(255, 255, 255, 0.2);
 }
@@ -144,7 +131,8 @@
   transform: translateX(-50%);
 }
 
-.draft-heading, .chat-heading {
+.draft-heading,
+.chat-heading {
   color: #0077cc;
   font-size: 28px;
   font-weight: bold;
@@ -152,19 +140,22 @@
   text-transform: uppercase;
 }
 
-.draft-description, .chat-description {
+.draft-description,
+.chat-description {
   font-size: 18px;
   opacity: 0.9;
   margin-bottom: 20px;
 }
 
-.draft-btn-container, .chat-btn-container {
+.draft-btn-container,
+.chat-btn-container {
   display: flex;
   justify-content: center;
   margin-top: 15px;
 }
 
-.draft-btn, .chat-btn {
+.draft-btn,
+.chat-btn {
   color: white;
   font-size: 18px;
   font-weight: bold;
@@ -183,7 +174,8 @@
   background: linear-gradient(45deg, #35509a, #01a8fc);
 }
 
-.draft-btn i, .chat-btn i {
+.draft-btn i,
+.chat-btn i {
   margin-right: 10px;
 }
 

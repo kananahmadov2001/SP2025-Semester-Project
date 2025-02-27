@@ -101,6 +101,58 @@
     margin-top: 20px;
 }
 
+/****************** Nav Bar ******************/
+.layout-nav {
+    background-color: #020629;
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav-links {
+    display: flex;
+    gap: 1rem;
+}
+
+.nav-link,
+.welcome-text {
+    color: #ccc;
+    font-weight: 500;
+    padding: 6px 12px;
+}
+
+.nav-link {
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.nav-link:hover {
+    background-color: #444;
+    color: #fff;
+}
+
+.nav-link.active {
+    background-color: #ff6b6b;
+    color: #fff;
+}
+
+.signout-btn {
+    padding: 8px 15px;
+    background: #d9534f;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.3s;
+}
+
+.signout-btn:hover {
+    background: #c9302c;
+}
+
 /* ///////////////////////// FOOTER SECTION /////////////////////////////////////////// */
 
 .footer-section {
