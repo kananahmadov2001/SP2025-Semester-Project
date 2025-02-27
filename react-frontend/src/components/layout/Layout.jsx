@@ -12,6 +12,7 @@ function Layout() {
     // A simple array of nav links
     const navLinks = [
         { path: "/", label: "Home", protected: false },
+        { path: "/help", label: "Help", protected: false },
         { path: "/dashboard", label: "Dashboard", protected: false },
         { path: "/dashboard/teamView", label: "TeamView", protected: true },
         { path: "/dashboard/trashTalk", label: "TrashTalk", protected: true },

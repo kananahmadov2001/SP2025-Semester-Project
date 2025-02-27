@@ -215,80 +215,6 @@
   padding-right: 30px;
 }
 
-/* ///////////////////////// VISUAL FIELD SECTION /////////////////////////////////////// */
-
-.basketball-field {
-  position: relative;
-  width: 100%;
-  height: 700px;
-  background: url('assets/basketball-field.jpg') center/cover no-repeat;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
-}
-
-.court {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-
-/* Style for player cards */
-.player-card {
-  position: absolute;
-  width: 250px;
-  text-align: center;
-  background: rgba(0, 0, 0, 0.8);
-  color: white;
-  padding: 12px;
-  border-radius: 12px;
-  transition: transform 0.3s ease, background-color 0.3s ease;
-}
-
-.player-card:hover {
-  transform: scale(1.2) rotate(5deg);
-  filter: brightness(1.2) saturate(1.5);
-  box-shadow: 0px 8px 20px rgba(255, 215, 0, 0.8),
-    0px 4px 15px rgba(255, 0, 0, 0.6);
-}
-
-.player-card img {
-  width: 100%;
-  height: auto;
-  margin-bottom: 8px;
-  border: 2px solid white;
-}
-
-/* Player information styling */
-.player-info h3 {
-  font-size: 20px;
-  font-weight: bold;
-}
-
-.player-info p {
-  font-size: 15px;
-  margin: 8px 0;
-}
-
-/* Positions for player cards */
-.player-card.center-left {
-  top: 50%;
-  left: 30%;
-  transform: translate(-50%, -50%);
-}
-
-.player-card.center {
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.player-card.center-right {
-  top: 50%;
-  left: 70%;
-  transform: translate(-50%, -50%);
-}
-
 /* ///////////////////////// ADS/FAQS SECTION /////////////////////////////////////// */
 
 .ads-faqs-container {
@@ -406,6 +332,53 @@
   height: 100%;
   object-fit: cover;
   transition: opacity 0.3s ease-in-out;
+}
+
+/* ///////////////////////////// BACK TO LOGIN/REGISTER SECTION ////////////////////////// */
+
+.back-to-login-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0;
+  background: white;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.back-to-login-container {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.back-to-login-text {
+  font-size: 20px;
+  color: #333;
+  font-weight: 500;
+}
+
+.back-to-top-btn {
+  background: #f1c40f;
+  color: black;
+  border: none;
+  width: 45px;
+  height: 45px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.back-to-top-btn:hover {
+  background: #e1b00d;
+  transform: scale(1.1);
+}
+
+/* Icon inside button */
+.back-to-top-btn i {
+  font-size: 18px;
 }
 
 /* ////////////////////////////////////////////////////////////////////// */

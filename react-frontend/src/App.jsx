@@ -11,6 +11,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 // 3) Import the Layout & pages
 import Layout from "./components/layout/Layout";
 import HomePage from "./HomePage";
+import HelpPage from "./HelpPage";
 import DashboardPage from "./DashboardPage";
 import TeamViewPage from "./TeamViewPage";
 import TrashTalkPage from "./TrashTalkPage";
@@ -24,6 +25,7 @@ function App() {
           <Route path="/" element={<Layout />}>
             {/* Public routes */}
             <Route index element={<HomePage />} />
+            <Route path="help" element={<HelpPage />} />
             <Route path="dashboard" element={<DashboardPage />} />
 
             {/* Protected routes for logged-in users only */}
