@@ -30,7 +30,7 @@ function TrashTalkPage() {
     {
       id: 1,
       user: "LeagueMaster",
-      text: "Why did I draft Ben Simmons? 😂",
+      text: "Why did I draft Ben Simmons?",
       isSelf: false,
     },
   ]);
@@ -69,23 +69,10 @@ function TrashTalkPage() {
 
   return (
     <div className="trash-talk-page">
-      {/* Top Bar with Navigation */}
-      <div className="top-bar">
-        <h2>🔥 The Ultimate Trash Talk Zone 🔥</h2>
-        <div className="nav-buttons">
-          <button onClick={() => navigate("/dashboard")} className="nav-btn">
-            🏀 Go to Dashboard
-          </button>
-          {/* Use the logout function */}
-          <button className="sign-out-btn" onClick={handleSignOut}>
-            🚪 Sign Out
-          </button>
-        </div>
-      </div>
 
       {/* Global Chat Section */}
       <section className="chat-section">
-        <h2>🌎 Global Chat</h2>
+        <h2>Global Chat</h2>
         <div className="chat-box">
           <div className="chat-messages">
             {globalTrashTalk.map((post) => (
@@ -110,7 +97,7 @@ function TrashTalkPage() {
 
       {/* League Chat Section */}
       <section className="chat-section">
-        <h2>🏆 League Chat</h2>
+        <h2>League Chat</h2>
         <div className="chat-box">
           <div className="chat-messages">
             {leagueTrashTalk.map((post) => (

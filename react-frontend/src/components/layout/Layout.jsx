@@ -89,37 +89,39 @@ function Layout() {
 
             {/* Footer */}
             <footer className="footer-section">
-                <div className="footer-links-container">
-                    <div className="footer-column">
-                        <h3 className="footer-heading">Explore</h3>
-                        <a href="#">NBA Players</a>
-                        <a href="#">Teams</a>
-                        <a href="#">Fantasy Leaderboards</a>
-                        <a href="#">Draft Guide</a>
-                    </div>
-                    <div className="footer-column">
-                        <h3 className="footer-heading">Game Info</h3>
-                        <Link to="/">How to Play</Link>
-                        <a href="#">Scoring Rules</a>
-                        <a href="#">Weekly Challenges</a>
-                        <a href="#">FAQs</a>
-                    </div>
-                    <div className="footer-column">
-                        <h3 className="footer-heading">Community</h3>
-                        <a href="#">Forums</a>
-                        <a href="#">Events</a>
-                        <Link to="/dashboard/trashTalk">Trash Talk Zone</Link>
-                        <a href="#">Contact Support</a>
-                    </div>
-                    <div className="footer-column">
-                        <h3 className="footer-heading">About</h3>
-                        <a href="#">Our Story</a>
-                        <a href="#">Press</a>
-                        <a href="#">Careers</a>
-                        <a href="#">Privacy Policy</a>
-                        <a href="#">Terms of Service</a>
-                    </div>
+            <div className="footer-links-container">
+                <div className="footer-column">
+                    <h3 className="footer-heading">Explore</h3>
+                    <a href="/dashboard/teamView">Player Stats</a>
+                    <a href="/dashboard/teamView">Team Standings</a>
+                    <a href="/dashboard">Fantasy Leaderboards</a>
+                    <a href="/help">Draft Strategy Guide</a>
                 </div>
+
+                <div className="footer-column">
+                    <h3 className="footer-heading">Game Info</h3>
+                    <Link to="/help">How to Play</Link>
+                    <a href="/help">Scoring Rules</a>
+                    <a href="/dashboard/challenge">Weekly Challenges</a>
+                    <a href="/help">FAQs</a>
+                </div>
+
+                <div className="footer-column">
+                    <h3 className="footer-heading">Community</h3>
+                    <a href="/help">Forums</a>
+                    <a href="/challenge">League Events</a>
+                    <Link to="/dashboard/trashTalk">Trash Talk Zone</Link>
+                    <a href="/help">Contact Support</a>
+                </div>
+
+                <div className="footer-column">
+                    <h3 className="footer-heading">About</h3>
+                    <a href="/help">Our Mission</a>
+                    <a href="/help">In the Press</a>
+                    <a href="/help">Privacy Policy</a>
+                    <a href="/help">Terms of Service</a>
+                </div>
+            </div>
 
                 <div className="footer-social-container">
                     <div className="social-icons">

@@ -202,9 +202,27 @@
   transform: translateX(-50%);
 }
 
+.divider2 {
+  width: 3px;
+  height: 85%;
+  background: linear-gradient(180deg, #18cc00, #000000);
+  border-radius: 2px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 .draft-heading,
 .chat-heading {
-  color: #0077cc;
+  color: #35509a;
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+}
+
+.not-heading {
+  color: #005c0c;
   font-size: 28px;
   font-weight: bold;
   margin-bottom: 12px;
@@ -258,6 +276,30 @@
 .chat-btn:hover {
   transform: scale(1.1);
   box-shadow: 0px 6px 20px rgba(255, 115, 0, 0.7);
+}
+
+.not-btn {
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 14px 24px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.not-btn {
+  background: linear-gradient(45deg, #289f53, #005c0c);
+}
+
+.not-btn i {
+  margin-right: 10px;
+}
+
+.not-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0px 6px 20px rgba(38, 255, 0, 0.7);
 }
 
 /* //////////////////////////////////////////////////////////////////////////////////// */
