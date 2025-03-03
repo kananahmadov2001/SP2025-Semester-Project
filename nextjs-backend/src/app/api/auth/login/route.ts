@@ -3,7 +3,7 @@
 import { NextResponse } from "next/server";
 import pool from "@/app/api/database/mysql";
 import bcrypt from "bcryptjs";
-import { signToken } from "@/app/api/utils/jwt";
+import { generateToken } from "@/app/api/utils/jwt";
 
 export async function POST(req: Request) {
   try {
@@ -43,7 +43,7 @@ export async function POST(req: Request) {
       }
 
       // Generate a JWT token
-      const token = signToken({
+      const token = generateToken({
         userId: user.id,
         userName: user.name,
         email: email,
