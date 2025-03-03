@@ -11,7 +11,7 @@ function Layout() {
 
     // A simple array of nav links
     const navLinks = [
-        { path: "/", label: "Home", protected: false },
+        { path: "/", label: "Home", protected: false, hideWhenLoggedIn: true },
         { path: "/help", label: "Help", protected: false },
         { path: "/dashboard", label: "Dashboard", protected: false },
         { path: "/dashboard/teamView", label: "TeamView", protected: true },
@@ -51,6 +51,8 @@ function Layout() {
                         {navLinks
                             // Show non-protected links to everyone; protected links only if user != null
                             .filter((link) => !link.protected || user)
+                            // Filter out any link that has hideWhenLoggedIn if user is logged in
+                            .filter((link) => !(link.hideWhenLoggedIn && user))
                             .map((link) => (
                                 <NavLink
                                     key={link.path}
@@ -89,39 +91,39 @@ function Layout() {
 
             {/* Footer */}
             <footer className="footer-section">
-            <div className="footer-links-container">
-                <div className="footer-column">
-                    <h3 className="footer-heading">Explore</h3>
-                    <a href="/dashboard/teamView">Player Stats</a>
-                    <a href="/dashboard/teamView">Team Standings</a>
-                    <a href="/dashboard">Fantasy Leaderboards</a>
-                    <a href="/help">Draft Strategy Guide</a>
-                </div>
+                <div className="footer-links-container">
+                    <div className="footer-column">
+                        <h3 className="footer-heading">Explore</h3>
+                        <a href="/dashboard/teamView">Player Stats</a>
+                        <a href="/dashboard/teamView">Team Standings</a>
+                        <a href="/dashboard">Fantasy Leaderboards</a>
+                        <a href="/help">Draft Strategy Guide</a>
+                    </div>
 
-                <div className="footer-column">
-                    <h3 className="footer-heading">Game Info</h3>
-                    <Link to="/help">How to Play</Link>
-                    <a href="/help">Scoring Rules</a>
-                    <a href="/dashboard/challenge">Weekly Challenges</a>
-                    <a href="/help">FAQs</a>
-                </div>
+                    <div className="footer-column">
+                        <h3 className="footer-heading">Game Info</h3>
+                        <Link to="/help">How to Play</Link>
+                        <a href="/help">Scoring Rules</a>
+                        <a href="/dashboard/challenge">Weekly Challenges</a>
+                        <a href="/help">FAQs</a>
+                    </div>
 
-                <div className="footer-column">
-                    <h3 className="footer-heading">Community</h3>
-                    <a href="/help">Forums</a>
-                    <a href="/challenge">League Events</a>
-                    <Link to="/dashboard/trashTalk">Trash Talk Zone</Link>
-                    <a href="/help">Contact Support</a>
-                </div>
+                    <div className="footer-column">
+                        <h3 className="footer-heading">Community</h3>
+                        <a href="/help">Forums</a>
+                        <a href="/challenge">League Events</a>
+                        <Link to="/dashboard/trashTalk">Trash Talk Zone</Link>
+                        <a href="/help">Contact Support</a>
+                    </div>
 
-                <div className="footer-column">
-                    <h3 className="footer-heading">About</h3>
-                    <a href="/help">Our Mission</a>
-                    <a href="/help">In the Press</a>
-                    <a href="/help">Privacy Policy</a>
-                    <a href="/help">Terms of Service</a>
+                    <div className="footer-column">
+                        <h3 className="footer-heading">About</h3>
+                        <a href="/help">Our Mission</a>
+                        <a href="/help">In the Press</a>
+                        <a href="/help">Privacy Policy</a>
+                        <a href="/help">Terms of Service</a>
+                    </div>
                 </div>
-            </div>
 
                 <div className="footer-social-container">
                     <div className="social-icons">
