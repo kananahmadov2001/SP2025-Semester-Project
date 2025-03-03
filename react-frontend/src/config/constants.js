@@ -22,6 +22,8 @@ export const FANTASY_TEAM_URL = `${API_URL}/fantasy/team`;
 // Example endpoint for players:
 export const PLAYERS_URL = `${API_URL}/players`;
 
+export const LEADERBOARD_URL = `${API_URL}/leaderboard`;
+
 // Add more as needed in the future, for example:
 // export const PLAYER_STATS_URL = `${API_URL}/player-stats`;
 // export const FANTASY_SCORE_URL = `${API_URL}/fantasy/score`;
