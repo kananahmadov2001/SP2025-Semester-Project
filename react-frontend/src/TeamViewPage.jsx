@@ -61,7 +61,13 @@ function DraftPlayerPage() {
   const [players, setPlayers] = useState([]); // The paginated or random set of players displayed
   const [totalPages, setTotalPages] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
+
+  // We maintain two states for searching:
+  // 1) `searchInput` = what the user is typing in the input field
+  // 2) `searchQuery` = the actual query we use to fetch data
+  const [searchInput, setSearchInput] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
+
   const [isFetchingPlayers, setIsFetchingPlayers] = useState(false);
 
   // We track if we are in "random mode" or normal pagination mode
@@ -164,17 +170,20 @@ function DraftPlayerPage() {
   }
 
   // ================================ HANDLERS ================================
-  // 1) Pressing "Search" -> set currentPage=1 so we fetch from the beginning
-  //    but only if we are not in random mode. If random mode is active, we switch back to normal.
+  // 1) Pressing "Search"
+  //    - set currentPage=1
+  //    - update the real 'searchQuery' with the content of 'searchInput'
+  //    - exit random mode
   function handleSearch() {
     setIsRandomMode(false);
     setCurrentPage(1);
-    // The effect above will call fetchPagedPlayers(1, searchQuery)
+    setSearchQuery(searchInput.trim()); // the effect will call fetchPagedPlayers(1, searchQuery)
   }
 
   // 2) Pressing "Reset" -> clear search, page=1, normal mode
   function handleReset() {
-    setSearchQuery("");
+    setSearchInput("");
+    setSearchQuery("");     // so we truly revert to no filter
     setIsRandomMode(false);
     setCurrentPage(1);
   }
@@ -292,7 +301,7 @@ function DraftPlayerPage() {
   // ================================ RENDERING ================================
   // If user is null, or something weird (shouldn't happen if route is protected)
   if (!user) {
-    return null;
+    return null; // shouldn't happen if route is protected
   }
 
   return (
@@ -300,7 +309,6 @@ function DraftPlayerPage() {
       {/*======================== CREATE/VIEW SQUAD (left side) =========================*/}
       <section className="squad-section">
         <h2>Create/View Squad</h2>
-        {/* Show loading spinner only in the squad area if isFetchingTeam is true */}
         {isFetchingTeam ? (
           <div className="team-loading">Loading your team...</div>
         ) : (
@@ -319,8 +327,8 @@ function DraftPlayerPage() {
             <input
               type="text"
               placeholder="Search player name..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
+              value={searchInput}
+              onChange={(e) => setSearchInput(e.target.value)}
             />
             <button className="search-btn" onClick={handleSearch}>
               Search
@@ -349,7 +357,6 @@ function DraftPlayerPage() {
 
         {/*-------------- Players List --------------*/}
         <div className="players-section">
-          {/* Show a loading spinner only in the players area if isFetchingPlayers */}
           {isFetchingPlayers ? (
             <div className="players-loading">Loading players...</div>
           ) : (
