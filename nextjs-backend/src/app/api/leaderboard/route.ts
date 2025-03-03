@@ -5,42 +5,24 @@ import { RowDataPacket } from "mysql2";
 export async function GET(req: Request) {
   try {
     const url = new URL(req.url);
-    const leagueId = url.searchParams.get("leagueId");
-    const page = parseInt(url.searchParams.get("page") || "1", 10);
+    const page = Math.max(parseInt(url.searchParams.get("page") || "1", 10), 1);
     const limit = 10; // Show 10 users per page
     const offset = (page - 1) * limit;
 
     let query = `
-      SELECT u.id AS user_id, u.username, SUM(fs.weekly_score) AS total_score
+      SELECT u.id AS user_id, u.name AS username, SUM(fs.weekly_score) AS total_score
       FROM fantasy_teams ft
       JOIN fantasy_scores fs ON ft.player_id = fs.player_id
       JOIN users u ON ft.user_id = u.id
       GROUP BY u.id
       ORDER BY total_score DESC
-      LIMIT ? OFFSET ?
+      LIMIT ${limit} OFFSET ${offset}
     `;
-
-    const queryParams: any[] = [limit, offset];
-
-    if (leagueId) {
-      query = `
-        SELECT u.id AS user_id, u.username, SUM(fs.weekly_score) AS league_score
-        FROM fantasy_teams ft
-        JOIN fantasy_scores fs ON ft.player_id = fs.player_id
-        JOIN users u ON ft.user_id = u.id
-        JOIN user_leagues ul ON u.id = ul.user_id
-        WHERE ul.league_id = ?
-        GROUP BY u.id
-        ORDER BY league_score DESC
-        LIMIT ? OFFSET ?
-      `;
-      queryParams.unshift(leagueId);
-    }
 
     const connection = await pool.getConnection();
 
-    // ✅ Fetch paginated leaderboard data
-    const [results] = await connection.execute<RowDataPacket[]>(query, queryParams);
+    // ✅ Execute query without placeholders for LIMIT & OFFSET
+    const [results] = await connection.execute<RowDataPacket[]>(query);
 
     // ✅ Fetch total user count for pagination metadata
     const [totalRows] = await connection.execute<RowDataPacket[]>(`
@@ -51,6 +33,10 @@ export async function GET(req: Request) {
     const totalPages = Math.ceil(totalUsers / limit);
 
     connection.release();
+
+    if (results.length === 0) {
+      return NextResponse.json({ error: "No leaderboard data available." }, { status: 404 });
+    }
 
     return NextResponse.json({
       leaderboard: results,
