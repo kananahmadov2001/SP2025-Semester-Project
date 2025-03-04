@@ -66,7 +66,7 @@ function PasswordResetPage() {
                         required
                     />
 
-                    <button type="submit" className="reset-btn">
+                    <button type="submit" className="password-reset-btn">
                         Reset Password
                     </button>
                 </form>
