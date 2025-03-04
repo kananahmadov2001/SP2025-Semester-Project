@@ -119,3 +119,8 @@
     border-radius: 6px;
     cursor: pointer;
 }
+
+.squad-select-player-card-list {
+    display: flex;
+    gap: 8px;
+}

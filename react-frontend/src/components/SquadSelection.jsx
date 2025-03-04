@@ -188,7 +188,7 @@ function SquadSelection({ userTeam, onRemovePlayer }) {
                         {fcSlots.map((player, index) => (
                             <div key={index} className="fc-slot-list">
                                 {player ? (
-                                    <div onClick={() => handlePlayerClick(player)}>
+                                    <div className="squad-select-player-card-list" onClick={() => handlePlayerClick(player)}>
                                         <div
                                             className="player-name"
                                         >
@@ -215,7 +215,7 @@ function SquadSelection({ userTeam, onRemovePlayer }) {
                         {bcSlots.map((player, index) => (
                             <div key={index} className="bc-slot-list">
                                 {player ? (
-                                    <div onClick={() => handlePlayerClick(player)}>
+                                    <div className="squad-select-player-card-list" onClick={() => handlePlayerClick(player)}>
                                         <div
                                             className="player-name"
                                         >
