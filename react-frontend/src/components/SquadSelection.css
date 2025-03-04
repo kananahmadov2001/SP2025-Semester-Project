@@ -1,4 +1,13 @@
 /* SquadSelection.css */
+.squad-select-player-card {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .squad-selection-container {
     background: #fafafa;
     padding: 1rem;
