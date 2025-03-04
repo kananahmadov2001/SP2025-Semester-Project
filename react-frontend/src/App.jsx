@@ -16,6 +16,7 @@ import DashboardPage from "./DashboardPage";
 import TeamViewPage from "./TeamViewPage";
 import TrashTalkPage from "./TrashTalkPage";
 import ChallengePage from "./ChallengePage";
+import PasswordResetPage from "./PasswordResetPage";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
             <Route index element={<HomePage />} />
             <Route path="help" element={<HelpPage />} />
             <Route path="dashboard" element={<DashboardPage />} />
+            <Route path="forgot-password" element={<PasswordResetPage />} />
 
             {/* Protected routes for logged-in users only */}
             <Route
