@@ -1,22 +1,18 @@
 // nextjs-backend/src/app/api/utils/jwt.ts
 
 import jwt from "jsonwebtoken";
-import dotenv from "dotenv";
 
-const SECRET_KEY = process.env.JWT_SECRET || "TrueHaterStuff"; // Keep this secret
-
-
-dotenv.config();
-// ✅ Generate JWT Token
-export function generateToken(payload: object) {
-    return jwt.sign(payload, SECRET_KEY, { expiresIn: "7d" }); // Expires in 7 days
-  }
-  
-  // ✅ Verify JWT Token
-  export function verifyToken(token: string) {
-    try {
-      return jwt.verify(token, SECRET_KEY);
-    } catch (error) {
-      return null; // Invalid token
+export function signToken(payload: object): string {
+    if (!process.env.JWT_SECRET) {
+        throw new Error("Missing JWT_SECRET in environment variables.");
     }
-  }
+    return jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: "1d" });
+}
+
+// Used whenever a protected API route or page is accessed later.
+export function verifyToken(token: string): any {
+    if (!process.env.JWT_SECRET) {
+        throw new Error("Missing JWT_SECRET in environment variables.");
+    }
+    return jwt.verify(token, process.env.JWT_SECRET);
+}
