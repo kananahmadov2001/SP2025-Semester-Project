@@ -38,8 +38,9 @@ function DashboardPage() {
   return (
     <div className="dashboard-container">
 
-      {/* Visual Field Section */}
+      {/* Start Team Section */}
       <section className="visual-field-section">
+        <h2>Starting Team Players</h2>
         <BasketballField />
       </section>
       

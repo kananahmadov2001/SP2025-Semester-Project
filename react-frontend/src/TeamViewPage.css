@@ -249,3 +249,37 @@
   margin-bottom: 30px;
   /* Adjust as needed for spacing between team + draft pages */
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Player Image Container */
+.player-image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+/* Player Image */
+.player-card-image {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #ffd700; /* Gold border */
+}
