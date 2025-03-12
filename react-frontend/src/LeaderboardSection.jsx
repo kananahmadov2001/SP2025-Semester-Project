@@ -92,7 +92,7 @@ function LeaderboardSection() {
 
   return (
     <section className="leaderboard-container">
-      <h2>Leaderboard</h2>
+      <h2>Leaderboard Table</h2>
 
       {/* If loading, show a small spinner/message */}
       {isLoading ? (
