@@ -12,7 +12,12 @@ const handle = app.getRequestHandler();
 app.prepare().then(() => {
     const server = express();
     const httpServer = http.createServer(server);
-    const io = socketIo(httpServer); // Attach socket.io to the HTTP server
+    const io = socketIo(httpServer, {
+        cors: {
+            origin: "*", // Allow all origins (or specify your frontend URL)
+            methods: ["GET", "POST"]
+        }
+    });
 
     // Handle socket connection
     io.on("connection", (socket) => {
