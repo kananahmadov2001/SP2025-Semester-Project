@@ -1,8 +1,12 @@
 // react-frontend/src/TrashTalkPage.jsx
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate, Navigate } from "react-router-dom";
 import "./TrashTalkPage.css";
+import io from "socket.io-client";
+
+const socket = io("http://localhost:3000"); // Connect to the backend
+
 
 // 1) Import from AuthContext
 import { UseAuth } from "../src/context/AuthContext";
@@ -35,6 +39,22 @@ function TrashTalkPage() {
     },
   ]);
 
+  useEffect(() => {
+    // Listen for global messages from the server
+    socket.on("globalMessage", (message) => {
+      const newMessage = {
+        ...message,
+        isSelf: false,
+      };
+      setGlobalTrashTalk((prev) => [...prev, newMessage]);
+    });
+
+    // Cleanup on component unmount
+    return () => {
+      socket.off("globalMessage");
+    };
+  }, []);
+
   function handleSignOut() {
     logout();               // Clear user from context
     navigate("/");          // Redirect to home (or wherever you want)
@@ -49,6 +69,7 @@ function TrashTalkPage() {
         text: globalMessage,
         isSelf: true,
       };
+      socket.emit("globalMessage", newMessage); // Send message to the server
       setGlobalTrashTalk([...globalTrashTalk, newMessage]);
       setGlobalMessage("");
     }
