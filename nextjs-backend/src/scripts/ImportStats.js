@@ -10,7 +10,7 @@ console.log("🛠️ API_KEY Loaded:", process.env.API_KEY ? "✅ YES" : "❌ NO
 const pool = mysql.createPool({
   host: process.env.DB_HOST || "localhost",
   user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD ,
+  password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
   waitForConnections: true,
   connectionLimit: 10, // Maximum connections to prevent overload
@@ -20,11 +20,14 @@ const pool = mysql.createPool({
 
 // Function to fetch latest game data
 const fetchGameData = () => {
+  const now = new Date();
+  const formattedDate = now.toISOString().split('T')[0];
+
   const options = {
     method: "GET",
     hostname: "api-nba-v1.p.rapidapi.com",
     port: null,
-    path: "/games?date=2025-03-01", // Adjust this date dynamically
+    path: `/games?${formattedDate}`, // Adjust this date dynamically
     headers: {
       "x-rapidapi-key": process.env.API_KEY,
       "x-rapidapi-host": "api-nba-v1.p.rapidapi.com",
@@ -188,7 +191,7 @@ const fetchGameStatistics = (gameId) => {
   req.end();
 };
 
-  
+
 
 // Start Fetching Game Data
 fetchGameData();
