@@ -1,3 +1,4 @@
+/* react-frontend/src/HomePage.css */
 /* ///////////////////////// NAVIGATION SECTION /////////////////////////////////////////// */
 
 .nav-container {
@@ -173,7 +174,7 @@
 
 .game-rules-banner img {
   width: 100%;
-  height: 430px; 
+  height: 430px;
   object-fit: cover;
   object-position: top;
   border-radius: 12px;
@@ -282,16 +283,19 @@
 }
 
 .feature-item:nth-child(1) {
-  border-left-color: #ff6b6b; 
+  border-left-color: #ff6b6b;
 }
+
 .feature-item:nth-child(2) {
-  border-left-color: #f7b731; 
+  border-left-color: #f7b731;
 }
+
 .feature-item:nth-child(3) {
-  border-left-color: #4b7bec; 
+  border-left-color: #4b7bec;
 }
+
 .feature-item:nth-child(4) {
-  border-left-color: #20bf6b; 
+  border-left-color: #20bf6b;
 }
 
 .feature-item:hover {
