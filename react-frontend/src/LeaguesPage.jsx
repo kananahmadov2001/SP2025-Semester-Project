@@ -31,7 +31,7 @@ function LeaguesPage() {
         data.leagues?.forEach(async (league) => {
           const membersResp = await fetch(`http://localhost:3000/api/leagues?leagueId=${league.league_id}`);
           const membersData = await membersResp.json();
-          setLeagueMembers(prev => ({ ...prev, [league.league_id]: membersData.league_members || [] }));
+          setLeagueMembers((prev) => ({ ...prev, [league.league_id]: membersData.league_members || [] }));
         });
       } else {
         throw new Error(data.error || "Failed to fetch leagues");
@@ -54,14 +54,9 @@ function LeaguesPage() {
       const data = await response.json();
       if (!response.ok) throw new Error(data.error || "Failed to create league");
 
-      const createdLeague = {
-        league_id: data.league_id || Date.now(), // fallback if not returned
-        league_name: newLeagueName,
-      };
-
-      setMessage(`League '${createdLeague.league_name}' created!`);
-      setLeagues(prev => [...prev, createdLeague]);
+      setMessage(`League '${newLeagueName}' created!`);
       setNewLeagueName("");
+      await fetchLeagues();
     } catch (err) {
       console.error(err);
       setMessage(err.message);
@@ -120,16 +115,15 @@ function LeaguesPage() {
 
       <div className="league-list">
         <h2>Available Leagues</h2>
-        <ul>
+        <div className="league-cards">
           {leagues.length === 0 ? (
-            <li>No leagues available.</li>
+            <p>No leagues available.</p>
           ) : (
             leagues.map((league, idx) => (
-              <li key={league.league_id || idx} className="league-item">
-                <strong>{league.league_name}</strong> (ID: {league.league_id})<br />
-                <span className="member-count">
-                  Members: {leagueMembers[league.league_id]?.length || 0} / 8
-                </span>
+              <div key={league.league_id || idx} className="league-card">
+                <p><strong>{league.league_name}</strong></p>
+                <p>(ID: {league.league_id})</p>
+                <p>Members: {leagueMembers[league.league_id]?.length || 0} / 8</p>
                 {leagueMembers[league.league_id] && (
                   <ul className="user-list">
                     {leagueMembers[league.league_id].map((u) => (
@@ -137,10 +131,10 @@ function LeaguesPage() {
                     ))}
                   </ul>
                 )}
-              </li>
+              </div>
             ))
           )}
-        </ul>
+        </div>
       </div>
     </div>
   );
