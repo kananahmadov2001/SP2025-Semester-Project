@@ -1,4 +1,5 @@
-// src/app/api/fantasy/team/route.ts
+// nextjs-backend/src/app/api/fantasy/team/route.ts
+
 import { NextResponse } from "next/server";
 import pool from "@/app/api/database/mysql";
 
@@ -12,7 +13,7 @@ export async function GET(req: Request) {
     }
 
     const connection = await pool.getConnection();
-    
+
     // Get all players added by this user
     const [fantasyTeam] = await connection.execute(
       `SELECT p.id, p.firstname, p.lastname, p.position, p.team, p.teamid 

@@ -1,3 +1,5 @@
+// nextjs-backend/src/app/api/auth/reset/route.ts
+
 import { NextResponse } from "next/server";
 import pool from "@/app/api/database/mysql";
 import bcrypt from "bcryptjs";
@@ -10,7 +12,7 @@ export async function POST(req: Request) {
     }
 
     const connection = await pool.getConnection();
-    
+
     // ✅ Check if user exists
     const [user] = await connection.execute("SELECT id FROM users WHERE email = ?", [email]);
     if ((user as any[]).length === 0) {

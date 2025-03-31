@@ -1,3 +1,5 @@
+// nextjs-backend/src/app/api/leaderboard/route.ts
+
 import { NextResponse } from "next/server";
 import pool from "@/app/api/database/mysql";
 import { RowDataPacket } from "mysql2";
