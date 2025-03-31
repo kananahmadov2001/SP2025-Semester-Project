@@ -31,6 +31,10 @@ function DashboardPage() {
     navigate("/dashboard/teamView");
   }
 
+  function navToLeagues() {
+    navigate("/dashboard/leagues");
+  }
+
   function navToTrashTalk() {
     navigate("/dashboard/trashTalk");
   }
@@ -61,7 +65,7 @@ function DashboardPage() {
           </p>
 
           <div className="draft-btn-container">
-            <button className="draft-btn" onClick={navToTeamView}>
+            <button className="draft-btn" onClick={navToLeagues}>
               <i className="fas fa-user-plus"></i> Create a League
             </button>
           </div>
@@ -78,7 +82,7 @@ function DashboardPage() {
           </p>
 
           <div className="chat-btn-container">
-            <button className="chat-btn" onClick={navToTrashTalk}>
+            <button className="chat-btn" onClick={navToLeagues}>
               <i className="fas fa-user-plus"></i> Join a League
             </button>
           </div>
