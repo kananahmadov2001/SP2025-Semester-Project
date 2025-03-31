@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { UseAuth } from "./context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { LEAGUES_URL } from "./config/constants";
 import "./LeaguesPage.css";
 
 function LeaguesPage() {
@@ -21,7 +22,7 @@ function LeaguesPage() {
 
   async function fetchLeagues() {
     try {
-      const response = await fetch("http://localhost:3000/api/leagues", {
+      const response = await fetch(LEAGUES_URL, {
         credentials: "include",
       });
       const data = await response.json();
@@ -29,7 +30,7 @@ function LeaguesPage() {
         setLeagues(data.leagues || []);
         // Fetch members for each league
         data.leagues?.forEach(async (league) => {
-          const membersResp = await fetch(`http://localhost:3000/api/leagues?leagueId=${league.league_id}`);
+          const membersResp = await fetch(`${LEAGUES_URL}?leagueId=${league.league_id}`);
           const membersData = await membersResp.json();
           setLeagueMembers((prev) => ({ ...prev, [league.league_id]: membersData.league_members || [] }));
         });
@@ -45,7 +46,7 @@ function LeaguesPage() {
   async function handleCreateLeague() {
     if (!newLeagueName.trim()) return;
     try {
-      const response = await fetch("http://localhost:3000/api/leagues/create", {
+      const response = await fetch(`${LEAGUES_URL}/create`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
@@ -66,7 +67,7 @@ function LeaguesPage() {
   async function handleJoinLeague() {
     if (!joinLeagueId.trim()) return;
     try {
-      const response = await fetch("http://localhost:3000/api/leagues/join", {
+      const response = await fetch(`${LEAGUES_URL}/join`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
