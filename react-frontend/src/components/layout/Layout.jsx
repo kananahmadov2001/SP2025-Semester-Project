@@ -15,6 +15,7 @@ function Layout() {
         { path: "/help", label: "Help", protected: false },
         { path: "/dashboard", label: "Dashboard", protected: false },
         { path: "/dashboard/teamView", label: "TeamView", protected: true },
+        { path: "/dashboard/leagues", label: "Leagues", protected: true },
         { path: "/dashboard/trashTalk", label: "TrashTalk", protected: true },
         { path: "/dashboard/challenge", label: "Challenge", protected: true },
     ];

@@ -1,0 +1,153 @@
+/* react-frontend/src/LeaguesPage.css */
+
+.leagues-page {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+.leagues-page h1 {
+  font-size: 32px;
+  color: #35509a;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+}
+
+.message {
+  color: #18cc00;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.league-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 100px;
+  margin-bottom: 40px;
+  position: relative;
+  padding: 0 40px;
+}
+
+.create-league,
+.join-league {
+  width: 50%;
+  padding: 30px;
+  border-radius: 12px;
+  background-color: #fff;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.create-league:hover,
+.join-league:hover {
+  transform: scale(1.03);
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.create-league h3,
+.join-league h3 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #35509a;
+  margin-bottom: 15px;
+}
+
+.create-league input,
+.join-league input {
+  width: 80%;
+  padding: 10px;
+  font-size: 16px;
+  margin-bottom: 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.create-league button,
+.join-league button {
+  background: linear-gradient(45deg, #35509a, #01a8fc);
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.create-league button:hover,
+.join-league button:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 6px 20px rgba(0, 4, 255, 0.4);
+}
+
+.league-list {
+  padding: 30px;
+  background: #f9f9f9;
+  border-radius: 12px;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.league-list h2 {
+  color: #289f53;
+  font-size: 26px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+.league-list ul {
+  list-style: none;
+  padding: 0;
+}
+
+.league-item {
+  font-size: 18px;
+  margin: 16px 0;
+  padding: 14px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.1);
+}
+
+.member-count {
+  display: block;
+  color: #444;
+  font-size: 15px;
+  margin: 5px 0;
+}
+
+.user-list {
+  margin-top: 10px;
+  padding-left: 0;
+}
+
+.user-list li {
+  font-size: 15px;
+  color: #666;
+  line-height: 1.4;
+}
+
+/* Highlight the league card if the user is in that league */
+.league-card.highlight-league {
+  border: 3px solid #289f53;
+  /* or any accent color */
+  background-color: #e6ffe6;
+  /* subtle highlight */
+}
+
+/* A small label after the league name */
+.joined-tag {
+  color: #289f53;
+  font-weight: bold;
+  margin-left: 8px;
+}
+
+/* Highlight the current user in the league membership list */
+.highlighted-user {
+  color: #d9534f;
+  font-weight: bold;
+}

@@ -14,6 +14,7 @@ import HomePage from "./HomePage";
 import HelpPage from "./HelpPage";
 import DashboardPage from "./DashboardPage";
 import TeamViewPage from "./TeamViewPage";
+import LeaguesPage from "./LeaguesPage";
 import TrashTalkPage from "./TrashTalkPage";
 import ChallengePage from "./ChallengePage";
 import PasswordResetPage from "./PasswordResetPage";
@@ -36,6 +37,14 @@ function App() {
               element={
                 <ProtectedRoute>
                   <TeamViewPage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="dashboard/leagues"
+              element={
+                <ProtectedRoute>
+                  <LeaguesPage />
                 </ProtectedRoute>
               }
             />
