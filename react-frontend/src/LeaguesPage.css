@@ -1,3 +1,5 @@
+/* react-frontend/src/LeaguesPage.css */
+
 .leagues-page {
   max-width: 1200px;
   margin: 40px auto;
@@ -127,4 +129,25 @@
   font-size: 15px;
   color: #666;
   line-height: 1.4;
+}
+
+/* Highlight the league card if the user is in that league */
+.league-card.highlight-league {
+  border: 3px solid #289f53;
+  /* or any accent color */
+  background-color: #e6ffe6;
+  /* subtle highlight */
+}
+
+/* A small label after the league name */
+.joined-tag {
+  color: #289f53;
+  font-weight: bold;
+  margin-left: 8px;
+}
+
+/* Highlight the current user in the league membership list */
+.highlighted-user {
+  color: #d9534f;
+  font-weight: bold;
 }
