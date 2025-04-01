@@ -12,7 +12,7 @@ import "./LeaguesPage.css";
  * - Shows which leagues the current user has joined
  * - Lists each league's members along with their total HFL scores
  * - Highlights the league(s) the user is in and highlights the user in that league
- * - Allows user to create a league or join a league
+ * - Allows user to create, join, and quit a league
  */
 function LeaguesPage() {
   const { user } = UseAuth();
@@ -87,8 +87,7 @@ function LeaguesPage() {
           leagueMembers = membersData.league_members;
         }
 
-        // Merge each member with their total_score and highlight if it's the user
-        // Default score to 0 if not found
+        // Merge each member with their total_score
         leagueMembers = leagueMembers.map((m) => ({
           ...m,
           total_score: userScoreMap[m.user_id] || 0,
@@ -105,7 +104,6 @@ function LeaguesPage() {
       }
 
       // 4) Reorder so that user’s joined leagues appear first
-      // A league is joined by user if any member has user_id = user.userId
       const myLeagues = leaguesWithMembers.filter((l) =>
         l.members.some((m) => m.user_id === Number(user.userId))
       );
@@ -135,7 +133,10 @@ function LeaguesPage() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
-        body: JSON.stringify({ leagueName: newLeagueName }),
+        body: JSON.stringify({
+          leagueName: newLeagueName,
+          userId: user.userId,
+        }),
       });
       const data = await response.json();
       if (!response.ok) throw new Error(data.error || "Failed to create league.");
@@ -171,6 +172,34 @@ function LeaguesPage() {
       setMessage("Successfully joined league!");
       setJoinLeagueId("");
 
+      // Refresh data
+      fetchAllData();
+    } catch (err) {
+      console.error(err);
+      setMessage(err.message);
+    }
+  }
+
+  /**
+   * Handle quitting (leaving) a league if the user is already in it.
+   */
+  async function handleQuitLeague(leagueId) {
+    setMessage("");
+
+    try {
+      // Send DELETE request to /leagues/quit
+      const response = await fetch(`${LEAGUES_URL}/quit`, {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({ userId: user.userId, leagueId }),
+      });
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data.error || "Failed to quit league.");
+      }
+
+      setMessage(data.message || "You have left the league.");
       // Refresh data
       fetchAllData();
     } catch (err) {
@@ -229,7 +258,6 @@ function LeaguesPage() {
             return (
               <div
                 key={league.league_id}
-                // Add a special CSS class if the user is in this league
                 className={`league-card ${isUserInLeague ? "highlight-league" : ""}`}
               >
                 <p className="league-name">
@@ -243,16 +271,23 @@ function LeaguesPage() {
                   {league.members.map((u) => (
                     <li
                       key={u.user_id}
-                      // Highlight this user in the membership list if it's the current user
-                      className={
-                        u.user_id === Number(user.userId) ? "highlighted-user" : ""
-                      }
+                      className={u.user_id === Number(user.userId) ? "highlighted-user" : ""}
                     >
                       {u.username || `User ${u.user_id}`} —{" "}
                       <strong>{u.total_score} pts</strong>
                     </li>
                   ))}
                 </ul>
+
+                {/* Quit League Button */}
+                {isUserInLeague && (
+                  <button
+                    className="quit-league-btn"
+                    onClick={() => handleQuitLeague(league.league_id)}
+                  >
+                    Quit League
+                  </button>
+                )}
               </div>
             );
           })}

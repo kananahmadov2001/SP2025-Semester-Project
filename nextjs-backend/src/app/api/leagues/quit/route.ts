@@ -1,3 +1,5 @@
+// nextjs-backend/src/app/api/leagues/quit/route.ts
+
 import { NextResponse } from "next/server";
 import pool from "@/app/api/database/mysql";
 
