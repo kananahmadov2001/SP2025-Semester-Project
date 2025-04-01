@@ -39,7 +39,7 @@ app.prepare().then(() => {
         socket.on("leagueMessage", (message, leagueId) => {
             console.log(`League message received for league ${leagueId}:`, message);
             // Broadcast to only users in the specific league's room
-            io.to(leagueId).emit("leagueMessage", message);
+            socket.to(leagueId).emit("leagueMessage", message);
         });
 
         // Disconnect
