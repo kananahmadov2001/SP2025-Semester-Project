@@ -9,13 +9,18 @@ import AddsFAQs from './AddsFAQs';
 import LoginForm from "./components/auth/LoginForm";
 import RegisterModal from "./components/auth/RegisterModal";
 import { UseAuth } from "./context/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Navigate } from "react-router-dom";
 
 function HomePage() {
   // State to show/hide the register modal
   const [showRegisterModal, setShowRegisterModal] = useState(false);
   const { user } = UseAuth();
   const navigate = useNavigate();
+
+  // If user is already logged in, redirect them to the Dashboard
+  if (user) {
+    return <Navigate to="/dashboard" replace />;
+  }
 
   // Handler to open modal
   function handleOpenRegisterModal() {
@@ -136,7 +141,7 @@ function HomePage() {
       </section>
 
 
-     {/* Unique Features Section */}
+      {/* Unique Features Section */}
       <section className="unique-features-section">
         {/* Section Title */}
         <h1 className="features-title">What makes HFL Unique?</h1>

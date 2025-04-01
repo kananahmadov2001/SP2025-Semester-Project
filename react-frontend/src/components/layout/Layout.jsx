@@ -11,10 +11,11 @@ function Layout() {
 
     // A simple array of nav links
     const navLinks = [
-        { path: "/", label: "Home", protected: false },
+        { path: "/", label: "Home", protected: false, hideWhenLoggedIn: true },
         { path: "/help", label: "Help", protected: false },
         { path: "/dashboard", label: "Dashboard", protected: false },
         { path: "/dashboard/teamView", label: "TeamView", protected: true },
+        { path: "/dashboard/leagues", label: "Leagues", protected: true },
         { path: "/dashboard/trashTalk", label: "TrashTalk", protected: true },
         { path: "/dashboard/challenge", label: "Challenge", protected: true },
     ];
@@ -51,6 +52,8 @@ function Layout() {
                         {navLinks
                             // Show non-protected links to everyone; protected links only if user != null
                             .filter((link) => !link.protected || user)
+                            // Filter out any link that has hideWhenLoggedIn if user is logged in
+                            .filter((link) => !(link.hideWhenLoggedIn && user))
                             .map((link) => (
                                 <NavLink
                                     key={link.path}
@@ -92,32 +95,34 @@ function Layout() {
                 <div className="footer-links-container">
                     <div className="footer-column">
                         <h3 className="footer-heading">Explore</h3>
-                        <a href="#">NBA Players</a>
-                        <a href="#">Teams</a>
-                        <a href="#">Fantasy Leaderboards</a>
-                        <a href="#">Draft Guide</a>
+                        <a href="/dashboard/teamView">Player Stats</a>
+                        <a href="/dashboard/teamView">Team Standings</a>
+                        <a href="/dashboard">Fantasy Leaderboards</a>
+                        <a href="/help">Draft Strategy Guide</a>
                     </div>
+
                     <div className="footer-column">
                         <h3 className="footer-heading">Game Info</h3>
-                        <Link to="/">How to Play</Link>
-                        <a href="#">Scoring Rules</a>
-                        <a href="#">Weekly Challenges</a>
-                        <a href="#">FAQs</a>
+                        <Link to="/help">How to Play</Link>
+                        <a href="/help">Scoring Rules</a>
+                        <a href="/dashboard/challenge">Weekly Challenges</a>
+                        <a href="/help">FAQs</a>
                     </div>
+
                     <div className="footer-column">
                         <h3 className="footer-heading">Community</h3>
-                        <a href="#">Forums</a>
-                        <a href="#">Events</a>
+                        <a href="/help">Forums</a>
+                        <a href="/challenge">League Events</a>
                         <Link to="/dashboard/trashTalk">Trash Talk Zone</Link>
-                        <a href="#">Contact Support</a>
+                        <a href="/help">Contact Support</a>
                     </div>
+
                     <div className="footer-column">
                         <h3 className="footer-heading">About</h3>
-                        <a href="#">Our Story</a>
-                        <a href="#">Press</a>
-                        <a href="#">Careers</a>
-                        <a href="#">Privacy Policy</a>
-                        <a href="#">Terms of Service</a>
+                        <a href="/help">Our Mission</a>
+                        <a href="/help">In the Press</a>
+                        <a href="/help">Privacy Policy</a>
+                        <a href="/help">Terms of Service</a>
                     </div>
                 </div>
 

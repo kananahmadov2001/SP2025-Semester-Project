@@ -1,0 +1,52 @@
+
+
+services:
+  mysql:
+    image: mysql:8
+    container_name: hater_fantasy_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: Abdousow1!
+      MYSQL_DATABASE: hfl
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  backend:
+    build:
+      context: ./nextjs-backend
+      dockerfile: Dockerfile
+    container_name: hater_fantasy_backend
+    ports:
+      - "3000:3000"  # Host:Container
+    volumes:
+      - ./nextjs-backend:/app
+      - /app/node_modules
+    depends_on:
+      - mysql
+    environment:
+      DB_USER: root
+      DB_PASSWORD: Abdousow1!
+      DB_NAME: hfl
+      DB_HOST: mysql
+      DB_PORT: 3306
+      JWT_SECRET: TrueHaterStuff
+      API_KEY: ba3cd22225mshee75f930ff122a6p1d64d2jsn63aaab2cb29f
+
+  frontend:
+    build:
+      context: ./react-frontend
+      dockerfile: Dockerfile
+    container_name: hater_fantasy_frontend
+    ports:
+      - "5173:5173"  # Host:Container
+    volumes:
+      - ./react-frontend:/app
+      - /app/node_modules
+    depends_on:
+      - backend
+    
+     
+volumes:
+  mysql_data:

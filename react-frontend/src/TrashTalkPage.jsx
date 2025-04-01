@@ -1,8 +1,13 @@
 // react-frontend/src/TrashTalkPage.jsx
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate, Navigate } from "react-router-dom";
 import "./TrashTalkPage.css";
+import io from "socket.io-client";
+import axios from "axios";
+
+const socket = io("http://localhost:3000"); // Connect to the backend
+
 
 // 1) Import from AuthContext
 import { UseAuth } from "../src/context/AuthContext";
@@ -30,29 +35,56 @@ function TrashTalkPage() {
     {
       id: 1,
       user: "LeagueMaster",
-      text: "Why did I draft Ben Simmons? 😂",
+      text: "Why did I draft Ben Simmons?",
       isSelf: false,
     },
   ]);
+
+  // ✅ Fetch messages from MySQL on component mount
+  useEffect(() => {
+    const fetchMessages = async () => {
+      try {
+        const response = await axios.get("http://localhost:3000/messages");
+        console.log("hi");
+        setGlobalTrashTalk(response.data.reverse()); // Reverse to show oldest first
+        console.log(globalTrashTalk);
+        console.log("hi2");
+      } catch (error) {
+        console.error("Error fetching messages:", error);
+      }
+    };
+
+    fetchMessages();
+
+    // ✅ Listen for new messages via WebSocket
+    socket.on("receiveMessage", (message) => {
+      setGlobalTrashTalk((prev) => [...prev, message]); // Append new messages
+    });
+
+    return () => {
+      socket.off("receiveMessage");
+    };
+  }, []);
 
   function handleSignOut() {
     logout();               // Clear user from context
     navigate("/");          // Redirect to home (or wherever you want)
   }
 
+  // ✅ Send message
   const handleGlobalPost = () => {
-    if (globalMessage.trim() !== "") {
-      // We can show the actual user.name instead of "You"
-      const newMessage = {
-        id: globalTrashTalk.length + 1,
-        user: user?.name || "You",
-        text: globalMessage,
-        isSelf: true,
-      };
-      setGlobalTrashTalk([...globalTrashTalk, newMessage]);
-      setGlobalMessage("");
+    if (globalMessage.trim() === "") return;
+
+    const newMessage = {
+      username: user?.name || "Anonymous", // Ensure username is set
+      message: globalMessage,
     }
+
+    // Emit message via WebSocket (backend will save to MySQL)
+    socket.emit("sendMessage", newMessage);
+    setGlobalMessage(""); // Clear input
   };
+
 
   const handleLeaguePost = () => {
     if (leagueMessage.trim() !== "") {
@@ -69,31 +101,18 @@ function TrashTalkPage() {
 
   return (
     <div className="trash-talk-page">
-      {/* Top Bar with Navigation */}
-      <div className="top-bar">
-        <h2>🔥 The Ultimate Trash Talk Zone 🔥</h2>
-        <div className="nav-buttons">
-          <button onClick={() => navigate("/dashboard")} className="nav-btn">
-            🏀 Go to Dashboard
-          </button>
-          {/* Use the logout function */}
-          <button className="sign-out-btn" onClick={handleSignOut}>
-            🚪 Sign Out
-          </button>
-        </div>
-      </div>
 
       {/* Global Chat Section */}
       <section className="chat-section">
-        <h2>🌎 Global Chat</h2>
+        <h2>Global Chat</h2>
         <div className="chat-box">
           <div className="chat-messages">
             {globalTrashTalk.map((post) => (
               <div
                 key={post.id}
-                className={`chat-message ${post.isSelf ? "self" : "other"}`}
+                className={`chat-message ${post.username == user.name ? "self" : "other"}`}
               >
-                <strong>{post.user}:</strong> {post.text}
+                <strong>{post.username}:</strong> {post.message}
               </div>
             ))}
           </div>
@@ -110,7 +129,7 @@ function TrashTalkPage() {
 
       {/* League Chat Section */}
       <section className="chat-section">
-        <h2>🏆 League Chat</h2>
+        <h2>League Chat</h2>
         <div className="chat-box">
           <div className="chat-messages">
             {leagueTrashTalk.map((post) => (

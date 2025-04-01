@@ -1,3 +1,5 @@
+// nextjs-backend/src/app/api/fantasy/scores/route.ts
+
 import { NextResponse } from "next/server";
 import pool from "@/app/api/database/mysql"; // Database connection
 import { RowDataPacket } from "mysql2";

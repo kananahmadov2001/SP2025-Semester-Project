@@ -1,0 +1,126 @@
+/* react-frontend/src/LeaderboardSection.css */
+
+/* Container for the entire leaderboard section */
+.leaderboard-container {
+    background: #fff;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    max-width: 800px;
+}
+
+.leaderboard-container h2 {
+    font-size: 24px;
+    color: #35509a;
+    margin-bottom: 16px;
+}
+
+/* Loading indicator in this container only */
+.leaderboard-loading {
+    font-size: 18px;
+    color: #777;
+    margin: 10px 0;
+}
+
+/* If no data found */
+.no-leaderboard {
+    font-size: 16px;
+    color: #999;
+    margin-top: 20px;
+}
+
+/* Table layout for the scoreboard */
+.leaderboard-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0 20px 0;
+}
+
+.leaderboard-table th,
+.leaderboard-table td {
+    padding: 12px 8px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.leaderboard-table th {
+    background-color: #f3f3f3;
+    font-size: 16px;
+    color: #333;
+}
+
+.leaderboard-table td {
+    font-size: 15px;
+}
+
+.leaderboard-table tr:hover {
+    background-color: #f9f9f9;
+}
+
+/* Pagination bar */
+.leaderboard-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 10px;
+}
+
+.lb-page-btn {
+    background: #35509a;
+    color: white;
+    border: none;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+}
+
+.lb-page-btn.active {
+    background: #212a42;
+}
+
+.lb-page-btn:hover {
+    background: #212a42;
+}
+
+.ellipsis {
+    color: #666;
+    font-size: 16px;
+    padding: 0 5px;
+}
+
+/* Jump to container */
+.lb-jump-to-container {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+}
+
+.lb-jump-to-container input {
+    width: 60px;
+    padding: 4px;
+    font-size: 14px;
+    border: 2px solid #35509a;
+    border-radius: 4px 0 0 4px;
+    outline: none;
+}
+
+.lb-jump-to-container button {
+    background: #35509a;
+    color: #fff;
+    border: none;
+    font-size: 14px;
+    padding: 4px 8px;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+}
+
+.lb-jump-to-container button:hover {
+    background: #212a42;
+}

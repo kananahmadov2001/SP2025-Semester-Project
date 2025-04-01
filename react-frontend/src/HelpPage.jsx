@@ -99,12 +99,37 @@ function HelpPage() {
 
             {/* Leagues */}
             <div className="faq-item">
-              <button className="faq-question" onClick={() => toggleSection("transactions")}>
-                {openSections["transactions"] ? "▼" : "▶"} Leagues
+              <button className="faq-question" onClick={() => toggleSection("leagues")}>
+                {openSections["leagues"] ? "▼" : "▶"} Leagues
               </button>
-              {openSections["transactions"] && (
+              {openSections["leagues"] && (
                 <div className="faq-answer">
-                  <p> </p>
+                  <p>Compete in two types of leagues: the <strong>Global League</strong>, where all users are automatically placed, and <strong>Private Leagues</strong>, which you can create and customize.</p>
+
+                  <strong>🌍 Global League</strong>
+                  <ul>
+                    <li>All users are automatically placed in this league upon signing up.</li>
+                    <li>The leaderboard updates weekly, ranking users based on total flop points.</li>
+                    <li>Compete against everyone to be crowned the <strong>Ultimate HFL Champion</strong>.</li>
+                    <li>Rewards may be given to top finishers at the end of the season.</li>
+                  </ul>
+
+                  <strong>🔒 Private Leagues</strong>
+                  <ul>
+                    <li>Create your own leagues and set custom rules.</li>
+                    <li>Invite your friends with a unique league code.</li>
+                    <li>Compete only against the members in your private league.</li>
+                    <li>League admins can manage rosters and set custom prizes.</li>
+                  </ul>
+
+                  <strong>🏀 How to Join & Create a League</strong>
+                  <ul>
+                    <li>You are automatically enrolled in the Global League.</li>
+                    <li>To create a Private League, click <strong>"Create a League"</strong> and share the invite code.</li>
+                    <li>To join a Private League, enter the league code in the <strong>"Join a League"</strong> section.</li>
+                  </ul>
+
+                  <p><em>Want to challenge your friends? Set up your Private League now and start the trash talk!</em></p>
                 </div>
               )}
             </div>
@@ -116,7 +141,8 @@ function HelpPage() {
               </button>
               {openSections["scoring"] && (
                 <div className="faq-answer">
-                  <p>During the season, your NBA fantasy players will be allocated points based on their performance.</p>
+                  <p>Fantasy points are awarded based on real NBA performances. The lower your team scores, the better!</p>
+                  
                   <table className="scoring-table">
                     <thead>
                       <tr>
@@ -125,32 +151,26 @@ function HelpPage() {
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>For each point scored</td>
-                        <td>1</td>
-                      </tr>
-                      <tr>
-                        <td>For each rebound</td>
-                        <td>1.2</td>
-                      </tr>
-                      <tr>
-                        <td>For each assist</td>
-                        <td>1.5</td>
-                      </tr>
-                      <tr>
-                        <td>For each block</td>
-                        <td>3</td>
-                      </tr>
-                      <tr>
-                        <td>For each steal</td>
-                        <td>3</td>
-                      </tr>
-                      <tr>
-                        <td>For each turnover</td>
-                        <td>-1</td>
-                      </tr>
+                      <tr><td>For each missed field goal</td><td>+1</td></tr>
+                      <tr><td>For each turnover</td><td>+2</td></tr>
+                      <tr><td>For each missed free throw</td><td>+1</td></tr>
+                      <tr><td>For each personal foul</td><td>+1</td></tr>
+                      <tr><td>For getting benched mid-game</td><td>+3</td></tr>
+                      <tr><td>For technical fouls</td><td>+3</td></tr>
+                      <tr><td>For flagrant fouls</td><td>+5</td></tr>
+                      <tr><td>For getting ejected</td><td>+10</td></tr>
+                      <tr><td>For scoring over 25 points</td><td>-5</td></tr>
+                      <tr><td>For recording a triple-double</td><td>-10</td></tr>
                     </tbody>
                   </table>
+
+                  <p><strong>🔥 Bonus Points:</strong></p>
+                  <ul>
+                    <li>🏀 Airball Bonus: +2 points for each recorded airball.</li>
+                    <li>🚀 Shaqtin' a Fool Moment: +5 points for an embarrassing play.</li>
+                  </ul>
+
+                  <p><em>Note: Scores are final once a game ends. No changes will be made after review.</em></p>
                 </div>
               )}
             </div>
@@ -160,7 +180,26 @@ function HelpPage() {
         {activeTab === "terms" && (
           <div className="faq-section">
             <h2>Terms & Conditions</h2>
-            <p>All the terms & conditions of the game are displayed here.</p>
+            <p>
+              <strong>Eligibility:</strong> Hater Fantasy League (HFL) is open to individuals who are at least 18 years old (or the age of majority in your country). 
+              By participating, you confirm that you meet these requirements.
+            </p>
+            <p>
+              <strong>Game Rules & Conduct:</strong> Players must adhere to all HFL rules and scoring systems. 
+              Any attempt to manipulate game results, engage in unfair play, or abuse the system will result in immediate disqualification.
+            </p>
+            <p>
+              <strong>Privacy & Data Usage:</strong> HFL respects your privacy. We collect and store necessary user data for account management and game functionality. 
+              Your information will not be sold to third parties.
+            </p>
+            <p>
+              <strong>Limitation of Liability:</strong> HFL is provided “as-is” without any guarantees. We are not responsible for any losses, including but not limited to
+              game performance, system downtime, or miscalculations.
+            </p>
+            <p>
+              <strong>Modifications to Terms:</strong> HFL reserves the right to update or modify these terms at any time. Continued participation in the game 
+              constitutes acceptance of any updates.
+            </p>
           </div>
         )}
 
@@ -168,24 +207,42 @@ function HelpPage() {
           <div className="faq-section">
             {/* Frequently Asked Questions */}
             <h2>Frequently Asked Questions (FAQs)</h2>
+            {/* General Questions */}
             <div className="faq-item">
-              <button className="faq-question" onClick={() => toggleSection("general")}> 
+              <button className="faq-question" onClick={() => toggleSection("general")}>
                 {openSections["general"] ? "▼" : "▶"} General Questions
               </button>
               {openSections["general"] && (
                 <div className="faq-answer visible">
-                  <p>Here are answers to some common questions.</p>
+                  <strong>What is Hater Fantasy League?</strong>
+                  <p>HFL is a fantasy game where you earn points for predicting the worst-performing NBA players.</p>
+
+                  <strong>How do I play?</strong>
+                  <p>Draft a team of flops, set your lineup, and compete for the lowest scores each week.</p>
+
+                  <strong>How do I win?</strong>
+                  <p>The player with the most flop points at the end of the season wins.</p>
+
+                  <strong>When does the season start?</strong>
+                  <p>HFL runs parallel to the NBA season. You can join at any time.</p>
                 </div>
               )}
             </div>
-
+            {/* Account Issues */}
             <div className="faq-item">
-              <button className="faq-question" onClick={() => toggleSection("account")}> 
+              <button className="faq-question" onClick={() => toggleSection("account")}>
                 {openSections["account"] ? "▼" : "▶"} Account Issues
               </button>
               {openSections["account"] && (
                 <div className="faq-answer visible">
-                  <p>Having trouble with your account? Here’s what you can do.</p>
+                  <strong>I forgot my password. What should I do?</strong>
+                  <p>Click "Forgot Password" on the login page and follow the instructions to reset your password.</p>
+
+                  <strong>My account was suspended. Why?</strong>
+                  <p>Accounts may be suspended for violating the community guidelines or using multiple accounts unfairly.</p>
+
+                  <strong>How do I contact support?</strong>
+                  <p>You can reach out to our support team via one of the following emails <strong>a.kanan@wustl.edu, a.sow@wustl.edu, a.feenstra@wustl.edu,	or r.weikai@wustl.edu</strong>.</p>
                 </div>
               )}
             </div>
@@ -198,6 +255,7 @@ function HelpPage() {
             <p>Check out the latest game updates and announcements.</p>
           </div>
         )}
+
       </div>
     </div>
   );
