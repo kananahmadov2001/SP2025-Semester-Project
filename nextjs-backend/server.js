@@ -1,47 +1,84 @@
-// server.js
+import express from "express";
+import http from "http";
+import { Server } from "socket.io";
+import cors from "cors";
+import mysql from "mysql2/promise"; // Import mysql2 with promise support
+import dotenv from "dotenv";
 
-const express = require("express");
-const http = require("http");
-const next = require("next");
-const socketIo = require("socket.io");
+// Initialize dotenv to use environment variables
+dotenv.config();
 
-const dev = process.env.NODE_ENV !== "production";
-const app = next({ dev });
-const handle = app.getRequestHandler();
+const app = express();
+const server = http.createServer(app);
 
-app.prepare().then(() => {
-    const server = express();
-    const httpServer = http.createServer(server);
-    const io = socketIo(httpServer, {
-        cors: {
-            origin: "*", // Allow all origins (or specify your frontend URL)
-            methods: ["GET", "POST"]
+// CORS configuration: explicitly specify the origin and allow credentials
+const corsOptions = {
+    origin: "http://localhost:5173", // Allow requests from this frontend URL
+    methods: ["GET", "POST"], // Allow only GET and POST methods
+    credentials: true, // Allow credentials (cookies, HTTP authentication)
+};
+
+app.use(cors(corsOptions));
+
+const io = new Server(server, {
+    cors: {
+        origin: "http://localhost:5173", // Allow requests from this frontend URL
+        methods: ["GET", "POST"], // Allow only GET and POST methods
+        credentials: true, // Allow credentials for WebSocket connections
+    },
+});
+
+
+// Set up MySQL connection pool directly in server.js
+const pool = mysql.createPool({
+    host: process.env.DB_HOST || "localhost",
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
+    waitForConnections: true,
+    connectionLimit: 10, // Maximum connections to prevent overload
+    queueLimit: 0,
+});
+
+
+app.use(express.json());
+
+// WebSocket connection
+io.on("connection", (socket) => {
+    console.log("User connected:", socket.id);
+
+    socket.on("sendMessage", async ({ username, message }) => {
+        if (!username || !message) return;
+
+        try {
+            // Query the database to insert the message
+            const [result] = await pool.query("INSERT INTO messages (username, message) VALUES (?, ?)", [username, message]);
+            const newMessage = { id: result.insertId, username, message, timestamp: new Date() };
+
+            // Broadcast message to all clients
+            io.emit("receiveMessage", newMessage);
+        } catch (err) {
+            console.error("Error saving message:", err);
         }
     });
 
-    // Handle socket connection
-    io.on("connection", (socket) => {
-        console.log("a user connected");
-
-        // Handle receiving a global chat message
-        socket.on("globalMessage", (message) => {
-            console.log("Global message received:", message);
-            // Broadcast message to all other clients
-            socket.broadcast.emit("globalMessage", message);
-        });
-
-        socket.on("disconnect", () => {
-            console.log("user disconnected");
-        });
+    socket.on("disconnect", () => {
+        console.log("User disconnected:", socket.id);
     });
+});
 
-    server.all("*", (req, res) => {
-        return handle(req, res);
-    });
+// Fetch messages from MySQL
+app.get("/messages", async (req, res) => {
+    try {
+        const [messages] = await pool.query("SELECT * FROM messages ORDER BY timestamp DESC");
+        res.json(messages);
+    } catch (err) {
+        console.error("Error fetching messages:", err);
+        res.status(500).json({ error: "Database error" });
+    }
+});
 
-    const port = 3000;
-    httpServer.listen(port, (err) => {
-        if (err) throw err;
-        console.log(`> Ready on http://localhost:${port}`);
-    });
+// Start the server
+server.listen(3000, () => {
+    console.log("Server running on port 3000");
 });

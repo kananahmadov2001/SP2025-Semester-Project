@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, Navigate } from "react-router-dom";
 import "./TrashTalkPage.css";
 import io from "socket.io-client";
+import axios from "axios";
 
 const socket = io("http://localhost:3000"); // Connect to the backend
 
@@ -39,19 +40,29 @@ function TrashTalkPage() {
     },
   ]);
 
+  // ✅ Fetch messages from MySQL on component mount
   useEffect(() => {
-    // Listen for global messages from the server
-    socket.on("globalMessage", (message) => {
-      const newMessage = {
-        ...message,
-        isSelf: false,
-      };
-      setGlobalTrashTalk((prev) => [...prev, newMessage]);
+    const fetchMessages = async () => {
+      try {
+        const response = await axios.get("http://localhost:3000/messages");
+        console.log("hi");
+        setGlobalTrashTalk(response.data.reverse()); // Reverse to show oldest first
+        console.log(globalTrashTalk);
+        console.log("hi2");
+      } catch (error) {
+        console.error("Error fetching messages:", error);
+      }
+    };
+
+    fetchMessages();
+
+    // ✅ Listen for new messages via WebSocket
+    socket.on("receiveMessage", (message) => {
+      setGlobalTrashTalk((prev) => [...prev, message]); // Append new messages
     });
 
-    // Cleanup on component unmount
     return () => {
-      socket.off("globalMessage");
+      socket.off("receiveMessage");
     };
   }, []);
 
@@ -60,20 +71,20 @@ function TrashTalkPage() {
     navigate("/");          // Redirect to home (or wherever you want)
   }
 
+  // ✅ Send message
   const handleGlobalPost = () => {
-    if (globalMessage.trim() !== "") {
-      // We can show the actual user.name instead of "You"
-      const newMessage = {
-        id: globalTrashTalk.length + 1,
-        user: user?.name || "You",
-        text: globalMessage,
-        isSelf: true,
-      };
-      socket.emit("globalMessage", newMessage); // Send message to the server
-      setGlobalTrashTalk([...globalTrashTalk, newMessage]);
-      setGlobalMessage("");
+    if (globalMessage.trim() === "") return;
+
+    const newMessage = {
+      username: user?.name || "Anonymous", // Ensure username is set
+      message: globalMessage,
     }
+
+    // Emit message via WebSocket (backend will save to MySQL)
+    socket.emit("sendMessage", newMessage);
+    setGlobalMessage(""); // Clear input
   };
+
 
   const handleLeaguePost = () => {
     if (leagueMessage.trim() !== "") {
@@ -99,9 +110,9 @@ function TrashTalkPage() {
             {globalTrashTalk.map((post) => (
               <div
                 key={post.id}
-                className={`chat-message ${post.isSelf ? "self" : "other"}`}
+                className={`chat-message ${post.username == user.name ? "self" : "other"}`}
               >
-                <strong>{post.user}:</strong> {post.text}
+                <strong>{post.username}:</strong> {post.message}
               </div>
             ))}
           </div>
