@@ -1,5 +1,3 @@
-// server.js
-
 const express = require("express");
 const http = require("http");
 const next = require("next");
@@ -23,13 +21,28 @@ app.prepare().then(() => {
     io.on("connection", (socket) => {
         console.log("a user connected");
 
-        // Handle receiving a global chat message
+        // Listen for when a user selects a league (join a league chat room)
+        socket.on("joinLeague", (leagueId) => {
+            console.log(`User joined league: ${leagueId}`);
+            // Join the room for the selected league
+            socket.join(leagueId);
+        });
+
+        // Listen for global chat messages
         socket.on("globalMessage", (message) => {
             console.log("Global message received:", message);
-            // Broadcast message to all other clients
+            // Broadcast to all users except the sender
             socket.broadcast.emit("globalMessage", message);
         });
 
+        // Listen for league chat messages and broadcast to that specific league room
+        socket.on("leagueMessage", (message, leagueId) => {
+            console.log(`League message received for league ${leagueId}:`, message);
+            // Broadcast to only users in the specific league's room
+            io.to(leagueId).emit("leagueMessage", message);
+        });
+
+        // Disconnect
         socket.on("disconnect", () => {
             console.log("user disconnected");
         });
