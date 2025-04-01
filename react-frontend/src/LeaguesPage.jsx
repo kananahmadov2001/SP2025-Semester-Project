@@ -87,8 +87,7 @@ function LeaguesPage() {
           leagueMembers = membersData.league_members;
         }
 
-        // Merge each member with their total_score and highlight if it's the user
-        // Default score to 0 if not found
+        // Merge each member with their total_score
         leagueMembers = leagueMembers.map((m) => ({
           ...m,
           total_score: userScoreMap[m.user_id] || 0,
@@ -105,7 +104,6 @@ function LeaguesPage() {
       }
 
       // 4) Reorder so that user’s joined leagues appear first
-      // A league is joined by user if any member has user_id = user.userId
       const myLeagues = leaguesWithMembers.filter((l) =>
         l.members.some((m) => m.user_id === Number(user.userId))
       );
@@ -135,7 +133,10 @@ function LeaguesPage() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
-        body: JSON.stringify({ leagueName: newLeagueName }),
+        body: JSON.stringify({
+          leagueName: newLeagueName,
+          userId: user.userId,
+        }),
       });
       const data = await response.json();
       if (!response.ok) throw new Error(data.error || "Failed to create league.");
@@ -278,7 +279,7 @@ function LeaguesPage() {
                   ))}
                 </ul>
 
-                {/* Quit League */}
+                {/* Quit League Button */}
                 {isUserInLeague && (
                   <button
                     className="quit-league-btn"
