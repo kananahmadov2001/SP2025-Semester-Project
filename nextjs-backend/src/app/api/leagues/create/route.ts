@@ -17,13 +17,16 @@ export async function POST(req: Request) {
     }
 
     const connection = await pool.getConnection();
-    await connection.execute(
+    const [result]: any = await connection.execute(
       `INSERT INTO leagues (league_name) VALUES (?)`,
       [leagueName]
     );
     connection.release();
 
-    return NextResponse.json({ message: "✅ League created successfully!" });
+    return NextResponse.json({
+      message: "✅ League created successfully!",
+      leagueID: result.insertId,
+    });
   } catch (error) {
     console.error("❌ Error creating league:", error);
     return NextResponse.json({ error: "Failed to create league" }, { status: 500 });
