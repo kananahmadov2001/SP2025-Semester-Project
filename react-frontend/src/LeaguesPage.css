@@ -141,9 +141,17 @@
 .user-list-row {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 0;
   font-size: 14px;
   margin-top: 10px;
+}
+
+/* Add a bullet between each user (but not after the last) */
+.user-list-row span:not(:last-child)::after {
+  content: " •";
+  margin-left: 6px;
+  margin-right: 6px;
+  color: #888;
 }
 
 /* highlight the current user in the membership list */
