@@ -12,7 +12,8 @@ import {
 } from "./config/constants";
 import { getCourtType } from "./utils/utilityFunctions";
 import { UseAuth } from "./context/AuthContext";
-import defaultPlayerImg from "./assets/bb-player-placeholder.jpg"; 
+import defaultPlayerImg from "./assets/bb-player-placeholder.jpg";
+import getPlayerImage from "./getPlayerImage";
 
 /**
  * Utility to display a numeric pagination bar:
@@ -369,7 +370,7 @@ function DraftPlayerPage() {
                   <div key={player.id} className="draft-player-card">
                     {/* Player Image */}
                     <div className="player-image-container">
-                        <img src={defaultPlayerImg} alt={player.firstname} className="player-card-image" />
+                      <img src={getPlayerImage(player.team)} alt={player.firstname} className="player-card-image" />
                     </div>
                     <h3>
                       {player.firstname} {player.lastname}
