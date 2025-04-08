@@ -21,9 +21,9 @@
   margin-bottom: 20px;
 }
 
+/* ========== CREATE LEAGUE SECTION ========== */
 .league-actions {
   display: flex;
-
   justify-content: center;
   gap: 100px;
   margin-bottom: 40px;
@@ -31,8 +31,7 @@
   padding: 0 40px;
 }
 
-.create-league,
-.join-league {
+.create-league {
   width: 50%;
   padding: 30px;
   border-radius: 12px;
@@ -41,22 +40,19 @@
   transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }
 
-.create-league:hover,
-.join-league:hover {
+.create-league:hover {
   transform: scale(1.03);
   box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
 }
 
-.create-league h3,
-.join-league h3 {
+.create-league h3 {
   font-size: 24px;
   font-weight: bold;
   color: #35509a;
   margin-bottom: 15px;
 }
 
-.create-league input,
-.join-league input {
+.create-league input {
   width: 80%;
   padding: 10px;
   font-size: 16px;
@@ -65,8 +61,7 @@
   border: 1px solid #ccc;
 }
 
-.create-league button,
-.join-league button {
+.create-league button {
   background: linear-gradient(45deg, #35509a, #01a8fc);
   color: white;
   font-size: 16px;
@@ -78,12 +73,12 @@
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.create-league button:hover,
-.join-league button:hover {
+.create-league button:hover {
   transform: scale(1.05);
   box-shadow: 0px 6px 20px rgba(0, 4, 255, 0.4);
 }
 
+/* ========== LEAGUE LIST SECTION ========== */
 .league-list {
   padding: 30px;
   background: #f9f9f9;
@@ -99,18 +94,6 @@
   text-transform: uppercase;
 }
 
-.league-list ul {
-  list-style: none;
-  padding: 0;
-}
-
-.user-list li {
-  font-size: 15px;
-  color: #666;
-  line-height: 1.4;
-}
-
-/* League Cards */
 .league-cards {
   display: flex;
   flex-wrap: wrap;
@@ -118,6 +101,7 @@
   justify-content: center;
 }
 
+/* Individual league card */
 .league-card {
   width: 300px;
   background-color: #ffffff;
@@ -149,31 +133,27 @@
 /* highlight-league: user is in this league */
 .league-card.highlight-league {
   border: 3px solid #289f53;
-  /* or any accent color */
   background-color: #e6ffe6;
   /* subtle highlight */
 }
 
-/* highlighted-user: This user in the membership list */
+/* ========== DENSE USER-LIST (NO SCORES) ========== */
+.user-list-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+/* highlight the current user in the membership list */
 .highlighted-user {
   color: #d9534f;
   font-weight: bold;
 }
 
-.join-league-btn {
-  margin-top: 12px;
-  padding: 8px 14px;
-  font-size: 14px;
-  font-weight: bold;
-  border: none;
-  border-radius: 6px;
-  background: linear-gradient(45deg, #01a8fc, #35509a);
-  color: #fff;
-  cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  display: block;
-}
-
+/* Join & Quit Buttons */
+.join-league-btn,
 .quit-league-btn {
   margin-top: 12px;
   padding: 8px 14px;
@@ -181,11 +161,18 @@
   font-weight: bold;
   border: none;
   border-radius: 6px;
-  background: linear-gradient(45deg, #f44336, #ff7961);
   color: #fff;
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   display: block;
+}
+
+.join-league-btn {
+  background: linear-gradient(45deg, #01a8fc, #35509a);
+}
+
+.quit-league-btn {
+  background: linear-gradient(45deg, #f44336, #ff7961);
 }
 
 .quit-league-btn:hover {
@@ -193,7 +180,7 @@
   box-shadow: 0px 4px 14px rgba(255, 79, 79, 0.3);
 }
 
-/* New container for league detail info */
+/* ========== LEAGUE DETAIL VIEW ========== */
 .league-detail-container {
   margin-top: 30px;
   padding: 30px;
@@ -206,16 +193,22 @@
   text-align: left;
 }
 
+/* "Back to All Leagues" is top-left, heading is next to it */
+.detail-header-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
 .league-detail-container h2 {
   font-size: 24px;
   color: #35509a;
-  margin-bottom: 15px;
-  text-align: center;
+  margin: 0;
 }
 
 /* "Back to All Leagues" button */
 .back-leagues-btn {
-  margin-top: 20px;
   padding: 8px 14px;
   font-size: 14px;
   font-weight: bold;
@@ -225,10 +218,23 @@
   color: #fff;
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-  display: block;
 }
 
 .back-leagues-btn:hover {
   transform: scale(1.05);
   box-shadow: 0px 4px 14px rgba(100, 100, 100, 0.3);
+}
+
+/* Detailed user list with scores */
+.user-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 10px;
+}
+
+.user-list li {
+  font-size: 15px;
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 6px;
 }
