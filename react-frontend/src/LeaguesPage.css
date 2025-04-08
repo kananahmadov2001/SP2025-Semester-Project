@@ -23,7 +23,8 @@
 
 .league-actions {
   display: flex;
-  justify-content: space-between;
+
+  justify-content: center;
   gap: 100px;
   margin-bottom: 40px;
   position: relative;
@@ -157,6 +158,20 @@
 .highlighted-user {
   color: #d9534f;
   font-weight: bold;
+}
+
+.join-league-btn {
+  margin-top: 12px;
+  padding: 8px 14px;
+  font-size: 14px;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  background: linear-gradient(45deg, #01a8fc, #35509a);
+  color: #fff;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: block;
 }
 
 .quit-league-btn {
