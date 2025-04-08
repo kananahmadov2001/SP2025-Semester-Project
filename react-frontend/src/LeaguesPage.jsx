@@ -21,9 +21,8 @@ function LeaguesPage() {
   // List of all leagues (with membership & score info)
   const [leagues, setLeagues] = useState([]);
 
-  // Input fields for creating or joining a league
+  // Input fields for creating a league
   const [newLeagueName, setNewLeagueName] = useState("");
-  const [joinLeagueId, setJoinLeagueId] = useState("");
 
   // Display messages (success/error)
   const [message, setMessage] = useState("");
@@ -155,22 +154,19 @@ function LeaguesPage() {
   /**
    * Handle joining a league by ID
    */
-  async function handleJoinLeague() {
+  async function handleJoinLeague(leagueId) {
     setMessage("");
-    if (!joinLeagueId.trim()) return;
-
     try {
       const response = await fetch(`${LEAGUES_URL}/join`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
-        body: JSON.stringify({ userId: user.userId, leagueId: joinLeagueId }),
+        body: JSON.stringify({ userId: user.userId, leagueId }),
       });
       const data = await response.json();
       if (!response.ok) throw new Error(data.error || "Failed to join league.");
 
       setMessage("Successfully joined league!");
-      setJoinLeagueId("");
 
       // Refresh data
       fetchAllData();
@@ -226,17 +222,6 @@ function LeaguesPage() {
           />
           <button onClick={handleCreateLeague}>Create League</button>
         </div>
-
-        <div className="join-league">
-          <h3>Join a League</h3>
-          <input
-            type="text"
-            placeholder="Enter league ID"
-            value={joinLeagueId}
-            onChange={(e) => setJoinLeagueId(e.target.value)}
-          />
-          <button onClick={handleJoinLeague}>Join League</button>
-        </div>
       </div>
 
       {/* List of Leagues */}
@@ -278,6 +263,16 @@ function LeaguesPage() {
                     </li>
                   ))}
                 </ul>
+
+                {/* Join League Button */}
+                {!isUserInLeague && (
+                  <button
+                    className="join-league-btn"
+                    onClick={() => handleJoinLeague(league.league_id)}
+                  >
+                    Join League
+                  </button>
+                )}
 
                 {/* Quit League Button */}
                 {isUserInLeague && (
