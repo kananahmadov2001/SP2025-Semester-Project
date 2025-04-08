@@ -144,6 +144,9 @@ function TrashTalkPage() {
   // Handle selecting a league
   const handleLeagueSelection = (leagueId) => {
     setSelectedLeague(leagueId);
+    // Clear previous league messages
+    setLeagueTrashTalk([]); // Clear previous messages
+
     // Notify the server that the user has joined a league
     socket.emit("joinLeague", leagueId);
   };
