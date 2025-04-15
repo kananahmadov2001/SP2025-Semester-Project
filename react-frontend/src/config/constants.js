@@ -15,6 +15,7 @@ export const FANTASY_ADD_URL = `${API_URL}/fantasy/add`;
 export const FANTASY_REMOVE_URL = `${API_URL}/fantasy/remove`;
 export const FANTASY_TEAM_URL = `${API_URL}/fantasy/team`;
 export const PLAYER_SCORE_URL = `${API_URL}/fantasy/scores`;
+export const TOP_5_PLAYERS_URL = `${API_URL}/top-players`;
 
 // Endpoint for players:
 export const PLAYERS_URL = `${API_URL}/players`;

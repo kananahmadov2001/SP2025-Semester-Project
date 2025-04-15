@@ -5,6 +5,8 @@ import { UseAuth } from "./context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { LEAGUES_URL, LEADERBOARD_URL } from "./config/constants";
 import "./LeaguesPage.css";
+import LeagueChat from "./LeagueChat"; // Import the LeagueChat component
+
 
 /**
  * LeaguesPage:
@@ -380,6 +382,9 @@ function LeagueDetailView({ league, user, onBack, onQuit }) {
           Quit League
         </button>
       )}
+      {/* 💬 League Chat */}
+      <LeagueChat selectedLeague={league.league_id} user={user} />
+
     </div>
   );
 }
