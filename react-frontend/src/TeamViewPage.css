@@ -281,5 +281,96 @@
   height: 100px;
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid #ffd700; /* Gold border */
+  border: 2px solid #ffd700;
+  /* Gold border */
+}
+
+
+.top-weekly-players {
+  background-color: #fff9f0;
+  padding: 1rem;
+  margin: 1rem 0;
+  border-left: 5px solid orange;
+  border-radius: 10px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.top-weekly-players h3 {
+  margin-bottom: 0.5rem;
+  color: #e67e22;
+}
+
+.top-weekly-players ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.top-weekly-players li {
+  margin: 0.4rem 0;
+}
+
+/* Container for the top 5 players section */
+.top-weekly-players {
+  margin-top: 1.5rem;
+  font-family: Arial, sans-serif;
+}
+
+/* Header styling */
+.top-players-header {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Loading text */
+.loading-text {
+  color: #6b6b6b;
+  font-style: italic;
+}
+
+/* List of players */
+.players-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Each player item */
+.player-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.8rem;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+/* Ranking styling */
+.rank {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #1a73e8;
+  width: 24px;
+  text-align: right;
+  margin-right: 10px;
+}
+
+/* Player name styling */
+.player-name {
+  font-weight: 600;
+  color: #333;
+}
+
+/* Player score styling */
+.player-score {
+  font-size: 0.9rem;
+  color: #6b6b6b;
+}
+
+/* Highlight #1 with special styling */
+.players-list .player-item:nth-child(1) .rank {
+  color: #ff9800;
+  /* Orange for #1 player */
 }

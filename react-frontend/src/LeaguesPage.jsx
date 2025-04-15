@@ -5,14 +5,15 @@ import { UseAuth } from "./context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { LEAGUES_URL, LEADERBOARD_URL } from "./config/constants";
 import "./LeaguesPage.css";
+import LeagueChat from "./LeagueChat"; // Import the LeagueChat component
+
 
 /**
  * LeaguesPage:
  * - Displays all available leagues
  * - Shows which leagues the current user has joined
- * - Lists each league's members along with their total HFL scores
- * - Highlights the league(s) the user is in and highlights the user in that league
  * - Allows user to create, join, and quit a league
+ * - Includes a "League Detail" view for deeper management info
  */
 function LeaguesPage() {
   const { user } = UseAuth();
@@ -21,37 +22,39 @@ function LeaguesPage() {
   // List of all leagues (with membership & score info)
   const [leagues, setLeagues] = useState([]);
 
-  // Input fields for creating or joining a league
+  // Input fields for creating a league
   const [newLeagueName, setNewLeagueName] = useState("");
-  const [joinLeagueId, setJoinLeagueId] = useState("");
 
   // Display messages (success/error)
   const [message, setMessage] = useState("");
 
-  // Loading states
+  // Loading indicator
   const [isLoading, setIsLoading] = useState(false);
 
+  // If this is not null, we show the "LeagueDetailView" instead of the main list
+  const [selectedLeague, setSelectedLeague] = useState(null);
+
   /**
-   * On mount: fetch scoreboard (all user scores), then fetch leagues, then fetch each league's members,
-   * merge scores into members, and reorder the leagues so that user's leagues come first.
+   * On mount: fetch scoreboard (all user scores), then fetch leagues & members,
+   * merge scores, reorder by “joined first,” etc.
    */
   useEffect(() => {
-    if (!user) return; // Should be protected route, but just in case
+    if (!user) return; // Should be protected route, but we guard anyway
     fetchAllData();
   }, [user]);
 
   /**
-   * Fetches everything needed:
-   *  1) All user scores from the global scoreboard.
-   *  2) All leagues
-   *  3) For each league, fetch the league's members
-   *  4) Merge scores, highlight user, reorder leagues so user’s leagues appear first
+   * fetchAllData:
+   *   1) fetch the entire scoreboard (unpaginated) -> userScoreMap
+   *   2) fetch all leagues
+   *   3) for each league, fetch its members, merge scores, sort them
+   *   4) reorder so user’s joined leagues appear first
    */
   async function fetchAllData() {
     try {
       setIsLoading(true);
 
-      // 1) Fetch large scoreboard so we have everyone's total_score
+      // 1) Fetch scoreboard
       const scoresResp = await fetch(`${LEADERBOARD_URL}?page=1&limit=999999`, {
         credentials: "include",
       });
@@ -59,7 +62,7 @@ function LeaguesPage() {
       if (!scoresResp.ok || !scoresData.leaderboard) {
         throw new Error(scoresData.error || "Failed to fetch scoreboard data.");
       }
-      // Create a map: user_id -> total_score
+      // Create map user_id -> total_score
       const userScoreMap = {};
       scoresData.leaderboard.forEach((row) => {
         userScoreMap[row.user_id] = row.total_score;
@@ -73,7 +76,7 @@ function LeaguesPage() {
       }
       let allLeagues = leaguesData.leagues || [];
 
-      // 3) For each league, fetch the league's members and merge scores
+      // 3) For each league, fetch that league's members
       const leaguesWithMembers = [];
       for (const league of allLeagues) {
         // GET /leagues?leagueId=xxx -> returns { league_members: [ {user_id, username}, ... ] }
@@ -87,13 +90,13 @@ function LeaguesPage() {
           leagueMembers = membersData.league_members;
         }
 
-        // Merge each member with their total_score
+        // Merge each member with total_score, default 0 if missing
         leagueMembers = leagueMembers.map((m) => ({
           ...m,
           total_score: userScoreMap[m.user_id] || 0,
         }));
 
-        // Sort members by total_score descending
+        // Sort members by descending score
         leagueMembers.sort((a, b) => b.total_score - a.total_score);
 
         leaguesWithMembers.push({
@@ -113,6 +116,8 @@ function LeaguesPage() {
 
       // Put user leagues at the top
       setLeagues([...myLeagues, ...otherLeagues]);
+      // Clear any selected league if reloading data
+      setSelectedLeague(null);
     } catch (err) {
       console.error("Error in fetchAllData:", err);
       setMessage(err.message);
@@ -129,7 +134,7 @@ function LeaguesPage() {
     if (!newLeagueName.trim()) return;
 
     try {
-      const response = await fetch(`${LEAGUES_URL}/create`, {
+      const resp = await fetch(`${LEAGUES_URL}/create`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
@@ -138,14 +143,14 @@ function LeaguesPage() {
           userId: user.userId,
         }),
       });
-      const data = await response.json();
-      if (!response.ok) throw new Error(data.error || "Failed to create league.");
+      const data = await resp.json();
+      if (!resp.ok) throw new Error(data.error || "Failed to create league.");
 
       setMessage(`League '${newLeagueName}' created successfully!`);
       setNewLeagueName("");
 
       // Refresh data
-      fetchAllData();
+      await fetchAllData();
     } catch (err) {
       console.error(err);
       setMessage(err.message);
@@ -153,27 +158,24 @@ function LeaguesPage() {
   }
 
   /**
-   * Handle joining a league by ID
+   * handleJoinLeague: user clicks "Join" on a league they are not in
    */
-  async function handleJoinLeague() {
+  async function handleJoinLeague(leagueId) {
     setMessage("");
-    if (!joinLeagueId.trim()) return;
-
     try {
-      const response = await fetch(`${LEAGUES_URL}/join`, {
+      const resp = await fetch(`${LEAGUES_URL}/join`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
-        body: JSON.stringify({ userId: user.userId, leagueId: joinLeagueId }),
+        body: JSON.stringify({ userId: user.userId, leagueId }),
       });
-      const data = await response.json();
-      if (!response.ok) throw new Error(data.error || "Failed to join league.");
+      const data = await resp.json();
+      if (!resp.ok) throw new Error(data.error || "Failed to join league.");
 
       setMessage("Successfully joined league!");
-      setJoinLeagueId("");
 
       // Refresh data
-      fetchAllData();
+      await fetchAllData();
     } catch (err) {
       console.error(err);
       setMessage(err.message);
@@ -181,40 +183,53 @@ function LeaguesPage() {
   }
 
   /**
-   * Handle quitting (leaving) a league if the user is already in it.
+   * handleQuitLeague: user clicks "Quit" on a league they are in
    */
   async function handleQuitLeague(leagueId) {
     setMessage("");
 
     try {
       // Send DELETE request to /leagues/quit
-      const response = await fetch(`${LEAGUES_URL}/quit`, {
+      const resp = await fetch(`${LEAGUES_URL}/quit`, {
         method: "DELETE",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
         body: JSON.stringify({ userId: user.userId, leagueId }),
       });
-      const data = await response.json();
-      if (!response.ok) {
+      const data = await resp.json();
+      if (!resp.ok) {
         throw new Error(data.error || "Failed to quit league.");
       }
 
       setMessage(data.message || "You have left the league.");
       // Refresh data
-      fetchAllData();
+      await fetchAllData();
     } catch (err) {
       console.error(err);
       setMessage(err.message);
     }
   }
 
-  // ---- RENDER ----
+  /**
+   * handleLeagueCardClick:
+   * If user is in the league, show the "LeagueDetailView" for deeper info
+   */
+  function handleLeagueCardClick(league) {
+    const isUserInLeague = league.members.some(
+      (m) => m.user_id === Number(user.userId)
+    );
+    if (!isUserInLeague) return; // do nothing if user not in league
+
+    setSelectedLeague(league);
+    setMessage("");
+  }
+
   return (
     <div className="leagues-page">
       <h1>League Management</h1>
       {message && <p className="message">{message}</p>}
 
-      {/* Create / Join League UI */}
+      {/* ---------- CREATE LEAGUE UI ---------- */}
       <div className="league-actions">
         <div className="create-league">
           <h3>Create a League</h3>
@@ -226,75 +241,150 @@ function LeaguesPage() {
           />
           <button onClick={handleCreateLeague}>Create League</button>
         </div>
-
-        <div className="join-league">
-          <h3>Join a League</h3>
-          <input
-            type="text"
-            placeholder="Enter league ID"
-            value={joinLeagueId}
-            onChange={(e) => setJoinLeagueId(e.target.value)}
-          />
-          <button onClick={handleJoinLeague}>Join League</button>
-        </div>
       </div>
 
-      {/* List of Leagues */}
-      <div className="league-list">
-        <h2>Available Leagues</h2>
-        {isLoading && <p>Loading leagues...</p>}
+      {/* ---------- MAIN CONTENT ---------- */}
+      {selectedLeague ? (
+        // Show the detail view if selected
+        <LeagueDetailView
+          league={selectedLeague}
+          user={user}
+          onBack={() => setSelectedLeague(null)}
+          onQuit={handleQuitLeague}
+        />
+      ) : (
+        // Otherwise list all leagues
+        <div className="league-list">
+          <h2>Available Leagues</h2>
+          {isLoading && <p>Loading leagues...</p>}
 
-        {!isLoading && leagues.length === 0 && (
-          <p>No leagues found. Create one above!</p>
-        )}
+          {!isLoading && leagues.length === 0 && (
+            <p>No leagues found. Create one above!</p>
+          )}
 
-        <div className="league-cards">
-          {leagues.map((league) => {
-            // Check if user is in this league
-            const isUserInLeague = league.members.some(
-              (m) => m.user_id === Number(user.userId)
-            );
+          <div className="league-cards">
+            {leagues.map((league) => {
+              // Check if user is in this league
+              const isUserInLeague = league.members.some(
+                (m) => m.user_id === Number(user.userId)
+              );
 
-            return (
-              <div
-                key={league.league_id}
-                className={`league-card ${isUserInLeague ? "highlight-league" : ""}`}
-              >
-                <p className="league-name">
-                  <strong>{league.league_name}</strong>{" "}
-                  {isUserInLeague && <span className="joined-tag">[Joined]</span>}
-                </p>
-                <p className="league-id">League ID: {league.league_id}</p>
+              return (
+                <div
+                  key={league.league_id}
+                  className={`league-card ${isUserInLeague ? "highlight-league" : ""
+                    }`}
+                  onClick={() => handleLeagueCardClick(league)}
+                  style={{ cursor: isUserInLeague ? "pointer" : "default" }}
+                >
+                  <p className="league-name">
+                    <strong>{league.league_name}</strong>{" "}
+                    {isUserInLeague && <span className="joined-tag">[Joined]</span>}
+                  </p>
+                  <p className="league-id">League ID: {league.league_id}</p>
 
-                <p>Members: {league.members.length} / 8</p>
-                <ul className="user-list">
-                  {league.members.map((u) => (
-                    <li
-                      key={u.user_id}
-                      className={u.user_id === Number(user.userId) ? "highlighted-user" : ""}
+                  <p>Members: {league.members.length} / 8</p>
+                  <div className="user-list-row">
+                    {league.members.map((u) => (
+                      <span
+                        key={u.user_id}
+                        className={
+                          u.user_id === Number(user.userId)
+                            ? "highlighted-user"
+                            : ""
+                        }
+                      >
+                        {u.username || `User ${u.user_id}`}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* If not joined, show a "Join" button */}
+                  {!isUserInLeague && (
+                    <button
+                      className="join-league-btn"
+                      onClick={(e) => {
+                        e.stopPropagation(); // don’t trigger card click
+                        handleJoinLeague(league.league_id);
+                      }}
                     >
-                      {u.username || `User ${u.user_id}`} —{" "}
-                      <strong>{u.total_score} pts</strong>
-                    </li>
-                  ))}
-                </ul>
+                      Join League
+                    </button>
+                  )}
 
-                {/* Quit League Button */}
-                {isUserInLeague && (
-                  <button
-                    className="quit-league-btn"
-                    onClick={() => handleQuitLeague(league.league_id)}
-                  >
-                    Quit League
-                  </button>
-                )}
-              </div>
-            );
-          })}
+                  {/* If joined, show a "Quit" button */}
+                  {isUserInLeague && (
+                    <button
+                      className="quit-league-btn"
+                      onClick={(e) => {
+                        e.stopPropagation(); // don’t trigger card click
+                        handleQuitLeague(league.league_id);
+                      }}
+                    >
+                      Quit League
+                    </button>
+                  )}
+                </div>
+              );
+            })}
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }
 
 export default LeaguesPage;
+
+/**
+ * LeagueDetailView:
+ *  A detailed management view of a single league (shows user scores).
+ */
+function LeagueDetailView({ league, user, onBack, onQuit }) {
+  const isUserInLeague = league.members.some(
+    (m) => m.user_id === Number(user.userId)
+  );
+
+  return (
+    <div className="league-detail-container">
+      <div className="detail-header-row">
+        <button className="back-leagues-btn" onClick={onBack}>
+          &larr; All Leagues
+        </button>
+        <h2>League Management - {league.league_name}</h2>
+      </div>
+
+      <p className="league-id">League ID: {league.league_id}</p>
+      <p>
+        <strong>Members:</strong> {league.members.length} / 8
+      </p>
+
+      <ul className="user-list">
+        {league.members.map((u) => (
+          <li
+            key={u.user_id}
+            className={
+              u.user_id === Number(user.userId) ? "highlighted-user" : ""
+            }
+          >
+            {u.username || `User ${u.user_id}`} —{" "}
+            <strong>{u.total_score} pts</strong>
+          </li>
+        ))}
+      </ul>
+
+      {/* Show a Quit League button if the user is in the league */}
+      {isUserInLeague && (
+        <button
+          className="quit-league-btn"
+          onClick={() => onQuit(league.league_id)}
+        >
+          Quit League
+        </button>
+      )}
+      {/* 💬 League Chat */}
+      <LeagueChat selectedLeague={league.league_id} user={user} />
+
+    </div>
+  );
+}
