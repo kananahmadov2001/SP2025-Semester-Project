@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import "./SquadSelection.css";
 import { getCourtType } from "../utils/utilityFunctions";
 import PlayerModal from "./PlayerModal";
+import getPlayerImage from "../getPlayerImage";
+
 
 function SquadSelection({ userTeam, onRemovePlayer }) {
     const [viewType, setViewType] = useState("court");
@@ -24,6 +26,7 @@ function SquadSelection({ userTeam, onRemovePlayer }) {
         // 3) Open the modal by setting selectedPlayer
         setSelectedPlayer(player);
     }
+
 
     return (
         <div className="squad-selection-container">
@@ -60,6 +63,13 @@ function SquadSelection({ userTeam, onRemovePlayer }) {
                                 <div key={index} className="fc-slot">
                                     {player ? (
                                         <div className="squad-select-player-card" onClick={() => handlePlayerClick(player)}>
+                                            <div className="player-image">
+                                                <img
+                                                    src={getPlayerImage(player.team)}
+                                                    alt={`${player.firstname} ${player.lastname}`}
+                                                    className="player-logo"
+                                                />
+                                            </div>
                                             <div
                                                 className="player-name"
                                             >
@@ -91,6 +101,13 @@ function SquadSelection({ userTeam, onRemovePlayer }) {
                                 <div key={index + 3} className="fc-slot">
                                     {player ? (
                                         <div className="squad-select-player-card" onClick={() => handlePlayerClick(player)}>
+                                            <div className="player-image">
+                                                <img
+                                                    src={getPlayerImage(player.team)}
+                                                    alt={`${player.firstname} ${player.lastname}`}
+                                                    className="player-logo"
+                                                />
+                                            </div>
                                             <div
                                                 className="player-name"
                                             >
@@ -125,6 +142,13 @@ function SquadSelection({ userTeam, onRemovePlayer }) {
                                 <div key={index} className="bc-slot">
                                     {player ? (
                                         <div className="squad-select-player-card" onClick={() => handlePlayerClick(player)}>
+                                            <div className="player-image">
+                                                <img
+                                                    src={getPlayerImage(player.team)}
+                                                    alt={`${player.firstname} ${player.lastname}`}
+                                                    className="player-logo"
+                                                />
+                                            </div>
                                             <div
                                                 className="player-name"
                                             >
@@ -154,6 +178,13 @@ function SquadSelection({ userTeam, onRemovePlayer }) {
                                 <div key={index + 3} className="bc-slot">
                                     {player ? (
                                         <div className="squad-select-player-card" onClick={() => handlePlayerClick(player)}>
+                                            <div className="player-image">
+                                                <img
+                                                    src={getPlayerImage(player.team)}
+                                                    alt={`${player.firstname} ${player.lastname}`}
+                                                    className="player-logo"
+                                                />
+                                            </div>
                                             <div
                                                 className="player-name"
                                             >
