@@ -8,7 +8,8 @@ import {
   FANTASY_TEAM_URL,
   FANTASY_ADD_URL,
   FANTASY_REMOVE_URL,
-  PLAYERS_URL
+  PLAYERS_URL,
+  TOP_5_PLAYERS_URL
 } from "./config/constants";
 import { getCourtType } from "./utils/utilityFunctions";
 import { UseAuth } from "./context/AuthContext";
@@ -82,11 +83,15 @@ function DraftPlayerPage() {
   const [allPlayers, setAllPlayers] = useState(null); // store after we fetch them
   const [isFetchingAllPlayers, setIsFetchingAllPlayers] = useState(false);
 
+  const [topPlayers, setTopPlayers] = useState([]);
+  const [isFetchingTopPlayers, setIsFetchingTopPlayers] = useState(false);
+
   // ================================ USE EFFECTS ================================
   // 1) Fetch user team whenever user changes
   useEffect(() => {
     if (user) {
       fetchUserTeam(user.userId);
+      fetchTopPlayers();
     }
   }, [user]);
 
@@ -116,6 +121,25 @@ function DraftPlayerPage() {
       console.error("Error fetching user team:", err);
     } finally {
       setIsFetchingTeam(false);
+    }
+  }
+
+  async function fetchTopPlayers() {
+    try {
+      setIsFetchingTopPlayers(true);
+      const resp = await fetch(TOP_5_PLAYERS_URL, { credentials: "include" });
+      const data = await resp.json();
+      console.log("Top players data:", data);
+
+      if (resp.ok && data.players) {
+        setTopPlayers(data.players);
+      } else {
+        console.error("Error fetching top players:", data.error);
+      }
+    } catch (err) {
+      console.error("Error fetching top players:", err);
+    } finally {
+      setIsFetchingTopPlayers(false);
     }
   }
 
@@ -318,7 +342,26 @@ function DraftPlayerPage() {
         )}
       </section>
 
+      {/*-------------- Top 5 Weekly Performers --------------*/}
+      <div className="top-weekly-players">
+        <h3 className="top-players-header">Top 5 Weekly Performers</h3>
+        {isFetchingTopPlayers ? (
+          <p className="loading-text">Loading top players...</p>
+        ) : (
+          <ul className="players-list">
+            {topPlayers.map((player, index) => (
+              <li key={player.id} className="player-item">
+                <span className="rank">{index + 1}.</span>
+                <span className="player-name">{player.firstname} {player.lastname}</span>
+                <span className="player-score">— {player.weekly_score} pts</span>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+
       {/*======================== DRAFT PAGE (right side) ========================*/}
+
       <div className="draft-page">
         <h1>Draft Your Flop Squad</h1>
         <p>Search for players or pick from the worst-performing stars of the week!</p>
@@ -340,6 +383,7 @@ function DraftPlayerPage() {
             </button>
           </div>
 
+
           {/* Random 10 from all pages */}
           <div className="random-players">
             <button className="random-btn" onClick={handleRandom10} disabled={isFetchingAllPlayers}>
@@ -347,6 +391,8 @@ function DraftPlayerPage() {
             </button>
           </div>
         </div>
+
+
 
         {/*-------------- If not in random mode, show pagination --------------*/}
         {!isRandomMode && (
@@ -389,6 +435,7 @@ function DraftPlayerPage() {
             </div>
           )}
         </div>
+
 
         {/*-------------- Player Modal --------------*/}
         {selectedPlayer && (
