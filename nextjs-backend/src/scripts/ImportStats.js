@@ -129,21 +129,30 @@ const fetchGameStatistics = (gameId) => {
           const steals = stats.steals || 0;
           const plusMinus = stats.plusMinus ? parseInt(stats.plusMinus, 10) : 0;
 
-          // ✅ Fantasy Score Calculation (BAD stats = HIGHER score)
-          const missedFG = fga - fgm;
-          const missedFT = fta - ftm;
-          const missed3P = tpa - tpm;
-          const plusMinusPenalty = Math.floor(plusMinus / 5);
+          const parseMinutes = (minStr) => {
+            if (!minStr || typeof minStr !== "string") return 0;
+            const [mins, secs] = minStr.split(":").map(Number);
+            return mins + (secs ? secs / 60 : 0);
+          };
 
-          const fantasyScore =
-            2 * turnovers +
-            1 * personalFouls +
-            2 * missedFG +
-            1 * missedFT +
-            3 * missed3P +
-            -2 * blocks +
-            -1 * steals +
-            plusMinusPenalty;
+          const minutesPlayed = parseMinutes(stats.minutes) || 1;
+          const fgMissRate = fga > 0 ? (fga - fgm) / fga : 0;
+          const ftMissRate = fta > 0 ? (fta - ftm) / fta : 0;
+          const tpMissRate = tpa > 0 ? (tpa - tpm) / tpa : 0;
+
+          const rawFantasyScore =
+            1.5 * turnovers +
+            1.0 * personalFouls +
+            3.0 * fgMissRate +
+            2.0 * ftMissRate +
+            2.5 * tpMissRate +
+            -2.5 * blocks +
+            -2.0 * steals +
+            Math.floor(plusMinus / 10);
+
+          let fantasyScore = rawFantasyScore * (36 / minutesPlayed);
+
+          fantasyScore = Math.round(fantasyScore);
 
           // ✅ Get the latest cumulative score (Ensure it always defaults to 0)
           const [latestScoreResult] = await connection.execute(
