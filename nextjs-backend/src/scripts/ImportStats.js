@@ -1,3 +1,5 @@
+// nextjs-backend/src/scripts/ImportStats.js
+
 const mysql = require("mysql2/promise");
 const dotenv = require("dotenv");
 const https = require("https");

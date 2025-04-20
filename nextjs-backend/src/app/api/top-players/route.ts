@@ -1,4 +1,4 @@
-// src/app/api/players/top/route.ts
+// nextjs-backend/src/app/api/top-players/route.ts
 
 import { NextResponse } from "next/server";
 import pool from "@/app/api/database/mysql";
