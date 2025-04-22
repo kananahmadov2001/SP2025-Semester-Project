@@ -1,10 +1,9 @@
 // nextjs-backend/src/app/api/fantasy/scores/route.ts
 
 import { NextResponse } from "next/server";
-import pool from "@/app/api/database/mysql"; // Database connection
+import pool from "@/app/api/database/mysql";
 import { RowDataPacket } from "mysql2";
 
-// 🎯 API to get Fantasy Scores & Last Game Stats
 export async function GET(req: Request) {
   try {
     const url = new URL(req.url);
@@ -28,12 +27,12 @@ export async function GET(req: Request) {
       queryParams.push(playerId);
     } else if (userId) {
       query += `
-        JOIN fantasy_teams ft ON fs.player_id = ft.player_id
-        WHERE ft.user_id = ?
+        JOIN user_team_players utp ON fs.player_id = utp.player_id
+        WHERE utp.user_id = ?
         ORDER BY fs.game_date DESC`;
       queryParams.push(userId);
     } else {
-      query += " ORDER BY fs.game_date DESC";
+      query += ` ORDER BY fs.game_date DESC`;
     }
 
     const connection = await pool.getConnection();

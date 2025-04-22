@@ -16,14 +16,6 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Current Database: `hfl`
---
-
-CREATE DATABASE /*!32312 IF NOT EXISTS*/ `hfl` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-
-USE `hfl`;
-
---
 -- Table structure for table `fantasy_scores`
 --
 
@@ -65,13 +57,13 @@ INSERT INTO `fantasy_scores` VALUES (1,404,'2025-02-25',5,2,7,4,6,5,2,1,0,0,21,2
 UNLOCK TABLES;
 
 --
--- Table structure for table `fantasy_teams`
+-- Table structure for table `fantasy_teams_backup`
 --
 
-DROP TABLE IF EXISTS `fantasy_teams`;
+DROP TABLE IF EXISTS `fantasy_teams_backup`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `fantasy_teams` (
+CREATE TABLE `fantasy_teams_backup` (
   `id` int NOT NULL AUTO_INCREMENT,
   `user_id` int NOT NULL,
   `player_id` int NOT NULL,
@@ -79,18 +71,18 @@ CREATE TABLE `fantasy_teams` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `user_id` (`user_id`,`player_id`),
   KEY `player_id` (`player_id`),
-  CONSTRAINT `fantasy_teams_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
+  CONSTRAINT `fantasy_teams_backup_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `fantasy_teams`
+-- Dumping data for table `fantasy_teams_backup`
 --
 
-LOCK TABLES `fantasy_teams` WRITE;
-/*!40000 ALTER TABLE `fantasy_teams` DISABLE KEYS */;
-INSERT INTO `fantasy_teams` VALUES (1,4,195,'2025-02-18 05:42:17'),(2,4,2890,'2025-02-18 05:42:42'),(3,4,3443,'2025-02-18 05:43:26'),(4,4,548,'2025-02-18 05:59:37'),(5,4,4093,'2025-02-18 23:48:02'),(8,5,2863,'2025-02-26 00:34:48');
-/*!40000 ALTER TABLE `fantasy_teams` ENABLE KEYS */;
+LOCK TABLES `fantasy_teams_backup` WRITE;
+/*!40000 ALTER TABLE `fantasy_teams_backup` DISABLE KEYS */;
+INSERT INTO `fantasy_teams_backup` VALUES (1,4,195,'2025-02-18 05:42:17'),(2,4,2890,'2025-02-18 05:42:42'),(3,4,3443,'2025-02-18 05:43:26'),(4,4,548,'2025-02-18 05:59:37'),(5,4,4093,'2025-02-18 23:48:02'),(8,5,2863,'2025-02-26 00:34:48');
+/*!40000 ALTER TABLE `fantasy_teams_backup` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -245,6 +237,37 @@ LOCK TABLES `user_scores` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `user_team_players`
+--
+
+DROP TABLE IF EXISTS `user_team_players`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `user_team_players` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `user_id` int NOT NULL,
+  `player_id` int NOT NULL,
+  `is_starter` tinyint(1) DEFAULT '1',
+  `position` int DEFAULT NULL,
+  `added_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `user_id` (`user_id`,`player_id`),
+  KEY `player_id` (`player_id`),
+  CONSTRAINT `user_team_players_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `user_team_players_ibfk_2` FOREIGN KEY (`player_id`) REFERENCES `players` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user_team_players`
+--
+
+LOCK TABLES `user_team_players` WRITE;
+/*!40000 ALTER TABLE `user_team_players` DISABLE KEYS */;
+/*!40000 ALTER TABLE `user_team_players` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `users`
 --
 
@@ -281,4 +304,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-03-25  1:36:41
+-- Dump completed on 2025-04-21  5:24:25

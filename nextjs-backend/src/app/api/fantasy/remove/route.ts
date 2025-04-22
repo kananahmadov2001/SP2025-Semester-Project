@@ -13,9 +13,8 @@ export async function POST(req: Request) {
 
     const connection = await pool.getConnection();
 
-    // Remove the player from the user's fantasy team
     const [result]: any = await connection.execute(
-      "DELETE FROM fantasy_teams WHERE user_id = ? AND player_id = ?",
+      `DELETE FROM user_team_players WHERE user_id = ? AND player_id = ?`,
       [userId, playerId]
     );
 
@@ -25,9 +24,9 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Player not found in team" }, { status: 404 });
     }
 
-    return NextResponse.json({ message: "Player removed from fantasy team!" }, { status: 200 });
+    return NextResponse.json({ message: "Player removed from team!" }, { status: 200 });
   } catch (error) {
-    console.error("Error removing player from fantasy team:", error);
+    console.error("❌ Error removing player:", error);
     return NextResponse.json({ error: "Failed to remove player" }, { status: 500 });
   }
 }
