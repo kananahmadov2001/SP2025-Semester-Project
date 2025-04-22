@@ -14,10 +14,10 @@ function Layout() {
         { path: "/", label: "Home", protected: false, hideWhenLoggedIn: true },
         { path: "/help", label: "Help", protected: false },
         { path: "/dashboard", label: "Dashboard", protected: false },
-        { path: "/dashboard/teamView", label: "TeamView", protected: true },
+        { path: "/dashboard/teamView", label: "Team View", protected: true },
         { path: "/dashboard/leagues", label: "Leagues", protected: true },
-        { path: "/dashboard/trashTalk", label: "TrashTalk", protected: true },
-        { path: "/dashboard/challenge", label: "Challenge", protected: true },
+        { path: "/dashboard/trashTalk", label: "Trash Talk", protected: true },
+        { path: "/dashboard/challenge", label: "Shared Clips", protected: true },
     ];
 
     function handleSignOut() {
@@ -95,57 +95,30 @@ function Layout() {
                 <div className="footer-links-container">
                     <div className="footer-column">
                         <h3 className="footer-heading">Explore</h3>
-                        <a href="/dashboard/teamView">Player Stats</a>
-                        <a href="/dashboard/teamView">Team Standings</a>
+                        <a href="/dashboard/teamView">Create/View Team</a>
+                        <a href="/dashboard/teamView">Top Performing Players</a>
                         <a href="/dashboard">Fantasy Leaderboards</a>
-                        <a href="/help">Draft Strategy Guide</a>
                     </div>
 
                     <div className="footer-column">
                         <h3 className="footer-heading">Game Info</h3>
                         <Link to="/help">How to Play</Link>
                         <a href="/help">Scoring Rules</a>
-                        <a href="/dashboard/challenge">Weekly Challenges</a>
                         <a href="/help">FAQs</a>
                     </div>
 
                     <div className="footer-column">
                         <h3 className="footer-heading">Community</h3>
-                        <a href="/help">Forums</a>
-                        <a href="/challenge">League Events</a>
+                        <a href="/dashboard/leagues">Leagues</a>
                         <Link to="/dashboard/trashTalk">Trash Talk Zone</Link>
-                        <a href="/help">Contact Support</a>
-                    </div>
-
-                    <div className="footer-column">
-                        <h3 className="footer-heading">About</h3>
-                        <a href="/help">Our Mission</a>
-                        <a href="/help">In the Press</a>
-                        <a href="/help">Privacy Policy</a>
-                        <a href="/help">Terms of Service</a>
-                    </div>
-                </div>
-
-                <div className="footer-social-container">
-                    <div className="social-icons">
-                        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
-                            <i className="fab fa-facebook-square social-icon"></i>
-                        </a>
-                        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
-                            <i className="fab fa-twitter social-icon"></i>
-                        </a>
-                        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
-                            <i className="fab fa-instagram social-icon"></i>
-                        </a>
                     </div>
                 </div>
 
                 <p className="footer-copyright">
-                    &copy; 2025 Hater Fantasy League. All rights reserved.{" "}
-                    <a href="#">Privacy Policy</a> | <a href="#">Terms</a> | <a href="#">Site Map</a>
-                </p>
-            </footer>
-        </div>
+                    &copy; 2025 Hater Fantasy League. All rights reserved.
+                </p >
+            </footer >
+        </div >
     );
 }
 

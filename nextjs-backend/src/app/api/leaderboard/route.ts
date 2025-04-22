@@ -1,5 +1,3 @@
-// nextjs-backend/src/app/api/leaderboard/route.ts
-
 import { NextResponse } from "next/server";
 import pool from "@/app/api/database/mysql";
 import { RowDataPacket } from "mysql2";
@@ -16,6 +14,7 @@ export async function GET(req: Request) {
       FROM user_team_players utp
       JOIN fantasy_scores fs ON utp.player_id = fs.player_id
       JOIN users u ON utp.user_id = u.id
+      WHERE utp.is_starter = 1
       GROUP BY u.id
       ORDER BY total_score DESC
       LIMIT ${limit} OFFSET ${offset}
@@ -25,6 +24,7 @@ export async function GET(req: Request) {
       SELECT COUNT(DISTINCT utp.user_id) AS total
       FROM user_team_players utp
       JOIN fantasy_scores fs ON utp.player_id = fs.player_id
+      WHERE utp.is_starter = 1
     `;
 
     const connection = await pool.getConnection();

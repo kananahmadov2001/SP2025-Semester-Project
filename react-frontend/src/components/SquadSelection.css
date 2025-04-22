@@ -21,6 +21,7 @@
     color: #35509a;
 }
 
+
 /* ---------- starters grid ------------------------------------- */
 .sq-grid {
     display: grid;
@@ -134,4 +135,44 @@
     top: 4px;
     right: 4px;
     font-size: 0.75rem;
+}
+
+/* Centered section headers with lines */
+.sq-starters h3,
+.sq-bench h3 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #35509a;
+    font-size: 1.5rem;
+    margin: 1.2rem 0 0.6rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.sq-starters h3::before,
+.sq-starters h3::after,
+.sq-bench h3::before,
+.sq-bench h3::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: #ccc;
+    margin: 0 12px;
+}
+
+/* Align players more evenly */
+.sq-grid {
+    justify-items: center;
+    align-items: start;
+}
+
+/* Bench section layout */
+.sq-bench {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    padding-top: 0.5rem;
 }

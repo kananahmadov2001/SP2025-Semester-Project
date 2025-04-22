@@ -374,3 +374,136 @@
   color: #ff9800;
   /* Orange for #1 player */
 }
+
+/*-------------- Recent Games --------------*/
+.recent-games {
+  margin-top: 2rem;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.recent-games-header {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.loading-text {
+  text-align: center;
+  font-size: 1.1rem;
+  color: #888;
+}
+
+.games-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.game-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 1rem 0;
+  padding: 1rem;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.game-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.team-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.team-logo {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.team-name {
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #444;
+  text-transform: capitalize;
+}
+
+.team-score {
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #333;
+  padding: 0.3rem 0.7rem;
+  background-color: #f1f1f1;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.vs-text {
+  font-size: 1.1rem;
+  color: #777;
+  font-weight: 600;
+  padding: 0 1.5rem;
+}
+
+/* Section Header for Top Players */
+.sq-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #35509a;
+  font-size: 1.5rem;
+  margin: 1.5rem 0 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.sq-section-header::before,
+.sq-section-header::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: #ccc;
+  margin: 0 12px;
+}
+
+/* Weekly Top Player Styling */
+.sq-card.weekly-top {
+  border: 3px solid #fbc02d;
+  position: relative;
+}
+
+/* Rank badge in top-left corner */
+.sq-rank-badge {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  background-color: #fbc02d;
+  color: #000;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+}
+
+/* Score badge */
+.sq-score-badge {
+  margin-top: 0.5rem;
+  font-weight: bold;
+  color: #2e7d32;
+  font-size: 0.9rem;
+}

@@ -246,3 +246,95 @@
   line-height: 1.6;
   margin-bottom: 6px;
 }
+
+.league-detail-container {
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 30px;
+  background: #f9fafb;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.league-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.back-button {
+  background: none;
+  border: none;
+  color: #007bff;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.back-button:hover {
+  text-decoration: underline;
+}
+
+.league-title {
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.league-title span {
+  color: #0056b3;
+}
+
+.league-info {
+  margin-bottom: 20px;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.user-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px 0;
+  border-top: 1px solid #ddd;
+}
+
+.user-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.user-item .username {
+  font-weight: 500;
+}
+
+.user-item .score {
+  font-weight: bold;
+  color: #333;
+}
+
+.current-user {
+  background-color: #e6f2ff;
+  border-radius: 6px;
+  padding: 10px;
+}
+
+.quit-button {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.quit-button:hover {
+  background-color: #c82333;
+}
+
+.league-chat-section {
+  margin-top: 30px;
+}

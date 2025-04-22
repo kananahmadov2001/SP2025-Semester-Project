@@ -46,7 +46,7 @@ function HelpPage() {
 
       {/* Tab Content */}
       <div className="tab-content">
-        
+
         {activeTab === "rules" && (
           <div className="faq-section">
             <h2>Fantasy Rules</h2>
@@ -60,13 +60,10 @@ function HelpPage() {
                   <strong>Roster Size</strong>
                   <p>To join the game, select a fantasy basketball roster of 10 players, consisting of:</p>
                   <ul>
-                    <li>5 Back Court players</li>
-                    <li>5 Front Court players</li>
+                    <li>5 Starters</li>
+                    <li>5 Bench Players</li>
                   </ul>
-                  <strong>Salary Cap</strong>
-                  <p>The total value of your initial roster must not exceed the salary cap of $100 million.</p>
-                  <strong>Players Per Team</strong>
-                  <p>You can select up to 2 players from a single NBA team.</p>
+                  Starters are the players you select to score points for your team each week. Bench players are your backup players who can be substituted in if your starters don’t play.
                 </div>
               )}
             </div>
@@ -80,19 +77,7 @@ function HelpPage() {
                 <div className="faq-answer">
                   <strong>Choosing Your Line-up</strong>
                   <p>From your 10-player roster, select 5 players by the Gameday deadline to form your starting line-up.</p>
-                  <p>All your points for the Gameday will be scored by these 5 players. If one or more don’t play, they may be automatically substituted.</p>
-                  <p>Your team can play in one of two formations:</p>
-                  <ul>
-                    <li>2 Back Court and 3 Front Court</li>
-                    <li>3 Back Court and 2 Front Court</li>
-                  </ul>
-                  <strong>Prioritizing Your Bench for Automatic Substitutions</strong>
-                  <p>
-                    Your bench provides cover for unforeseen events like injuries and postponements by automatically replacing starting players who don’t play.
-                  </p>
-                  <p>
-                    If any of your players don’t play, they will be substituted by the highest priority bench player who played and doesn’t break the formation rules.
-                  </p>
+                  <p>All your points for the Gameday will be scored by these 5 players.</p>
                 </div>
               )}
             </div>
@@ -111,22 +96,20 @@ function HelpPage() {
                     <li>All users are automatically placed in this league upon signing up.</li>
                     <li>The leaderboard updates weekly, ranking users based on total flop points.</li>
                     <li>Compete against everyone to be crowned the <strong>Ultimate HFL Champion</strong>.</li>
-                    <li>Rewards may be given to top finishers at the end of the season.</li>
                   </ul>
 
                   <strong>🔒 Private Leagues</strong>
                   <ul>
-                    <li>Create your own leagues and set custom rules.</li>
-                    <li>Invite your friends with a unique league code.</li>
-                    <li>Compete only against the members in your private league.</li>
-                    <li>League admins can manage rosters and set custom prizes.</li>
+                    <li>Create your own leagues!</li>
+                    <li>Invite your friends</li>
+                    <li>Compete only against the members in your private league</li>
                   </ul>
 
                   <strong>🏀 How to Join & Create a League</strong>
                   <ul>
                     <li>You are automatically enrolled in the Global League.</li>
-                    <li>To create a Private League, click <strong>"Create a League"</strong> and share the invite code.</li>
-                    <li>To join a Private League, enter the league code in the <strong>"Join a League"</strong> section.</li>
+                    <li>To create a Private League, click <strong>"Create a League"</strong></li>
+                    <li>To join a Private League, find the league and press the <strong>"Join League"</strong> button.</li>
                   </ul>
 
                   <p><em>Want to challenge your friends? Set up your Private League now and start the trash talk!</em></p>
@@ -142,35 +125,33 @@ function HelpPage() {
               {openSections["scoring"] && (
                 <div className="faq-answer">
                   <p>Fantasy points are awarded based on real NBA performances. The lower your team scores, the better!</p>
-                  
+
                   <table className="scoring-table">
                     <thead>
                       <tr>
                         <th>Action</th>
-                        <th>Points</th>
+                        <th>Impact on Score</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr><td>For each missed field goal</td><td>+1</td></tr>
-                      <tr><td>For each turnover</td><td>+2</td></tr>
-                      <tr><td>For each missed free throw</td><td>+1</td></tr>
-                      <tr><td>For each personal foul</td><td>+1</td></tr>
-                      <tr><td>For getting benched mid-game</td><td>+3</td></tr>
-                      <tr><td>For technical fouls</td><td>+3</td></tr>
-                      <tr><td>For flagrant fouls</td><td>+5</td></tr>
-                      <tr><td>For getting ejected</td><td>+10</td></tr>
-                      <tr><td>For scoring over 25 points</td><td>-5</td></tr>
-                      <tr><td>For recording a triple-double</td><td>-10</td></tr>
+                      <tr><td>Turnover</td><td>+1.5 pts each</td></tr>
+                      <tr><td>Personal foul</td><td>+1.0 pt each</td></tr>
+                      <tr><td>Missed field goal</td><td>+3.0 × miss rate</td></tr>
+                      <tr><td>Missed free throw</td><td>+2.0 × miss rate</td></tr>
+                      <tr><td>Missed 3-point shot</td><td>+2.5 × miss rate</td></tr>
+                      <tr><td>Blocks (defensive)</td><td>−2.5 pts each</td></tr>
+                      <tr><td>Steals</td><td>−2.0 pts each</td></tr>
+                      <tr><td>Plus/Minus</td><td>−1 pt per +10</td></tr>
                     </tbody>
                   </table>
 
-                  <p><strong>🔥 Bonus Points:</strong></p>
+                  <p><strong>🔥 Bonus Modifiers:</strong></p>
                   <ul>
-                    <li>🏀 Airball Bonus: +2 points for each recorded airball.</li>
-                    <li>🚀 Shaqtin' a Fool Moment: +5 points for an embarrassing play.</li>
+                    <li>🎯 Minutes Normalizer: Scores scale to a 36-minute pace</li>
+                    <li>📉 Low playing time = higher multiplier impact</li>
                   </ul>
 
-                  <p><em>Note: Scores are final once a game ends. No changes will be made after review.</em></p>
+                  <p><em>Note: All values are calculated automatically based on performance stats. Final fantasy scores are normalized for equal comparison.</em></p>
                 </div>
               )}
             </div>
@@ -181,15 +162,15 @@ function HelpPage() {
           <div className="faq-section">
             <h2>Terms & Conditions</h2>
             <p>
-              <strong>Eligibility:</strong> Hater Fantasy League (HFL) is open to individuals who are at least 18 years old (or the age of majority in your country). 
+              <strong>Eligibility:</strong> Hater Fantasy League (HFL) is open to individuals who are at least 18 years old (or the age of majority in your country).
               By participating, you confirm that you meet these requirements.
             </p>
             <p>
-              <strong>Game Rules & Conduct:</strong> Players must adhere to all HFL rules and scoring systems. 
+              <strong>Game Rules & Conduct:</strong> Players must adhere to all HFL rules and scoring systems.
               Any attempt to manipulate game results, engage in unfair play, or abuse the system will result in immediate disqualification.
             </p>
             <p>
-              <strong>Privacy & Data Usage:</strong> HFL respects your privacy. We collect and store necessary user data for account management and game functionality. 
+              <strong>Privacy & Data Usage:</strong> HFL respects your privacy. We collect and store necessary user data for account management and game functionality.
               Your information will not be sold to third parties.
             </p>
             <p>
@@ -197,7 +178,7 @@ function HelpPage() {
               game performance, system downtime, or miscalculations.
             </p>
             <p>
-              <strong>Modifications to Terms:</strong> HFL reserves the right to update or modify these terms at any time. Continued participation in the game 
+              <strong>Modifications to Terms:</strong> HFL reserves the right to update or modify these terms at any time. Continued participation in the game
               constitutes acceptance of any updates.
             </p>
           </div>

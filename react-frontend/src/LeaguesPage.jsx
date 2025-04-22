@@ -256,6 +256,7 @@ function LeaguesPage() {
         // Otherwise list all leagues
         <div className="league-list">
           <h2>Available Leagues</h2>
+          <p><em>Press on a league you have joined to view more information</em></p>
           {isLoading && <p>Loading leagues...</p>}
 
           {!isLoading && leagues.length === 0 && (
@@ -345,7 +346,7 @@ export default LeaguesPage;
 
 /**
  * LeagueDetailView:
- *  A detailed management view of a single league (shows user scores).
+ * A detailed management view of a single league (shows user scores).
  */
 function LeagueDetailView({ league, user, onBack, onQuit }) {
   const isUserInLeague = league.members.some(
@@ -354,44 +355,40 @@ function LeagueDetailView({ league, user, onBack, onQuit }) {
 
   return (
     <div className="league-detail-container">
-      <div className="detail-header-row">
-        <button className="back-leagues-btn" onClick={onBack}>
-          &larr; All Leagues
+      <div className="league-header">
+        <button className="back-button" onClick={onBack}>
+          &larr; Back to Leagues
         </button>
-        <h2>League Management - {league.league_name}</h2>
+        <h2 className="league-title">League: <span>{league.league_name}</span></h2>
       </div>
 
-      <p className="league-id">League ID: {league.league_id}</p>
-      <p>
-        <strong>Members:</strong> {league.members.length} / 8
-      </p>
+      <div className="league-info">
+        <p><strong>League ID:</strong> {league.league_id}</p>
+        <p><strong>Members:</strong> {league.members.length} / 8</p>
+      </div>
 
       <ul className="user-list">
         {league.members.map((u) => (
           <li
             key={u.user_id}
-            className={
-              u.user_id === Number(user.userId) ? "highlighted-user" : ""
-            }
+            className={`user-item ${u.user_id === Number(user.userId) ? "current-user" : ""
+              }`}
           >
-            {u.username || `User ${u.user_id}`} —{" "}
-            <strong>{u.total_score} pts</strong>
+            <span className="username">{u.username || `User ${u.user_id}`}</span>
+            <span className="score">{u.total_score} pts</span>
           </li>
         ))}
       </ul>
 
-      {/* Show a Quit League button if the user is in the league */}
       {isUserInLeague && (
-        <button
-          className="quit-league-btn"
-          onClick={() => onQuit(league.league_id)}
-        >
+        <button className="quit-button" onClick={() => onQuit(league.league_id)}>
           Quit League
         </button>
       )}
-      {/* 💬 League Chat */}
-      <LeagueChat selectedLeague={league.league_id} user={user} />
 
+      <div className="league-chat-section">
+        <LeagueChat selectedLeague={league.league_id} user={user} />
+      </div>
     </div>
   );
 }
