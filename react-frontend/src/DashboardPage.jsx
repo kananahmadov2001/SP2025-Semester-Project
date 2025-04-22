@@ -1,71 +1,48 @@
 // react-frontend/src/DashboardPage.jsx
 
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import "./DashboardPage.css";
-import LeaderboardSection from "./LeaderboardSection";
 import BasketballField from "./BasketballField";
+import LeaderboardSection from "./LeaderboardSection";
+import { UseAuth } from "./context/AuthContext";
+import useFantasyTeam from "./hooks/useFantasyTeam";
+import "./DashboardPage.css";
 
-function DashboardPage() {
-  const [userName, setUserName] = useState("");
-  const [userId, setUserId] = useState(null);
-  const [starterPlayers, setStarterPlayers] = useState([]);
+export default function DashboardPage() {
+  const { user, logout } = UseAuth();          // ← single source of truth
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Load user info from localStorage
-  useEffect(() => {
-    const storedUserId = localStorage.getItem("userId");
-    const storedName = localStorage.getItem("userName");
-    if (storedUserId) setUserId(storedUserId);
-    if (storedName) setUserName(storedName);
-  }, []);
+  // Custom hook keeps the data logic out of the component
+  const { starters, loading: startersLoading } = useFantasyTeam(user?.userId);
 
-  // Fetch starter players whenever userId or location changes
-  useEffect(() => {
-    async function fetchTeam() {
-      if (!userId) return;
-      try {
-        const resp = await fetch(`/api/fantasy/team?userId=${userId}&t=${Date.now()}`, {
-          credentials: "include",
-        });
-        const data = await resp.json();
-        if (resp.ok && data.starters) {
-          const normalized = data.starters.map(p => ({
-            ...p,
-            position: p.real_position, // normalize
-          }));
-          print("data: ", data);
-          print("normalized: ", normalized);
-          setStarterPlayers(normalized);
-        } else {
-          console.error("Failed to fetch team data:", data.error);
-        }
-      } catch (err) {
-        console.error("Error fetching team:", err);
-      }
-    }
-
-    fetchTeam();
-  }, [userId, location.pathname]);
-
-  // Navigation helpers
-  const handleSignOut = () => {
-    localStorage.removeItem("userId");
-    localStorage.removeItem("userName");
-    navigate("/");
-  };
-
+  /* ---------------------------------------------------------------- */
+  /* Navigation helpers                                               */
+  /* ---------------------------------------------------------------- */
   const navToTeamView = () => navigate("/dashboard/teamView");
   const navToLeagues = () => navigate("/dashboard/leagues");
   const navToTrashTalk = () => navigate("/dashboard/trashTalk");
 
+  /* ---------------------------------------------------------------- */
+  /* Render                                                           */
+  /* ---------------------------------------------------------------- */
   return (
     <div className="dashboard-container">
-      {/* Starter Players */}
+      {/* =============== Starters / Court View =============== */}
       <section className="visual-field-section">
         <h2>Starting Team Players</h2>
-        <BasketballField players={starterPlayers} />
+
+        {user ? (
+          startersLoading ? (
+            <p>Loading your starters…</p>
+          ) : starters.length ? (
+            <BasketballField players={starters} />
+          ) : (
+            <p>You haven’t selected any starters yet.</p>
+          )
+        ) : (
+          <p>Log in to see your starting five.</p>
+        )}
       </section>
 
       {/* Leaderboard Section */}
@@ -84,11 +61,14 @@ function DashboardPage() {
           </p>
           <div className="draft-btn-container">
             <button className="draft-btn" onClick={navToLeagues}>
-              <i className="fas fa-user-plus"></i> Create a League
+              <i className="fas fa-user-plus" /> Create a League
             </button>
           </div>
         </div>
-        <div className="divider"></div>
+
+        <div className="divider" />
+
+        {/* -------- Global Chat -------- */}
         <div className="chat-container">
           <h2 className="chat-heading">Join an Existing HFL League</h2>
           <p className="chat-description">
@@ -98,7 +78,7 @@ function DashboardPage() {
           </p>
           <div className="chat-btn-container">
             <button className="chat-btn" onClick={navToLeagues}>
-              <i className="fas fa-user-plus"></i> Join a League
+              <i className="fas fa-user-plus" /> Join a League
             </button>
           </div>
         </div>
@@ -114,11 +94,13 @@ function DashboardPage() {
           </p>
           <div className="draft-btn-container">
             <button className="not-btn" onClick={navToTrashTalk}>
-              <i className="fas fa-bell"></i> View Global Chat
+              <i className="fas fa-bell" /> View Global Chat
             </button>
           </div>
         </div>
-        <div className="divider2"></div>
+
+        <div className="divider2" />
+
         <div className="chat-container">
           <h2 className="not-heading">League Chat Notifications</h2>
           <p className="chat-description">
@@ -127,7 +109,7 @@ function DashboardPage() {
           </p>
           <div className="chat-btn-container">
             <button className="not-btn" onClick={navToTrashTalk}>
-              <i className="fas fa-bell"></i> View League Chat
+              <i className="fas fa-bell" /> View League Chat
             </button>
           </div>
         </div>
@@ -135,5 +117,3 @@ function DashboardPage() {
     </div>
   );
 }
-
-export default DashboardPage;
