@@ -1,0 +1,108 @@
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: project-draft-db
+  labels:
+    app: project-draft-db
+spec:
+  selector:
+    matchLabels:
+      app: project-draft-db
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: project-draft-db
+    spec:
+      containers:
+        - image: mysql/mysql-server:8.0
+
+          name: project-draft-db
+          ports:
+            - containerPort: 3306
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: Abdousow1!
+            - name: MYSQL_DATABASE
+              value: hfl
+          livenessProbe:
+            tcpSocket:
+              port: 3306
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: project-draft-db
+spec:
+  selector:
+    app: project-draft-db
+  ports:
+    - port: 3306
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: project-draft
+  labels:
+    app: project-draft
+spec:
+  selector:
+    matchLabels:
+      app: project-draft
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: project-draft
+    spec:
+      containers:
+        - image: project-draft:release
+          imagePullPolicy: Never
+          name: project-draft
+          command: ["npm", "run", "dev"]
+          ports:
+            - containerPort: 3000
+          env:
+            - name: APP_DATABASE__HOST
+              value: project-draft-db
+            - name: APP_DATABASE__PORT
+              value: "3306"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: project-draft
+spec:
+  type: LoadBalancer
+  selector:
+    app: project-draft
+  ports:
+    - port: 3000
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: project-draft
+spec:
+  rules:
+    - http:
+        paths:
+          - pathType: Prefix
+            path: /
+            backend:
+              service:
+                name: project-draft
+                port:
+                  number: 3000
+---
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: project-draft-redis
+# spec:
+#   selector:
+#     app: project-draft-redis
+#   ports:
+#     - port: 6379
+# ---

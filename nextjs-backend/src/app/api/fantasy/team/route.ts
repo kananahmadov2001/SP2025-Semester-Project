@@ -14,17 +14,26 @@ export async function GET(req: Request) {
 
     const connection = await pool.getConnection();
 
-    // Get all players added by this user
-    const [fantasyTeam] = await connection.execute(
-      `SELECT p.id, p.firstname, p.lastname, p.position, p.team, p.teamid 
-       FROM fantasy_teams ft
-       JOIN players p ON ft.player_id = p.id
-       WHERE ft.user_id = ?`,
+    const [starters] = await connection.execute(
+      `SELECT p.id, p.firstname, p.lastname, p.position AS real_position, p.team, p.teamid, utp.position
+       FROM user_team_players utp
+       JOIN players p ON utp.player_id = p.id
+       WHERE utp.user_id = ? AND utp.is_starter = TRUE
+       ORDER BY utp.position ASC`,
+      [userId]
+    );
+
+    const [bench] = await connection.execute(
+      `SELECT p.id, p.firstname, p.lastname, p.position AS real_position, p.team, p.teamid
+       FROM user_team_players utp
+       JOIN players p ON utp.player_id = p.id
+       WHERE utp.user_id = ? AND utp.is_starter = FALSE`,
       [userId]
     );
 
     connection.release();
-    return NextResponse.json({ fantasyTeam });
+    return NextResponse.json({ starters, bench });
+
   } catch (error) {
     console.error("❌ Error fetching fantasy team:", error);
     return NextResponse.json({ error: "Failed to fetch fantasy team" }, { status: 500 });
