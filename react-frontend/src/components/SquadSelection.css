@@ -1,229 +1,137 @@
-/* SquadSelection.css */
-.squad-select-player-card {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.squad-selection-container {
+/* ---------- wrapper & header ---------------------------------- */
+.sq-wrapper {
     background: #fafafa;
+    border: 1px solid #ccd;
+    border-radius: 10px;
     padding: 1rem;
-    border: 1px solid #ccc;
     margin-top: 1rem;
+    font-family: Arial, sans‑serif;
 }
 
-.squad-header {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 1rem;
-}
-
-.players-selected,
-.money-remaining {
-    font-weight: bold;
-}
-
-.view-toggle-container {
-    margin-bottom: 1rem;
-}
-
-.toggle-btn {
-    margin-right: 0.5rem;
-    padding: 0.5rem 1rem;
-    cursor: pointer;
-}
-
-.toggle-btn.active {
-    background-color: #2e86c1;
-    color: #fff;
-    border: none;
-}
-
-/* Court View Layout */
-.court-view {
-    display: flex;
-    justify-content: space-evenly;
-}
-
-.front-court {
-    background-image: url("/src/assets/background/front-court-bg.png");
-    background-position: top left;
-}
-
-.back-court {
-    background-image: url("/src/assets/background/back-court-bg.png");
-    background-position: bottom right;
-}
-
-.front-court,
-.back-court {
+.sq-header {
+    font-weight: 700;
+    margin-bottom: 0.75rem;
     text-align: center;
-    background-repeat: no-repeat;
-    background-color: white;
-    background-size: auto 100%;
 }
 
-.fc-row,
-.bc-row {
-    display: flex;
-    justify-content: center;
+/* starters list */
+.sq-starters h3 {
+    font-size: 1rem;
+    margin-bottom: 0.4rem;
+    color: #35509a;
+}
+
+/* ---------- starters grid ------------------------------------- */
+.sq-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     gap: 1rem;
-    margin: 0.5rem 0;
+    margin-bottom: 1.5rem;
 }
 
-/* Court View Slot Styling */
-.fc-slot,
-.bc-slot {
-    width: 200px;
-    height: 220px;
-    background-color: #e2e2e2;
+.sq-empty {
+    grid-column: 1 / -1;
+    text-align: center;
+    color: #888;
+    font-style: italic;
+}
+
+/* ---------- bench list ---------------------------------------- */
+.sq-bench h3 {
+    font-size: 1rem;
+    margin-bottom: 0.4rem;
+    color: #35509a;
+}
+
+.sq-bench {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+}
+
+/* ---------- player card --------------------------------------- */
+.sq-card {
+    position: relative;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+    padding: 0.8rem;
+    width: 180px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    border-radius: 6px;
-    transition: background-color 0.3s, box-shadow 0.3s;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    padding: 8px;
-    overflow: hidden;
-}
-
-.fc-slot:hover,
-.bc-slot:hover {
-    background-color: #c5e1ff;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-}
-
-.fc-slot .player-image,
-.bc-slot .player-image {
-    width: 80px;
-    height: 80px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 8px;
-}
-
-.fc-slot .player-image img,
-.bc-slot .player-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-}
-
-.fc-slot .player-name,
-.bc-slot .player-name {
-    font-size: 1rem;
-    font-weight: bold;
-    text-align: center;
-    margin-bottom: 4px;
-}
-
-.fc-slot .player-position,
-.bc-slot .player-position {
-    font-size: 0.875rem;
-    text-align: center;
-    margin-bottom: 4px;
-}
-
-.fc-slot .player-team,
-.bc-slot .player-team {
-    font-size: 0.75rem;
-    text-align: center;
-    margin-bottom: 8px;
-}
-
-.fc-slot .remove-btn,
-.bc-slot .remove-btn {
-    background-color: #f44336;
-    color: white;
-    border: none;
-    padding: 6px 12px;
-    border-radius: 4px;
-    font-size: 0.875rem;
+    transition: transform 0.15s ease;
     cursor: pointer;
-    transition: background-color 0.3s;
 }
 
-.fc-slot .remove-btn:hover,
-.bc-slot .remove-btn:hover {
-    background-color: #d32f2f;
+.sq-card:hover {
+    transform: translateY(-3px);
 }
 
-.empty-slot {
-    width: 100%;
-    height: 100%;
-    background-color: #cfd8dc;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 6px;
-    color: #757575;
-    font-weight: bold;
-    font-size: 1rem;
-    text-align: center;
-    padding: 8px;
+.sq-card.starter {
+    border: 3px solid #289f53;
 }
 
-
-/* List View Layout */
-.list-view {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    justify-content: space-around;
+.sq-card.bench {
+    border: 3px solid #f18636;
 }
 
-.front-court-list,
-.back-court-list {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-}
-
-.front-court-list h3,
-.back-court-list h3 {
-    text-align: center;
+/* team logo */
+.sq-logo {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
     margin-bottom: 0.5rem;
 }
 
-.fc-slot-list,
-.bc-slot-list {
-    width: 100%;
-    height: 55px;
-    background-color: #e2e2e2;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    border-radius: 6px;
-    cursor: pointer;
+/* name / meta */
+.sq-name {
+    font-weight: 600;
+    font-size: clamp(0.9rem, 2.5vw, 1rem);
+    text-align: center;
 }
 
-.squad-select-player-card-list {
-    display: flex;
-    gap: 8px;
+.sq-pos,
+.sq-team {
+    font-size: 0.8rem;
+    color: #555;
 }
 
-
-.starter-toggle-btn {
-    margin-top: 6px;
-    padding: 5px 10px;
-    font-size: 13px;
-    border-radius: 6px;
+/* action buttons */
+.sq-btn {
+    margin-top: 0.4rem;
+    padding: 0.3rem 0.6rem;
     border: none;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 600;
     cursor: pointer;
-    font-weight: bold;
-    color: white;
-  }
-  
-  .starter-toggle-btn.starter {
-    background-color: #289f53;
-  }
-  
-  .starter-toggle-btn.bench {
-    background-color: #f44336;
-  }
-  
+    width: 100%;
+}
+
+.sq-btn.remove {
+    background: #d32f2f;
+    color: #fff;
+}
+
+.sq-btn.remove:hover {
+    background: #b71c1c;
+}
+
+.sq-btn.toggle {
+    background: #35509a;
+    color: #fff;
+}
+
+.sq-btn.toggle:disabled {
+    background: #9fa8da;
+    cursor: not-allowed;
+}
+
+/* starter badge */
+.sq-starter-badge {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    font-size: 0.75rem;
+}

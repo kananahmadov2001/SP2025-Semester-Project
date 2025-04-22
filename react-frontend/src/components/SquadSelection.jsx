@@ -1,384 +1,173 @@
 // react-frontend/src/components/SquadSelection.jsx
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import "./SquadSelection.css";
 import { getCourtType } from "../utils/utilityFunctions";
 import PlayerModal from "./PlayerModal";
 import getPlayerImage from "../getPlayerImage";
 
+function PlayerCard({
+    player,
+    isStarter,
+    onRemove,
+    onToggleStarter,
+    onClick,
+    disablePromote,
+}) {
+    return (
+        <div
+            className={`sq-card ${isStarter ? "starter" : "bench"}`}
+            onClick={() => onClick(player)}
+        >
+            <img
+                src={getPlayerImage(player.team)}
+                alt={`${player.firstname} ${player.lastname}`}
+                className="sq-logo"
+            />
+            <div className="sq-name">
+                {player.firstname} {player.lastname}
+            </div>
+            <div className="sq-pos">{player.position}</div>
+            <div className="sq-team">{player.team}</div>
 
-function SquadSelection({ userTeam, onRemovePlayer, onToggleStarter }) {
-    const [viewType, setViewType] = useState("court");
+            {/* action buttons – stopPropagation so the outer div still acts as click‑to‑open‑modal */}
+            <button
+                className="sq-btn remove"
+                onClick={(e) => {
+                    e.stopPropagation();
+                    onRemove(player.id);
+                }}
+            >
+                Remove
+            </button>
 
-    // 1) State for the player the user clicked
+            <button
+                className="sq-btn toggle"
+                disabled={disablePromote}
+                onClick={(e) => {
+                    e.stopPropagation();
+                    onToggleStarter(player.id, isStarter);
+                }}
+            >
+                {isStarter ? "Send to Bench" : "Make Starter"}
+            </button>
+
+            {isStarter && <div className="sq-starter-badge">✅ Starter</div>}
+        </div>
+    );
+}
+
+export default function SquadSelection({
+    userTeam = [],
+    onRemovePlayer,
+    onToggleStarter,
+}) {
     const [selectedPlayer, setSelectedPlayer] = useState(null);
 
-    // 2) Partition the user team
-    const frontCourtPlayers = userTeam.filter((p) => getCourtType(p.position) === "front");
-    const backCourtPlayers = userTeam.filter((p) => getCourtType(p.position) === "back");
+    /* -------- derived info (expensive filter only once) ------------------- */
+    const { starters, bench, starterCount, frontCt, backCt } = useMemo(() => {
+        const starters = userTeam.filter((p) => p.is_starter);
+        const bench = userTeam.filter((p) => !p.is_starter);
+        const frontCt = starters.filter((p) => getCourtType(p.position) === "front");
+        const backCt = starters.filter((p) => getCourtType(p.position) === "back");
+        return {
+            starters,
+            bench,
+            starterCount: starters.length,
+            frontCt,
+            backCt,
+        };
+    }, [userTeam]);
 
-    const fcSlots = Array.from({ length: 5 }, (_, idx) => frontCourtPlayers[idx] || null);
-    const bcSlots = Array.from({ length: 5 }, (_, idx) => backCourtPlayers[idx] || null);
+    /* -------- promote / demote with swap logic --------------------------- */
+    async function handleToggleStarter(id, currentlyStarter) {
+        // 1) if demoting -> just flip
+        if (currentlyStarter) {
+            await onToggleStarter(id); // parent handles refresh
+            return;
+        }
 
-    const selectedPlayersCount = userTeam.length;
-    const [moneyRemaining, setMoneyRemaining] = useState(100.0);
+        // 2) PROMOTE CASE
+        if (starterCount < 5) {
+            await onToggleStarter(id);
+            return;
+        }
 
-    function handlePlayerClick(player) {
-        // 3) Open the modal by setting selectedPlayer
-        setSelectedPlayer(player);
+        // 3) SWAP CASE – pick a victim starter to demote (oldest one by default)
+        //    You could open a modal here; for now choose the first starter not the same court type
+        const victim =
+            getCourtType(userTeam.find((p) => p.id === id).position) === "front"
+                ? frontCt[0]
+                : backCt[0] || starters[0];
+
+        if (victim) {
+            await onToggleStarter(victim.id); // bench him first
+            await onToggleStarter(id); // then promote newcomer
+        } else {
+            // Fallback: refuse if something went very wrong
+            alert("Cannot swap – court‑type limits would be broken.");
+        }
     }
 
-
+    /* -------------------------------------------------------------------- */
     return (
-        <div className="squad-selection-container">
-            <div className="squad-header">
-                <span className="players-selected">
-                    Players Selected: {selectedPlayersCount} / 10
+        <div className="sq-wrapper">
+            {/* header */}
+            <header className="sq-header">
+                <span>
+                    Players: {userTeam.length} / 10 &nbsp;|&nbsp; Starters:{" "}
+                    {starterCount} / 5
                 </span>
-                <span className="money-remaining">
-                    Money Remaining: {moneyRemaining.toFixed(1)}
-                </span>
-            </div>
+            </header>
 
-            <div className="view-toggle-container">
-                <button
-                    className={`toggle-btn ${viewType === "court" ? "active" : ""}`}
-                    onClick={() => setViewType("court")}
-                >
-                    Court View
-                </button>
-                <button
-                    className={`toggle-btn ${viewType === "list" ? "active" : ""}`}
-                    onClick={() => setViewType("list")}
-                >
-                    List View
-                </button>
-            </div>
+            {/* starters grid */}
+            <section className="sq-starters">
+                <h3>Starters:</h3>
+                <div className="sq-grid">
+                    {starters.length === 0 && (
+                        <div className="sq-empty">No starters selected.</div>
+                    )}
 
-            {viewType === "court" ? (
-                <div className="court-view">
-                    <div className="front-court">
-                        <h3>Front Court</h3>
-                        <div className="fc-row">
-                            {fcSlots.slice(0, 3).map((player, index) => (
-                                <div key={index} className="fc-slot">
-                                    {player ? (
-                                        <div className="squad-select-player-card" onClick={() => handlePlayerClick(player)}>
-                                            <div className="player-image">
-                                                <img
-                                                    src={getPlayerImage(player.team)}
-                                                    alt={`${player.firstname} ${player.lastname}`}
-                                                    className="player-logo"
-                                                />
-                                            </div>
-                                            <div
-                                                className="player-name"
-                                            >
-                                                {player.firstname} {player.lastname}
-                                            </div>
-                                            <div className="player-position">
-                                                Position: {player.position}
-                                            </div>
-                                            <div className="player-team">
-                                                Team: {player.team}
-                                            </div>
-                                            <button
-                                                className="remove-btn"
-                                                onClick={() => onRemovePlayer(player.id)}
-                                            >
-                                                Remove
-                                            </button>
-                                            {!player.is_starter && (
-  <button
-    className="starter-toggle-btn"
-    onClick={(e) => {
-      e.stopPropagation(); 
-      onToggleStarter(player.id);
-    }}
-  >
-    Make Me Starter
-  </button>
-)}
-
-{player.is_starter && (
-  <div className="starter-indicator">✅ Starter</div>
-)}
-
-                                        </div>
-                                    ) : (
-                                        <div className="empty-slot">Empty FC Slot</div>
-                                    )}
-                                </div>
-                            ))}
-                        </div>
-
-                        {/* second row of FC */}
-                        <div className="fc-row">
-                            {fcSlots.slice(3, 5).map((player, index) => (
-                                <div key={index + 3} className="fc-slot">
-                                    {player ? (
-                                        <div className="squad-select-player-card" onClick={() => handlePlayerClick(player)}>
-                                            <div className="player-image">
-                                                <img
-                                                    src={getPlayerImage(player.team)}
-                                                    alt={`${player.firstname} ${player.lastname}`}
-                                                    className="player-logo"
-                                                />
-                                            </div>
-                                            <div
-                                                className="player-name"
-                                            >
-                                                {player.firstname} {player.lastname}
-                                            </div>
-                                            <div className="player-position">
-                                                Position: {player.position}
-                                            </div>
-                                            <div className="player-team">
-                                                Team: {player.team}
-                                            </div>
-                                            <button
-                                                className="remove-btn"
-                                                onClick={() => onRemovePlayer(player.id)}
-                                            >
-                                                Remove
-                                            </button>
-                                            {!player.is_starter && (
-  <button
-    className="starter-toggle-btn"
-    onClick={(e) => {
-      e.stopPropagation(); 
-      onToggleStarter(player.id);
-    }}
-  >
-    Make Me Starter
-  </button>
-)}
-
-{player.is_starter && (
-  <div className="starter-indicator">✅ Starter</div>
-)}
-
-
-                                        </div>
-                                    ) : (
-                                        <div className="empty-slot">Empty FC Slot</div>
-                                    )}
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-
-                    {/* back-court container */}
-                    <div className="back-court">
-                        <h3>Back Court</h3>
-                        <div className="bc-row">
-                            {bcSlots.slice(0, 3).map((player, index) => (
-                                <div key={index} className="bc-slot">
-                                    {player ? (
-                                        <div className="squad-select-player-card" onClick={() => handlePlayerClick(player)}>
-                                            <div className="player-image">
-                                                <img
-                                                    src={getPlayerImage(player.team)}
-                                                    alt={`${player.firstname} ${player.lastname}`}
-                                                    className="player-logo"
-                                                />
-                                            </div>
-                                            <div
-                                                className="player-name"
-                                            >
-                                                {player.firstname} {player.lastname}
-                                            </div>
-                                            <div className="player-position">
-                                                Position: {player.position}
-                                            </div>
-                                            <div className="player-team">
-                                                Team: {player.team}
-                                            </div>
-                                            <button
-                                                className="remove-btn"
-                                                onClick={() => onRemovePlayer(player.id)}
-                                            >
-                                                Remove
-                                            </button>
-                                            {!player.is_starter && (
-  <button
-    className="starter-toggle-btn"
-    onClick={(e) => {
-      e.stopPropagation(); 
-      onToggleStarter(player.id);
-    }}
-  >
-    Make Me Starter
-  </button>
-)}
-
-{player.is_starter && (
-  <div className="starter-indicator">✅ Starter</div>
-)}
-
-                                        </div>
-                                    ) : (
-                                        <div className="empty-slot">Empty BC Slot</div>
-                                    )}
-                                </div>
-                            ))}
-                        </div>
-                        <div className="bc-row">
-                            {bcSlots.slice(3, 5).map((player, index) => (
-                                <div key={index + 3} className="bc-slot">
-                                    {player ? (
-                                        <div className="squad-select-player-card" onClick={() => handlePlayerClick(player)}>
-                                            <div className="player-image">
-                                                <img
-                                                    src={getPlayerImage(player.team)}
-                                                    alt={`${player.firstname} ${player.lastname}`}
-                                                    className="player-logo"
-                                                />
-                                            </div>
-                                            <div
-                                                className="player-name"
-                                            >
-                                                {player.firstname} {player.lastname}
-                                            </div>
-                                            <div className="player-position">
-                                                Position: {player.position}
-                                            </div>
-                                            <div className="player-team">
-                                                Team: {player.team}
-                                            </div>
-                                            <button
-                                                className="remove-btn"
-                                                onClick={() => onRemovePlayer(player.id)}
-                                            >
-                                                Remove
-                                            </button>
-                                            {!player.is_starter && (
-  <button
-    className="starter-toggle-btn"
-    onClick={(e) => {
-      e.stopPropagation(); 
-      onToggleStarter(player.id);
-    }}
-  >
-    Make Me Starter
-  </button>
-)}
-
-{player.is_starter && (
-  <div className="starter-indicator">✅ Starter</div>
-)}
-
-                                        </div>
-                                    ) : (
-                                        <div className="empty-slot">Empty BC Slot</div>
-                                    )}
-                                </div>
-                            ))}
-                        </div>
-                    </div>
+                    {starters.map((p) => (
+                        <PlayerCard
+                            key={p.id}
+                            player={p}
+                            isStarter
+                            onRemove={onRemovePlayer}
+                            onToggleStarter={handleToggleStarter}
+                            onClick={setSelectedPlayer}
+                        />
+                    ))}
                 </div>
-            ) : (
-                // LIST VIEW
-                <div className="list-view">
-                    <div className="front-court-list">
-                        <h3>Front Court</h3>
-                        {fcSlots.map((player, index) => (
-                            <div key={index} className="fc-slot-list">
-                                {player ? (
-                                    <div className="squad-select-player-card-list" onClick={() => handlePlayerClick(player)}>
-                                        <div
-                                            className="player-name"
-                                        >
-                                            {player.firstname} {player.lastname}
-                                        </div>
-                                        <div className="player-position">Position: {player.position}</div>
-                                        <div className="player-team">Team: {player.team}</div>
-                                        <button
-                                            className="remove-btn"
-                                            onClick={() => onRemovePlayer(player.id)}
-                                        >
-                                            Remove
-                                        </button>
-                                        {!player.is_starter && (
-  <button
-    className="starter-toggle-btn"
-    onClick={(e) => {
-      e.stopPropagation(); 
-      onToggleStarter(player.id);
-    }}
-  >
-    Make Me Starter
-  </button>
-)}
+            </section>
 
-{player.is_starter && (
-  <div className="starter-indicator">✅ Starter</div>
-)}
+            {/* bench list */}
+            <section className="sq-bench">
+                <h3>Bench:</h3>
+                {bench.length === 0 ? (
+                    <p>No bench players.</p>
+                ) : (
+                    bench.map((p) => (
+                        <PlayerCard
+                            key={p.id}
+                            player={p}
+                            isStarter={false}
+                            onRemove={onRemovePlayer}
+                            onToggleStarter={handleToggleStarter}
+                            onClick={setSelectedPlayer}
+                            disablePromote={starterCount === 5 && p.is_starter === false}
+                        />
+                    ))
+                )}
+            </section>
 
-
-                                    </div>
-                                ) : (
-                                    <div className="empty-slot">Empty FC Slot</div>
-                                )}
-                            </div>
-                        ))}
-                    </div>
-
-                    <div className="back-court-list">
-                        <h3>Back Court</h3>
-                        {bcSlots.map((player, index) => (
-                            <div key={index} className="bc-slot-list">
-                                {player ? (
-                                    <div className="squad-select-player-card-list" onClick={() => handlePlayerClick(player)}>
-                                        <div
-                                            className="player-name"
-                                        >
-                                            {player.firstname} {player.lastname}
-                                        </div>
-                                        <div className="player-position">Position: {player.position}</div>
-                                        <div className="player-team">Team: {player.team}</div>
-                                        <button
-                                            className="remove-btn"
-                                            onClick={() => onRemovePlayer(player.id)}
-                                        >
-                                            Remove
-                                        </button>
-                                        {!player.is_starter && (
-  <button
-    className="starter-toggle-btn"
-    onClick={(e) => {
-      e.stopPropagation(); 
-      onToggleStarter(player.id);
-    }}
-  >
-    Make Me Starter
-  </button>
-)}
-
-{player.is_starter && (
-  <div className="starter-indicator">✅ Starter</div>
-)}
-
-
-                                    </div>
-                                ) : (
-                                    <div className="empty-slot">Empty BC Slot</div>
-                                )}
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            )}
-
-            {/* 4) If there's a selectedPlayer, show the modal with hideAddButton = true */}
+            {/* modal – read‑only when invoked here */}
             {selectedPlayer && (
                 <PlayerModal
                     player={selectedPlayer}
                     onClose={() => setSelectedPlayer(null)}
-                    hideAddButton={true}
+                    hideAddButton
                 />
             )}
         </div>
     );
 }
-
-export default SquadSelection;
