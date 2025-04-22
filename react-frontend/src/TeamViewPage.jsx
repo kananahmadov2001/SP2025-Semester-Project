@@ -9,7 +9,8 @@ import {
   FANTASY_ADD_URL,
   FANTASY_REMOVE_URL,
   PLAYERS_URL,
-  TOP_5_PLAYERS_URL
+  TOP_5_PLAYERS_URL,
+  RECENT_GAMES_URL
 } from "./config/constants";
 import { getCourtType } from "./utils/utilityFunctions";
 import { UseAuth } from "./context/AuthContext";
@@ -86,12 +87,19 @@ function DraftPlayerPage() {
   const [topPlayers, setTopPlayers] = useState([]);
   const [isFetchingTopPlayers, setIsFetchingTopPlayers] = useState(false);
 
+  const [recentGames, setRecentGames] = useState([]);
+  const [isFetchingGames, setIsFetchingGames] = useState(false);
+
+
+
+
   // ================================ USE EFFECTS ================================
   // 1) Fetch user team whenever user changes
   useEffect(() => {
     if (user) {
       fetchUserTeam(user.userId);
       fetchTopPlayers();
+      fetchRecentGames();
     }
   }, [user]);
 
@@ -146,6 +154,28 @@ function DraftPlayerPage() {
       setIsFetchingTopPlayers(false);
     }
   }
+
+
+
+  async function fetchRecentGames() {
+    try {
+      // Make the GET request to the API endpoint to fetch recent games
+      const response = await fetch(RECENT_GAMES_URL, { credentials: "include" });
+
+      const data = await response.json();
+
+      if (response.ok && data.gameLogs) {
+        // If the fetch is successful and gameLogs exist, update the state
+        setRecentGames(data.gameLogs);
+      } else {
+        // If there's an error, log the error message
+        console.error("Error fetching recent games:", data.error);
+      }
+    } catch (error) {
+      console.error("Error in fetchRecentGames:", error);
+    }
+  }
+
 
   // (B) Fetch players with pagination from /players?limit=10&page=...&name=...
   async function fetchPagedPlayers(pageNumber, nameQuery) {
@@ -377,6 +407,33 @@ function DraftPlayerPage() {
           </ul>
         )}
       </div>
+
+      {/*-------------- Recent Games --------------*/}
+      <div className="recent-games">
+        <h3 className="recent-games-header">Most Recent Games</h3>
+        {isFetchingGames ? (
+          <p className="loading-text">Loading recent games...</p>
+        ) : (
+          <ul className="games-list">
+            {recentGames.map((game) => (
+              <li key={game.id} className="game-item">
+                <div className="team-info">
+                  <img src={game.home_logo} alt={game.home_team} className="team-logo" />
+                  <span className="team-name">{game.home_team}</span>
+                  <span className="team-score">{game.home_score}</span>
+                </div>
+                <span className="vs-text">vs</span>
+                <div className="team-info">
+                  <img src={game.away_logo} alt={game.away_team} className="team-logo" />
+                  <span className="team-name">{game.away_team}</span>
+                  <span className="team-score">{game.away_score}</span>
+                </div>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+
 
       {/*======================== DRAFT PAGE (right side) ========================*/}
 
