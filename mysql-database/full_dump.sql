@@ -1,4 +1,4 @@
--- MySQL dump 10.13  Distrib 8.4.4, for Linux (aarch64)
+-- MySQL dump 10.13  Distrib 8.4.4, for Linux (x86_64)
 --
 -- Host: localhost    Database: hfl
 -- ------------------------------------------------------
@@ -31,7 +31,7 @@ CREATE TABLE `chat_messages` (
   PRIMARY KEY (`id`),
   KEY `league_id` (`league_id`),
   CONSTRAINT `chat_messages_ibfk_1` FOREIGN KEY (`league_id`) REFERENCES `leagues` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,7 +40,7 @@ CREATE TABLE `chat_messages` (
 
 LOCK TABLES `chat_messages` WRITE;
 /*!40000 ALTER TABLE `chat_messages` DISABLE KEYS */;
-INSERT INTO `chat_messages` VALUES (1,'andy','HI',NULL,'2025-04-22 17:15:34'),(2,'andy','hello',NULL,'2025-04-22 17:15:46'),(3,'andy','hi',2,'2025-04-22 17:17:14'),(4,'andy12','hi',NULL,'2025-04-22 17:31:48'),(5,'andy','Whats up',NULL,'2025-04-22 20:37:45'),(6,'andy','wasdwasdwasdwasdwasdwasdwad',NULL,'2025-04-22 20:37:55'),(7,'andyy','hi',2,'2025-04-22 21:31:23'),(8,'andyy','youre trash',2,'2025-04-22 21:31:30');
+INSERT INTO `chat_messages` VALUES (1,'andy','HI',NULL,'2025-04-22 17:15:34'),(2,'andy','hello',NULL,'2025-04-22 17:15:46'),(3,'andy','hi',2,'2025-04-22 17:17:14'),(4,'andy12','hi',NULL,'2025-04-22 17:31:48'),(5,'andy','Whats up',NULL,'2025-04-22 20:37:45'),(6,'andy','wasdwasdwasdwasdwasdwasdwad',NULL,'2025-04-22 20:37:55'),(7,'andyy','hi',2,'2025-04-22 21:31:23'),(8,'andyy','youre trash',2,'2025-04-22 21:31:30'),(9,'11112','agqwewqty',NULL,'2025-04-22 22:21:41'),(10,'11112','123152',1,'2025-04-22 22:22:04'),(11,'11112','1231',1,'2025-04-22 22:22:06');
 /*!40000 ALTER TABLE `chat_messages` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -226,6 +226,41 @@ INSERT INTO `messages` VALUES (1,'andy','hi','2025-04-01 19:28:24'),(2,'andy','h
 UNLOCK TABLES;
 
 --
+-- Table structure for table `player_clips`
+--
+
+DROP TABLE IF EXISTS `player_clips`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `player_clips` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `user_id` int NOT NULL,
+  `player_id` int NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `description` text NOT NULL,
+  `youtube_url` varchar(2048) NOT NULL,
+  `thumbs_up` int NOT NULL DEFAULT '0',
+  `thumbs_down` int NOT NULL DEFAULT '0',
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `idx_user_id` (`user_id`),
+  KEY `idx_player_id` (`player_id`),
+  CONSTRAINT `fk_player_clips_player` FOREIGN KEY (`player_id`) REFERENCES `players` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `fk_player_clips_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `player_clips`
+--
+
+LOCK TABLES `player_clips` WRITE;
+/*!40000 ALTER TABLE `player_clips` DISABLE KEYS */;
+INSERT INTO `player_clips` VALUES (1,11,195,'123','1233123','https://youtu.be/kk5cymSWmqo?si=pqtLIipvAndePzLE',2,0,'2025-04-22 22:20:20'),(2,11,4184,'41241','152313564','https://youtu.be/kk5cymSWmqo?si=pqtLIipvAndePzLE',1,0,'2025-04-22 22:21:01');
+/*!40000 ALTER TABLE `player_clips` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `player_stats`
 --
 
@@ -313,7 +348,7 @@ CREATE TABLE `user_leagues` (
   KEY `league_id` (`league_id`),
   CONSTRAINT `user_leagues_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
   CONSTRAINT `user_leagues_ibfk_2` FOREIGN KEY (`league_id`) REFERENCES `leagues` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -322,7 +357,7 @@ CREATE TABLE `user_leagues` (
 
 LOCK TABLES `user_leagues` WRITE;
 /*!40000 ALTER TABLE `user_leagues` DISABLE KEYS */;
-INSERT INTO `user_leagues` VALUES (1,4,1,'2025-02-28 02:50:24'),(2,6,2,'2025-04-22 03:53:28'),(4,6,4,'2025-04-22 04:02:39'),(5,7,5,'2025-04-22 04:13:40'),(6,8,2,'2025-04-22 04:17:03'),(7,6,3,'2025-04-22 16:35:05'),(8,7,2,'2025-04-22 17:18:11'),(9,10,2,'2025-04-22 21:31:20');
+INSERT INTO `user_leagues` VALUES (1,4,1,'2025-02-28 02:50:24'),(2,6,2,'2025-04-22 03:53:28'),(4,6,4,'2025-04-22 04:02:39'),(5,7,5,'2025-04-22 04:13:40'),(6,8,2,'2025-04-22 04:17:03'),(7,6,3,'2025-04-22 16:35:05'),(8,7,2,'2025-04-22 17:18:11'),(9,10,2,'2025-04-22 21:31:20'),(10,11,1,'2025-04-22 22:21:58');
 /*!40000 ALTER TABLE `user_leagues` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -370,7 +405,7 @@ CREATE TABLE `user_team_players` (
   KEY `player_id` (`player_id`),
   CONSTRAINT `user_team_players_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
   CONSTRAINT `user_team_players_ibfk_2` FOREIGN KEY (`player_id`) REFERENCES `players` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -379,7 +414,7 @@ CREATE TABLE `user_team_players` (
 
 LOCK TABLES `user_team_players` WRITE;
 /*!40000 ALTER TABLE `user_team_players` DISABLE KEYS */;
-INSERT INTO `user_team_players` VALUES (1,7,2890,1,NULL,'2025-04-22 04:13:35'),(2,7,3443,1,NULL,'2025-04-22 04:13:56'),(3,7,2863,1,NULL,'2025-04-22 04:14:00'),(4,7,3955,1,NULL,'2025-04-22 04:14:08'),(6,6,3443,1,3,'2025-04-22 16:26:47'),(7,6,2626,1,6,'2025-04-22 16:26:51'),(9,6,3955,1,4,'2025-04-22 16:27:01'),(10,6,4156,0,NULL,'2025-04-22 16:27:03'),(11,6,4140,0,NULL,'2025-04-22 16:27:13'),(14,6,4084,1,5,'2025-04-22 16:27:40'),(15,9,3443,1,NULL,'2025-04-22 17:35:55');
+INSERT INTO `user_team_players` VALUES (1,7,2890,1,NULL,'2025-04-22 04:13:35'),(2,7,3443,1,NULL,'2025-04-22 04:13:56'),(3,7,2863,1,NULL,'2025-04-22 04:14:00'),(4,7,3955,1,NULL,'2025-04-22 04:14:08'),(6,6,3443,1,3,'2025-04-22 16:26:47'),(7,6,2626,1,6,'2025-04-22 16:26:51'),(9,6,3955,1,4,'2025-04-22 16:27:01'),(10,6,4156,0,NULL,'2025-04-22 16:27:03'),(11,6,4140,0,NULL,'2025-04-22 16:27:13'),(14,6,4084,1,5,'2025-04-22 16:27:40'),(15,9,3443,1,NULL,'2025-04-22 17:35:55'),(16,11,2890,1,NULL,'2025-04-22 22:21:21'),(17,11,195,1,NULL,'2025-04-22 22:21:23');
 /*!40000 ALTER TABLE `user_team_players` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -398,7 +433,7 @@ CREATE TABLE `users` (
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -407,9 +442,17 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'John Doe','johndoe@example.com','$2a$10$zcNOg0zwPm3reM4//2gnAe/jFJ.pPI3e/7tXik.GR/q8G5UL/nn3O','2025-02-10 21:32:42'),(2,'test','test@gmail.com','$2a$10$eUa4LWFY4/Tw0Rtq/GYnkuwNF5HaVdv6tsC8DX8u47LZH.FtvKVRi','2025-02-11 05:13:01'),(4,'Abdou','assow211@gmail.com','$2a$10$udgzi2ZVTtwYbExNkWjW0uGkP3txyoNvcZymC6DL1EDDJO/EeQVj6','2025-02-18 05:09:56'),(5,'Mijung','mijung12161118@gmail.com','$2a$10$b6p0T7LsLkqCuFy6lRH2tuwBVBzv75JMnH.jOblWSKOp6tcix/FTq','2025-02-26 00:33:51'),(6,'andy','andy@gmail.com','$2a$10$eOMug8YADt4giR4uZOGfgOUkB30E8ROBH6P5Yr4w1a40dkzNHCSpG','2025-04-22 03:53:03'),(7,'andy1','andy1@gmail.com','$2a$10$FzswGTZOt4G/YiQW7j1DZ.U0AJ/Np/uf1RCpDHFK5sC3oDPll3maS','2025-04-22 04:12:54'),(8,'andy2','andy2@gmail.com','$2a$10$4sfq3s9u5DLlw6zZoFbbJO.QRdnCOV9Sp4/3FHf7WKgsWYL/FtZHq','2025-04-22 04:14:55'),(9,'andy123','andy123@gmail.com','$2a$10$dWnFUSoZ0iXDXq.MyqsIouMtO7tVz4id1/cxgfjcxN14sK5Tkr762','2025-04-22 17:35:35'),(10,'andyy','andyy@gmail.com','$2a$10$tAgOQ9f40vSWO/gTs5xOwOoznxLwfaEms13gje.uoJILHXlADXBcu','2025-04-22 21:31:08');
+INSERT INTO `users` VALUES (1,'John Doe','johndoe@example.com','$2a$10$zcNOg0zwPm3reM4//2gnAe/jFJ.pPI3e/7tXik.GR/q8G5UL/nn3O','2025-02-10 21:32:42'),(2,'test','test@gmail.com','$2a$10$eUa4LWFY4/Tw0Rtq/GYnkuwNF5HaVdv6tsC8DX8u47LZH.FtvKVRi','2025-02-11 05:13:01'),(4,'Abdou','assow211@gmail.com','$2a$10$udgzi2ZVTtwYbExNkWjW0uGkP3txyoNvcZymC6DL1EDDJO/EeQVj6','2025-02-18 05:09:56'),(5,'Mijung','mijung12161118@gmail.com','$2a$10$b6p0T7LsLkqCuFy6lRH2tuwBVBzv75JMnH.jOblWSKOp6tcix/FTq','2025-02-26 00:33:51'),(6,'andy','andy@gmail.com','$2a$10$eOMug8YADt4giR4uZOGfgOUkB30E8ROBH6P5Yr4w1a40dkzNHCSpG','2025-04-22 03:53:03'),(7,'andy1','andy1@gmail.com','$2a$10$FzswGTZOt4G/YiQW7j1DZ.U0AJ/Np/uf1RCpDHFK5sC3oDPll3maS','2025-04-22 04:12:54'),(8,'andy2','andy2@gmail.com','$2a$10$4sfq3s9u5DLlw6zZoFbbJO.QRdnCOV9Sp4/3FHf7WKgsWYL/FtZHq','2025-04-22 04:14:55'),(9,'andy123','andy123@gmail.com','$2a$10$dWnFUSoZ0iXDXq.MyqsIouMtO7tVz4id1/cxgfjcxN14sK5Tkr762','2025-04-22 17:35:35'),(10,'andyy','andyy@gmail.com','$2a$10$tAgOQ9f40vSWO/gTs5xOwOoznxLwfaEms13gje.uoJILHXlADXBcu','2025-04-22 21:31:08'),(11,'11112','kenny@example.com','$2a$10$LmrT4ZbQ28B7AFPVfTMGwOMiPNp4QAuZWoomj93tGGCA9agHigb4C','2025-04-22 22:11:09');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Dumping events for database 'hfl'
+--
+
+--
+-- Dumping routines for database 'hfl'
+--
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -420,4 +463,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-04-22 21:47:58
+-- Dump completed on 2025-04-22 22:24:57
