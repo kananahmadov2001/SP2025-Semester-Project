@@ -22,3 +22,5 @@ export const PLAYERS_URL = `${API_URL}/players`;
 
 export const LEADERBOARD_URL = `${API_URL}/leaderboard`;
 export const LEAGUES_URL = `${API_URL}/leagues`;
+
+export const CHAT_URL = `${API_URL}/chat`;

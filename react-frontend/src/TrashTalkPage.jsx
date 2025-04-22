@@ -4,6 +4,8 @@ import { LEADERBOARD_URL } from "./config/constants";
 import "./TrashTalkPage.css";
 import io from "socket.io-client";
 import { UseAuth } from "../src/context/AuthContext";
+import { CHAT_URL } from "./config/constants";
+
 
 const socket = io("http://localhost:3000");
 
@@ -16,34 +18,65 @@ function TrashTalkPage() {
   const [globalTrashTalk, setGlobalTrashTalk] = useState([]);
 
   useEffect(() => {
-    // Listen for global messages from the server
+    const fetchMessages = async () => {
+      try {
+        const res = await fetch(CHAT_URL);
+        const data = await res.json();
+        
+        // Check if data.messages exists and is an array, else set default empty array
+        const messages = Array.isArray(data.messages) ? data.messages : [];
+        
+        setGlobalTrashTalk(
+          messages.map((msg) => ({
+            ...msg,
+            isSelf: msg.user === user.name,
+          }))
+        );
+      } catch (error) {
+        console.error("Failed to load global chat:", error);
+      }
+    };
+  
+    fetchMessages();
+  
     socket.on("globalMessage", (message) => {
-      const newMessage = {
-        ...message,
-        isSelf: false,
-      };
+      const newMessage = { ...message, isSelf: false };
       setGlobalTrashTalk((prev) => [...prev, newMessage]);
     });
-
-    // Cleanup on component unmount
-    return () => {
-      socket.off("globalMessage");
-    };
+  
+    return () => socket.off("globalMessage");
   }, []);
-
-  const handleGlobalPost = () => {
+  
+  
+  
+  const handleGlobalPost = async () => {
+    console.log("hi");
     if (globalMessage.trim() !== "") {
       const newMessage = {
-        id: globalTrashTalk.length + 1,
-        user: user?.name || "You",
+        user: user.name,
         text: globalMessage,
-        isSelf: true,
       };
-      socket.emit("globalMessage", newMessage);
-      setGlobalTrashTalk([...globalTrashTalk, newMessage]);
-      setGlobalMessage("");
+  
+      try {
+        const res = await fetch(CHAT_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(newMessage),
+        });
+  
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || "Failed to send message.");
+  
+        socket.emit("globalMessage", newMessage);
+        setGlobalTrashTalk((prev) => [...prev, { ...newMessage, isSelf: true }]);
+        setGlobalMessage("");
+      } catch (error) {
+        console.error("Error posting global message:", error);
+      }
     }
   };
+  
+  
 
   return (
     <div className="trash-talk-page">
