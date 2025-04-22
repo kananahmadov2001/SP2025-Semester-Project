@@ -1,3 +1,4 @@
+// react-frontend/src/TrashTalkPage.jsx
 import React, { useState, useEffect } from "react";
 import { useNavigate, Navigate } from "react-router-dom";
 import { LEADERBOARD_URL } from "./config/constants";
