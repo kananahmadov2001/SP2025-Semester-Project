@@ -268,6 +268,8 @@ function LeaguesPage() {
               const isUserInLeague = league.members.some(
                 (m) => m.user_id === Number(user.userId)
               );
+              const isPrivate = league.league_name.toLowerCase().includes("private");
+              const isFull = league.members.length >= 8;
 
               return (
                 <div
@@ -282,6 +284,11 @@ function LeaguesPage() {
                     {isUserInLeague && <span className="joined-tag">[Joined]</span>}
                   </p>
                   <p className="league-id">League ID: {league.league_id}</p>
+
+                  <p className="visibility-tag">
+                    {isPrivate ? "🔒 Private League" : "🌐 Public League"}
+                  </p>
+                  {isFull && <p className="full-tag">League Full</p>}
 
                   <p>Members: {league.members.length} / 8</p>
                   <div className="user-list-row">
@@ -308,7 +315,7 @@ function LeaguesPage() {
                         handleJoinLeague(league.league_id);
                       }}
                     >
-                      Join League
+                      ➕ Join League
                     </button>
                   )}
 
@@ -321,7 +328,7 @@ function LeaguesPage() {
                         handleQuitLeague(league.league_id);
                       }}
                     >
-                      Quit League
+                      ✖️ Quit League
                     </button>
                   )}
                 </div>
