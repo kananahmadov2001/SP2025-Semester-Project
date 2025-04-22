@@ -2,6 +2,8 @@
 import { NextResponse } from "next/server";
 import pool from "@/app/api/database/mysql";
 import { RowDataPacket, ResultSetHeader } from "mysql2";
+import { cookies } from "next/headers";
+import { verifyToken } from "../utils/jwt";
 
 type Clip = {
     id: number;
@@ -54,35 +56,46 @@ export async function GET() {
  *     { playerId, youtubeUrl, title?, description? }
  */
 export async function POST(req: Request) {
-    const { playerId, youtubeUrl, title, description } = await req.json();
-    // TODO: you can extract userId from your auth cookie instead
-    // For now, require it in body:
-    const userId = Number((await req.json()).userId);
-    if (!userId || !playerId || !youtubeUrl) {
+    // 1) Authenticate via cookie (unchanged) …
+    const cookieStore = await cookies();
+    const tokenCookie = cookieStore.get("token");
+    if (!tokenCookie) {
+        return NextResponse.json({ error: "Authentication required" }, { status: 401 });
+    }
+    let payload: any;
+    try {
+        payload = verifyToken(tokenCookie.value);
+    } catch {
+        return NextResponse.json({ error: "Invalid or expired token" }, { status: 401 });
+    }
+    const userId = payload.userId;
+
+    // 2) Read the whole JSON body *once*
+    const body = await req.json();
+    const { playerId, youtubeUrl, title, description } = body;
+
+    if (!playerId || !youtubeUrl) {
         return NextResponse.json(
-            { error: "userId, playerId and youtubeUrl are required" },
+            { error: "playerId and youtubeUrl are required" },
             { status: 400 }
         );
     }
 
+    // 3) Insert into DB…
     const connection = await pool.getConnection();
     try {
         const [result] = await connection.execute<ResultSetHeader>(
-            `
-      INSERT INTO player_clips
-        (user_id, player_id, title, description, youtube_url)
-      VALUES (?, ?, ?, ?, ?)
-      `,
+            `INSERT INTO player_clips
+           (user_id, player_id, title, description, youtube_url)
+         VALUES (?, ?, ?, ?, ?)`,
             [userId, playerId, title || null, description || null, youtubeUrl]
         );
         const insertedId = result.insertId;
-        // Fetch and return the newly created clip
         const [rows] = await connection.execute<RowDataPacket[]>(
             `SELECT * FROM player_clips WHERE id = ?`,
             [insertedId]
         );
-        const newClip = rows[0];
-        return NextResponse.json({ clip: newClip }, { status: 201 });
+        return NextResponse.json({ clip: rows[0] }, { status: 201 });
     } catch (err) {
         console.error("❌ POST /api/challenge error:", err);
         return NextResponse.json({ error: "Failed to create clip" }, { status: 500 });

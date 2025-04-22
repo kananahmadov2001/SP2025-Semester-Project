@@ -1,6 +1,6 @@
 // react-frontend/src/ChallengePage.jsx
 import React, { useState, useEffect } from "react";
-import PlayerModal from "./PlayerModal";
+import PlayerModal from "./components/PlayerModal";
 import { PLAYERS_URL, CHALLENGE_URL } from "./config/constants";
 import "./ChallengePage.css";
 
