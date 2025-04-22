@@ -14,10 +14,10 @@ function Layout() {
         { path: "/", label: "Home", protected: false, hideWhenLoggedIn: true },
         { path: "/help", label: "Help", protected: false },
         { path: "/dashboard", label: "Dashboard", protected: false },
-        { path: "/dashboard/teamView", label: "TeamView", protected: true },
+        { path: "/dashboard/teamView", label: "Team View", protected: true },
         { path: "/dashboard/leagues", label: "Leagues", protected: true },
-        { path: "/dashboard/trashTalk", label: "TrashTalk", protected: true },
-        { path: "/dashboard/challenge", label: "Challenge", protected: true },
+        { path: "/dashboard/trashTalk", label: "Trash Talk", protected: true },
+        { path: "/dashboard/challenge", label: "Shared Clips", protected: true },
     ];
 
     function handleSignOut() {
@@ -141,8 +141,7 @@ function Layout() {
                 </div>
 
                 <p className="footer-copyright">
-                    &copy; 2025 Hater Fantasy League. All rights reserved.{" "}
-                    <a href="#">Privacy Policy</a> | <a href="#">Terms</a> | <a href="#">Site Map</a>
+                    &copy; 2025 Hater Fantasy League. All rights reserved.
                 </p>
             </footer>
         </div>
