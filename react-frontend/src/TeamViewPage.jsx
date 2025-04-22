@@ -112,8 +112,20 @@ function DraftPlayerPage() {
         credentials: "include",
       });
       const data = await resp.json();
-      if (resp.ok && data.fantasyTeam) {
-        setUserTeam(data.fantasyTeam);
+      if (resp.ok && "starters" in data && "bench" in data) {
+        const combinedTeam = [
+          ...data.starters.map((p) => ({
+            ...p,
+            position: p.real_position,  // ✅ fix here
+            is_starter: true
+          })),
+          ...data.bench.map((p) => ({
+            ...p,
+            position: p.real_position,  // ✅ fix here
+            is_starter: false
+          })),
+        ];
+        setUserTeam(combinedTeam);
       } else {
         console.error("Error fetching user team:", data.error);
       }
@@ -324,6 +336,36 @@ function DraftPlayerPage() {
     }
   }
 
+  async function handleToggleStarter(playerId) {
+    if (!user) {
+      alert("You must be logged in to change starter status.");
+      return;
+    }
+  
+    try {
+      const response = await fetch("http://localhost:3000/api/fantasy/toggle-starter", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({
+          userId: Number(user.userId),
+          playerId,
+        }),
+      });
+  
+      const data = await response.json();
+  
+      if (!response.ok) {
+        throw new Error(data.error || "Failed to toggle starter status");
+      }
+  
+      await fetchUserTeam(user.userId); // refresh team state
+    } catch (err) {
+      console.error(err);
+      alert(err.message);
+    }
+  }  
+
   // ================================ RENDERING ================================
   // If user is null, or something weird (shouldn't happen if route is protected)
   if (!user) {
@@ -338,7 +380,11 @@ function DraftPlayerPage() {
         {isFetchingTeam ? (
           <div className="team-loading">Loading your team...</div>
         ) : (
-          <SquadSelection userTeam={userTeam} onRemovePlayer={handleRemovePlayer} />
+          <SquadSelection
+            userTeam={userTeam}
+            onRemovePlayer={handleRemovePlayer}
+            onToggleStarter={handleToggleStarter}
+          />
         )}
       </section>
 

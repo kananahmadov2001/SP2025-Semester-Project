@@ -6,7 +6,7 @@ import PlayerModal from "./PlayerModal";
 import getPlayerImage from "../getPlayerImage";
 
 
-function SquadSelection({ userTeam, onRemovePlayer }) {
+function SquadSelection({ userTeam, onRemovePlayer, onToggleStarter }) {
     const [viewType, setViewType] = useState("court");
 
     // 1) State for the player the user clicked
@@ -87,6 +87,22 @@ function SquadSelection({ userTeam, onRemovePlayer }) {
                                             >
                                                 Remove
                                             </button>
+                                            {!player.is_starter && (
+  <button
+    className="starter-toggle-btn"
+    onClick={(e) => {
+      e.stopPropagation(); 
+      onToggleStarter(player.id);
+    }}
+  >
+    Make Me Starter
+  </button>
+)}
+
+{player.is_starter && (
+  <div className="starter-indicator">✅ Starter</div>
+)}
+
                                         </div>
                                     ) : (
                                         <div className="empty-slot">Empty FC Slot</div>
@@ -125,6 +141,23 @@ function SquadSelection({ userTeam, onRemovePlayer }) {
                                             >
                                                 Remove
                                             </button>
+                                            {!player.is_starter && (
+  <button
+    className="starter-toggle-btn"
+    onClick={(e) => {
+      e.stopPropagation(); 
+      onToggleStarter(player.id);
+    }}
+  >
+    Make Me Starter
+  </button>
+)}
+
+{player.is_starter && (
+  <div className="starter-indicator">✅ Starter</div>
+)}
+
+
                                         </div>
                                     ) : (
                                         <div className="empty-slot">Empty FC Slot</div>
@@ -166,6 +199,22 @@ function SquadSelection({ userTeam, onRemovePlayer }) {
                                             >
                                                 Remove
                                             </button>
+                                            {!player.is_starter && (
+  <button
+    className="starter-toggle-btn"
+    onClick={(e) => {
+      e.stopPropagation(); 
+      onToggleStarter(player.id);
+    }}
+  >
+    Make Me Starter
+  </button>
+)}
+
+{player.is_starter && (
+  <div className="starter-indicator">✅ Starter</div>
+)}
+
                                         </div>
                                     ) : (
                                         <div className="empty-slot">Empty BC Slot</div>
@@ -202,6 +251,22 @@ function SquadSelection({ userTeam, onRemovePlayer }) {
                                             >
                                                 Remove
                                             </button>
+                                            {!player.is_starter && (
+  <button
+    className="starter-toggle-btn"
+    onClick={(e) => {
+      e.stopPropagation(); 
+      onToggleStarter(player.id);
+    }}
+  >
+    Make Me Starter
+  </button>
+)}
+
+{player.is_starter && (
+  <div className="starter-indicator">✅ Starter</div>
+)}
+
                                         </div>
                                     ) : (
                                         <div className="empty-slot">Empty BC Slot</div>
@@ -233,6 +298,23 @@ function SquadSelection({ userTeam, onRemovePlayer }) {
                                         >
                                             Remove
                                         </button>
+                                        {!player.is_starter && (
+  <button
+    className="starter-toggle-btn"
+    onClick={(e) => {
+      e.stopPropagation(); 
+      onToggleStarter(player.id);
+    }}
+  >
+    Make Me Starter
+  </button>
+)}
+
+{player.is_starter && (
+  <div className="starter-indicator">✅ Starter</div>
+)}
+
+
                                     </div>
                                 ) : (
                                     <div className="empty-slot">Empty FC Slot</div>
@@ -260,6 +342,23 @@ function SquadSelection({ userTeam, onRemovePlayer }) {
                                         >
                                             Remove
                                         </button>
+                                        {!player.is_starter && (
+  <button
+    className="starter-toggle-btn"
+    onClick={(e) => {
+      e.stopPropagation(); 
+      onToggleStarter(player.id);
+    }}
+  >
+    Make Me Starter
+  </button>
+)}
+
+{player.is_starter && (
+  <div className="starter-indicator">✅ Starter</div>
+)}
+
+
                                     </div>
                                 ) : (
                                     <div className="empty-slot">Empty BC Slot</div>

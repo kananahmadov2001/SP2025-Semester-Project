@@ -206,3 +206,24 @@
     display: flex;
     gap: 8px;
 }
+
+
+.starter-toggle-btn {
+    margin-top: 6px;
+    padding: 5px 10px;
+    font-size: 13px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    color: white;
+  }
+  
+  .starter-toggle-btn.starter {
+    background-color: #289f53;
+  }
+  
+  .starter-toggle-btn.bench {
+    background-color: #f44336;
+  }
+  
