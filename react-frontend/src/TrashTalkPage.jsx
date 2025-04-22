@@ -5,10 +5,10 @@ import { LEADERBOARD_URL } from "./config/constants";
 import "./TrashTalkPage.css";
 import io from "socket.io-client";
 import { UseAuth } from "../src/context/AuthContext";
-import { CHAT_URL } from "./config/constants";
+import { CHAT_URL, API_BASE_URL } from "./config/constants";
 
 
-const socket = io("http://localhost:3000");
+const socket = io(API_BASE_URL);
 
 function TrashTalkPage() {
   const navigate = useNavigate();
