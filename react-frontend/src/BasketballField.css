@@ -1,0 +1,61 @@
+/* --- Court wrapper keeps 16:9 ratio via padding trick ---------------- */
+.bf-wrapper {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%;
+    /* 9 / 16 * 100  */
+    background: #222 center/cover no-repeat;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.55);
+    overflow: hidden;
+}
+
+/* Empty‑state helper */
+.bf-wrapper.empty {
+    display: grid;
+    place-items: center;
+    color: #eee;
+    background: #444;
+}
+
+/* --- Player card ----------------------------------------------------- */
+.bf-card {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    width: clamp(70px, 11vw, 120px);
+    text-align: center;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    padding: 6px 4px 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+}
+
+/* Team logo */
+.bf-logo {
+    width: 40%;
+    aspect-ratio: 1 / 1;
+    object-fit: contain;
+}
+
+/* Name & position */
+.bf-name {
+    font-size: clamp(10px, 1.6vw, 14px);
+    font-weight: 600;
+    color: #222;
+}
+
+.bf-pos {
+    font-size: clamp(9px, 1.4vw, 12px);
+    color: #555;
+}
+
+/* --- Small screens --------------------------------------------------- */
+@media (max-width: 500px) {
+    .bf-card {
+        width: clamp(60px, 18vw, 90px);
+    }
+}

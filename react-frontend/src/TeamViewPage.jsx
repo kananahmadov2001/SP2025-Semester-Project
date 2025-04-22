@@ -106,22 +106,26 @@ function DraftPlayerPage() {
   // ================================ API CALLS ================================
   // (A) Fetch user team
   async function fetchUserTeam(userId) {
+    setIsFetchingTeam(true);
     try {
-      setIsFetchingTeam(true);
       const resp = await fetch(`${FANTASY_TEAM_URL}?userId=${userId}`, {
         credentials: "include",
       });
       const data = await resp.json();
-      if (resp.ok && data.fantasyTeam) {
-        setUserTeam(data.fantasyTeam);
+      if (resp.ok) {
+        // backend already flags is_starter correctly
+        const combined = [
+          ...data.starters.map((p) => ({ ...p, position: p.real_position, is_starter: true })),
+          ...data.bench.map((p) => ({ ...p, position: p.real_position, is_starter: false })),
+        ];
+        setUserTeam(combined);
       } else {
-        console.error("Error fetching user team:", data.error);
+        console.error("Fetch team error:", data.error);
       }
-    } catch (err) {
-      console.error("Error fetching user team:", err);
-    } finally {
-      setIsFetchingTeam(false);
+    } catch (e) {
+      console.error("Fetch team exception:", e);
     }
+    setIsFetchingTeam(false);
   }
 
   async function fetchTopPlayers() {
@@ -248,26 +252,8 @@ function DraftPlayerPage() {
       alert("You must be logged in to add players.");
       return;
     }
-
-    // Check front/back court
-    const courtType = getCourtType(player.position);
-    const isFrontCourt = courtType === "front";
-    const isBackCourt = courtType === "back";
-
-    const fcCount = userTeam.filter((p) => getCourtType(p.position) === "front").length;
-    const bcCount = userTeam.filter((p) => getCourtType(p.position) === "back").length;
-
-    if (isFrontCourt && fcCount >= 5) {
-      alert("You already have 5 front-court players! Remove one first.");
-      return;
-    }
-    if (isBackCourt && bcCount >= 5) {
-      alert("You already have 5 back-court players! Remove one first.");
-      return;
-    }
-
     try {
-      const response = await fetch(FANTASY_ADD_URL, {
+      const resp = await fetch(FANTASY_ADD_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
@@ -276,16 +262,14 @@ function DraftPlayerPage() {
           playerId: player.id,
         }),
       });
-      const data = await response.json();
-
-      if (!response.ok) {
+      const data = await resp.json();
+      if (!resp.ok) {
         throw new Error(data.error || "Failed to add player");
       }
-
-      alert(`Added playerId(${data.playerId}) to your team!`);
-      await fetchUserTeam(user.userId); // reload user team
+      // always succeed; new player lands on bench
+      await fetchUserTeam(user.userId);
     } catch (err) {
-      console.error(err);
+      console.error("Add player error:", err);
       alert(err.message);
     }
   }
@@ -324,6 +308,36 @@ function DraftPlayerPage() {
     }
   }
 
+  async function handleToggleStarter(playerId) {
+    if (!user) {
+      alert("You must be logged in to change starter status.");
+      return;
+    }
+
+    try {
+      const response = await fetch("http://localhost:3000/api/fantasy/toggle-starter", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({
+          userId: Number(user.userId),
+          playerId,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "Failed to toggle starter status");
+      }
+
+      await fetchUserTeam(user.userId); // refresh team state
+    } catch (err) {
+      console.error(err);
+      alert(err.message);
+    }
+  }
+
   // ================================ RENDERING ================================
   // If user is null, or something weird (shouldn't happen if route is protected)
   if (!user) {
@@ -338,7 +352,11 @@ function DraftPlayerPage() {
         {isFetchingTeam ? (
           <div className="team-loading">Loading your team...</div>
         ) : (
-          <SquadSelection userTeam={userTeam} onRemovePlayer={handleRemovePlayer} />
+          <SquadSelection
+            userTeam={userTeam}
+            onRemovePlayer={handleRemovePlayer}
+            onToggleStarter={handleToggleStarter}
+          />
         )}
       </section>
 
