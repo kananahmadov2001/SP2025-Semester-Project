@@ -1,7 +1,9 @@
 // react-frontend/src/config/constants.js
 
 // Base URL of the Next.js backend.
-export const API_BASE_URL = "http://localhost:3000";
+export const API_BASE_URL = "http://localhost:8080";
+
+
 
 // If the backend is at /api, you can keep it separate or combine it:
 export const API_URL = `${API_BASE_URL}/api`;

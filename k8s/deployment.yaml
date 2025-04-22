@@ -64,10 +64,20 @@ spec:
           ports:
             - containerPort: 3000
           env:
-            - name: APP_DATABASE__HOST
+            - name: DB_HOST
               value: project-draft-db
-            - name: APP_DATABASE__PORT
+            - name: DB_PORT
               value: "3306"
+            - name: DB_USER
+              value: root
+            - name: DB_PASSWORD
+              value: Abdousow1!
+            - name: DB_NAME
+              value: hfl
+            - name: JWT_SECRET
+              value: TrueHaterStuff
+            - name: API_KEY
+              value: ba3cd22225mshee75f930ff122a6p1d64d2jsn63aaab2cb29f
 ---
 apiVersion: v1
 kind: Service
@@ -96,6 +106,7 @@ spec:
                 port:
                   number: 3000
 ---
+
 # apiVersion: v1
 # kind: Service
 # metadata:
