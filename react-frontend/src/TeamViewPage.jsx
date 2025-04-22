@@ -392,21 +392,31 @@ function DraftPlayerPage() {
 
       {/*-------------- Top 5 Weekly Performers --------------*/}
       <div className="top-weekly-players">
-        <h3 className="top-players-header">Top 5 Weekly Performers</h3>
+        <h3 className="sq-section-header">Top 5 Weekly Performers</h3>
         {isFetchingTopPlayers ? (
           <p className="loading-text">Loading top players...</p>
         ) : (
-          <ul className="players-list">
+          <div className="sq-grid">
             {topPlayers.map((player, index) => (
-              <li key={player.id} className="player-item">
-                <span className="rank">{index + 1}.</span>
-                <span className="player-name">{player.firstname} {player.lastname}</span>
-                <span className="player-score">— {player.weekly_score} pts</span>
-              </li>
+              <div key={player.id} className="sq-card weekly-top">
+                <img
+                  src={getPlayerImage(player.team)}
+                  alt={`${player.firstname} ${player.lastname}`}
+                  className="sq-logo"
+                />
+                <div className="sq-name">
+                  {player.firstname} {player.lastname}
+                </div>
+                <div className="sq-pos">{player.position}</div>
+                <div className="sq-team">{player.team}</div>
+                <div className="sq-score-badge">{player.weekly_score} pts</div>
+                <div className="sq-rank-badge">#{index + 1}</div>
+              </div>
             ))}
-          </ul>
+          </div>
         )}
       </div>
+
 
       {/*-------------- Recent Games --------------*/}
       <div className="recent-games">

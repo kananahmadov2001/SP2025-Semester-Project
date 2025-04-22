@@ -2,7 +2,7 @@
 .bf-wrapper {
     position: relative;
     width: 100%;
-    padding-top: 56.25%;
+    padding-top: 35.25%;
     /* 9 / 16 * 100  */
     background: #222 center/cover no-repeat;
     border-radius: 12px;
@@ -22,40 +22,62 @@
 .bf-card {
     position: absolute;
     transform: translate(-50%, -50%);
-    width: clamp(70px, 11vw, 120px);
+    width: clamp(100px, 14vw, 150px);
+    /* Bigger card size */
+    padding: 10px 8px 12px;
+    /* Slightly more padding */
     text-align: center;
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: 10px;
-    padding: 6px 4px 8px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.8), rgba(230, 230, 230, 0.8));
+    border-radius: 14px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3), 0 4px 6px rgba(0, 0, 0, 0.2);
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 2px;
+    gap: 4px;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Hover effects */
+.bf-card:hover {
+    transform: translate(-50%, -50%) scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4), 0 6px 10px rgba(0, 0, 0, 0.3);
+    border: 2px solid #ff4d00;
+    /* Add a nice border to make it pop */
 }
 
 /* Team logo */
 .bf-logo {
-    width: 40%;
+    width: 50%;
+    /* Increased from 40% */
     aspect-ratio: 1 / 1;
     object-fit: contain;
+    border-radius: 50%;
+    transition: transform 0.2s ease;
+}
+
+/* Add hover effect on image to slightly enlarge */
+.bf-card:hover .bf-logo {
+    transform: scale(1.1);
 }
 
 /* Name & position */
 .bf-name {
-    font-size: clamp(10px, 1.6vw, 14px);
+    font-size: clamp(12px, 1.8vw, 16px);
     font-weight: 600;
     color: #222;
+    text-transform: uppercase;
 }
 
 .bf-pos {
-    font-size: clamp(9px, 1.4vw, 12px);
+    font-size: clamp(10px, 1.6vw, 14px);
     color: #555;
+    font-style: italic;
 }
 
 /* --- Small screens --------------------------------------------------- */
 @media (max-width: 500px) {
     .bf-card {
         width: clamp(60px, 18vw, 90px);
+        padding: 6px 4px 8px;
     }
 }

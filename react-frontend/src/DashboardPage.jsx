@@ -87,7 +87,7 @@ export default function DashboardPage() {
       {/* Notifications */}
       <section className="draft-trash-section">
         <div className="draft-container">
-          <h2 className="not-heading">Global Chat Notifications</h2>
+          <h2 className="not-heading">Global Chat</h2>
           <p className="draft-description">
             Stay updated on the latest trash talk, heated debates, and trending discussions
             happening across all HFL leagues. Don’t miss out on the biggest call-outs!
@@ -102,7 +102,7 @@ export default function DashboardPage() {
         <div className="divider2" />
 
         <div className="chat-container">
-          <h2 className="not-heading">League Chat Notifications</h2>
+          <h2 className="not-heading">League Chat</h2>
           <p className="chat-description">
             Get real-time updates from your private league chat. See what your competitors
             are saying, engage in the latest debates, and keep the banter going strong!

@@ -22,10 +22,10 @@ function TrashTalkPage() {
       try {
         const res = await fetch(CHAT_URL);
         const data = await res.json();
-        
+
         // Check if data.messages exists and is an array, else set default empty array
         const messages = Array.isArray(data.messages) ? data.messages : [];
-        
+
         setGlobalTrashTalk(
           messages.map((msg) => ({
             ...msg,
@@ -36,37 +36,36 @@ function TrashTalkPage() {
         console.error("Failed to load global chat:", error);
       }
     };
-  
+
     fetchMessages();
-  
+
     socket.on("globalMessage", (message) => {
       const newMessage = { ...message, isSelf: false };
       setGlobalTrashTalk((prev) => [...prev, newMessage]);
     });
-  
+
     return () => socket.off("globalMessage");
   }, []);
-  
-  
-  
+
+
+
   const handleGlobalPost = async () => {
-    console.log("hi");
     if (globalMessage.trim() !== "") {
       const newMessage = {
         user: user.name,
         text: globalMessage,
       };
-  
+
       try {
         const res = await fetch(CHAT_URL, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(newMessage),
         });
-  
+
         const data = await res.json();
         if (!res.ok) throw new Error(data.error || "Failed to send message.");
-  
+
         socket.emit("globalMessage", newMessage);
         setGlobalTrashTalk((prev) => [...prev, { ...newMessage, isSelf: true }]);
         setGlobalMessage("");
@@ -75,14 +74,14 @@ function TrashTalkPage() {
       }
     }
   };
-  
-  
+
+
 
   return (
     <div className="trash-talk-page">
       {/* Global Chat Section */}
       <section className="chat-section">
-        <h2>Global Chat</h2>
+        <h2>Trash Talk Zone</h2>
         <div className="chat-box">
           <div className="chat-messages">
             {globalTrashTalk.map((post) => (

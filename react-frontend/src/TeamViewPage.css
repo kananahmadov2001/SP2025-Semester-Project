@@ -458,3 +458,52 @@
   font-weight: 600;
   padding: 0 1.5rem;
 }
+
+/* Section Header for Top Players */
+.sq-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #35509a;
+  font-size: 1.5rem;
+  margin: 1.5rem 0 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.sq-section-header::before,
+.sq-section-header::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: #ccc;
+  margin: 0 12px;
+}
+
+/* Weekly Top Player Styling */
+.sq-card.weekly-top {
+  border: 3px solid #fbc02d;
+  position: relative;
+}
+
+/* Rank badge in top-left corner */
+.sq-rank-badge {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  background-color: #fbc02d;
+  color: #000;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+}
+
+/* Score badge */
+.sq-score-badge {
+  margin-top: 0.5rem;
+  font-weight: bold;
+  color: #2e7d32;
+  font-size: 0.9rem;
+}
